@@ -1,0 +1,22 @@
+<view class='container'>
+  <view class='card-header'>
+    <view class='cion-buy-type'></view>13520507302
+  </view>
+  <text class='title-buy'>会员卡购买</text>
+  <view class='card-lists'>
+    <view class='card-item'>
+      <text class='crad-name'>黄金会员</text>
+      <text class='crad-name'>仅需<text class='colorff6644'>89</text>元</text>
+      <icon class='chose'>icon</icon>
+    </view>
+    <view class='card-item'>
+      <text class='crad-name'>黄金会员</text>
+      <text class='crad-name'>仅需<text class='colorff6644'>89</text>元</text>
+      <icon class='chose active'>icon</icon>
+    </view>
+  </view>
+  <view class='footer'>
+    <text class='yuan-icon'>¥ </text>48456
+    <button class='zhifu'>微信支付</button>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<view class='container' style='min-height: {{ height }}px'>
+  <view class='coupon-item coupon-no'>
+    <view>不使用优惠券</view>
+    <view class='chose-vip' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+    <view class='no-chose-vip' wx:if="{{!nochose}}"></view>
+  </view>
+  <view class='coupon-num'>
+    <view>有5个红包可用</view>
+    <view>优惠券说明</view>
+  </view>
+   <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view> 
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+  <view class='coupon-item item-card'>
+    <view class='card'>
+      <view>
+        <view class='card-name'>20元优惠券</view>
+        <text class='card-text'>6个月免费</text>
+      </view>
+      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
+      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    </view>
+  </view>
+</view>

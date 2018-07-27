@@ -1,0 +1,30 @@
+<view>
+  <view class='header'>
+    <view class='shenfz'>身份认证</view>
+    <view>新增入住人需要验证真实</view>
+    <view>姓名和身份证号</view>
+    <image src='{{bgImageUrl}}' class='bg-img'></image>
+  </view>
+  <view class='idcard-box' wx:if="{{flag==true}}">
+    <view class='floor'>真实姓名
+      <text class='info'>张明明</text>
+    </view>
+    <view class='floor'>身份证号
+      <text class='info'>3703021888888888888</text>
+    </view>
+  </view>
+  <view class='idcard-box' wx:if="{{flag==false}}">
+    <view class='image-box'>
+      <image class='id-img' src='{{idImageUrl}}' wx:if="{{hasImg}}"></image>
+      <image class='id-img' src='{{idImageUrl}}' wx:if="{{!hasImg}}"></image>
+      <!-- <image class='id-img' src='{{tempFilePaths[0]}}'></image> -->
+    </view>
+  </view>
+  <view class='btn-box'>
+    <button class='btn btn-saomiao' wx:if="{{flag==false}}" bindtap="chooseimage">证件扫描</button>
+    <button class='btn btn-confirm' wx:if="{{flag==true}}">确认</button>
+    <button class='btn btn-repeat' wx:if="{{flag==true}}">信息不对，重新扫描</button>
+    <view class='note note1'>请确保上传的身份信息与实际入住人y一致,因两者不符</view>
+    <view class='note'>而造成的一切法律问题由本人承担</view>
+  </view>
+</view>

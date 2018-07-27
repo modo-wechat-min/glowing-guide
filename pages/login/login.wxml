@@ -1,0 +1,13 @@
+<view class='container'>
+<image class='bg-img' src="{{loginImageUrl}}"></image>
+  <view id="phone">
+    <input placeholder='请输入您的手机号' class='phone' value='{{phone}}' bindinput="bindPhone"></input>
+  </view>
+  <view id="code">
+    <input placeholder='请输入验证码' class='code' value='{{code}}' bindinput="bindCode"></input>
+    <button class='send' bindtap='sendFun'>发送验证码</button>
+  </view>
+  <button class='login' bindtap='loginFun'>登录</button>
+  <navigator class='self' url="../home/home" open-type="switchTab">随便看看</navigator>
+  <view class='note'>未注册过的手机号将自动注册成为摩兜公寓用户</view>
+</view>

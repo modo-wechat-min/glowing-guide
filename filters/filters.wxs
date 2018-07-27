@@ -1,0 +1,9 @@
+var DateFr = {
+  deleteYearTime: function (time){
+    return time.slice(time.indexOf("年")+1);
+  }
+}
+module.exports = {
+  deleteYearTime: DateFr.deleteYearTime
+}
+

@@ -1,0 +1,13 @@
+<view class='container'>
+  <view wx:for="{{titles}}" wx:for-index="index" wx:for-item="item" class='item-box'>
+    <text class='item-title'>{{item.title}}</text>
+    <image src='{{imgUrls[index]}}' class='item-img'></image>
+    <view class='absulute'>
+      <view class='right-more'>查看更多会员权益 ></view> 
+      <view class='center-title'>{{item.title}}</view> 
+      <view class='center-content'>{{item.content}}</view> 
+      <view class='discount'>{{item.discount}}</view>
+      <text class='buy-card'>立即抢购</text>
+    </view>
+  </view>
+</view>

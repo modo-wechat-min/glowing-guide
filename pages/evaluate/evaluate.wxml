@@ -1,0 +1,52 @@
+<view class='box'>
+  <view class='order'>
+    <image class='room-img'></image>
+    <view class='room-info'>
+      <view class='branch'>望京方恒店</view>
+      <view class='type'>Modo.Max投影精英套房</view>
+      <view class='time'>2018年06月13日-2018年06月14日</view>
+      <view id="money">¥
+        <text class='money'>600.00</text>
+      </view>
+    </view>
+    <view>
+      <view class='discribe'>总体描述</view>
+      <view class='star-box'>
+        <view class='star' wx:for="{{array}}"></view>
+      </view>
+    </view>
+
+  </view>
+  <view class='sub-score'>
+    <view class='sub-score-title'>给房间评分</view>
+    <view class='score-item'>
+      <view class='sub-score-subtitle'>卫生状况</view>
+      <view class='star-box1'>
+        <view class='star' wx:for="{{array}}"></view>
+      </view>
+    </view>
+    <view class='score-item'>
+      <view class='sub-score-subtitle'>设施质量</view>
+      <view class='star-box1'>
+        <view class='star' wx:for="{{array}}"></view>
+      </view>
+    </view>
+    <view class='score-item'>
+      <view class='sub-score-subtitle'>服务态度</view>
+      <view class='star-box1'>
+        <view class='star' wx:for="{{array}}"></view>
+      </view>
+    </view>
+  </view>
+  <view class='note'>
+    <textarea placeholder='亲，写点什么吧，您的意见可以帮助我们更加完善！'></textarea>
+    <view class='photo-box'>
+      <image class='img'></image>
+    </view>
+  </view>
+  <view class='btn-box'>
+    <icon class='hidename active'></icon>
+    <text>匿名评价</text>
+    <button class='publish'>发布评论</button>
+  </view>
+</view>

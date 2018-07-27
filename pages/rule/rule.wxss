@@ -1,0 +1,32 @@
+.container{
+  padding: 30rpx;
+  color: #666;
+}
+.rule-item{
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+.rule-title{
+  font-size: 30rpx;
+  line-height: 70rpx;
+}
+.tip{
+  font-size: 26rpx;
+  line-height: 42rpx;
+  padding: 0 20rpx;
+  position: relative;
+}
+.tip::before{
+  display: inline-block;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 4rpx;
+  background: #666;
+  position: absolute;
+  left: 0rpx;
+  top: 20rpx;
+}
+.ownership{
+  margin: 20rpx 0 40rpx;
+}

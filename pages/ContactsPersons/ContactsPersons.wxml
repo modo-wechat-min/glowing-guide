@@ -1,0 +1,25 @@
+<view class='container'>
+  <view class='bind-phone'>
+    绑定手机号：17113213131
+  </view>
+  <view class='header'>
+    <view>常用入住人</view>
+    <view>
+      <icon></icon>编辑
+      <icon></icon>新增</view>
+  </view>
+  <view class='lists'>
+    <view class='lists-item'>
+      <view>张明明</view>
+      <view>370302188888888888</view>
+    </view>
+    <view class='lists-item'>
+      <view>张明明</view>
+      <view>370302188888888888</view>
+    </view>
+    <view class='lists-item'>
+      <view>张明明</view>
+      <view>370302188888888888</view>
+    </view>
+  </view>
+</view>

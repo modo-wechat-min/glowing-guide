@@ -1,0 +1,21 @@
+<view class='container'>
+  <view class='time-box border1'>
+    <view class='surplus'>剩余支付时间</view>
+    <view class='time'>15:34</view>
+  </view>
+  <view class='order-main border1'>
+    <view>
+      <view class="room-title">望京方恒店</view>
+      <view class='room-info'>Modo.Max投影精英套房</view>
+      <view class='room-info'>06月23如-06月24日 共1晚</view>
+    </view>
+    <view class='room-right'>
+      <view class='status'>预订成功</view>
+      <view class='totle'>总额：¥ 600</view>
+    </view>
+  </view>
+  <view class='order-last border1'>
+    <view>还需支付：¥ <text class='resuilt'>600</text></view>
+  </view>
+  <button class='payment-btn'>立即支付</button>
+</view>

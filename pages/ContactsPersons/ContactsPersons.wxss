@@ -1,0 +1,15 @@
+.container>view{
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ddd;
+}
+.bind-phone,.header{
+  padding: 40rpx 30rpx;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.lists{
+  padding: 20rpx 30rpx;
+}

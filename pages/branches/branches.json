@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/branches/branches"
+  ],
+  "window": {
+    "navigationBarTitleText": "摩兜分店"
+  }
+}

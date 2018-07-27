@@ -1,0 +1,100 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<view class='container'>
+  <view class='img-slider'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)">
+      <block wx:for="{{imgUrls}}" wx:for-index="index">
+        <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='position-box  border1'>
+    <icon class='icon-position icon'></icon>
+    <view class='position-title'>{{branchObj.Name}} </view>
+    <view class='sub-position-title'>{{branchObj.Address}}</view>
+    <icon class='icon-next icon position-next'></icon>
+  </view>
+  <view class='position-box border1 tip-box'>
+    <view id='area'>
+      <icon class='area icon'></icon> 面积：45-60平方米
+    </view>
+    <view>
+      <icon class='icon-type icon'></icon> 一室一厅
+    </view>
+  </view>
+  <view class='time-box  border1'>
+    <view class='sub-time-title'>入住-离店时间</view>
+    <view class='time-title' bindtap='toGetDate'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
+      <text class='totle-time' bindtap='toGetDate'>共{{days}}晚</text>
+    </view>
+    <icon class='icon-next icon position-next'></icon>
+  </view>
+  <view class='room-lists'>
+    <view class='room-item border1' wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" wx:key="{{item.id}}">
+      <view class='room-img' bindtap='openFun'>
+        <image class='room-pic' src='{{modoImgHttp+item.Img}}'></image>
+        <view class='scale-bg'>
+          <icon class='scale icon'></icon>
+        </view>
+      </view>
+      <view class='room-info'>
+        <view class='room-left'>
+          <view class='room-type'>{{item.Name}}</view>
+          <view class='room-note'>{{item.Area}}㎡ 床型：{{item.BedTypeDescribe}}</view>
+        </view>
+        <view class='room-right'>
+          <view class='price-box'>¥
+            <text class='room-price'>{{item.VIPPrice}}</text>
+          </view>
+          <button class='booking-btn' wx:if="{{item.CanSoldNumber>0}}">预定</button>
+          <button class='close-btn' wx:if="{{item.CanSoldNumber==0}}">满房</button>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+<view class='chose-room' animation="{{animation}}">
+  <view class='chose-room-type'>
+    <text>Modo.Max投影精英套房</text>
+    <text class='close' bindtap='closeFun'>X</text>
+  </view>
+  <swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
+    <block wx:for="{{imgUrls}}" wx:for-index="index">
+      <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='room-tip-box'>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>面积</text> 55-65㎡
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>楼层</text>27层
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>床型</text>1.8m
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>屋檐</text>不可吸烟
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>加床</text>不可加床
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>窗户</text>有窗
+    </view>
+    <view class='chose-room-tip'>
+      <text class='chose-room-title'>宽带</text>有WIFI且免费
+    </view>
+  </view>
+  <view class='sheshi'>
+     <view  class='sheshi-title'>房间设施：</view><view class='sheshi-content'>
+     书桌、沙发、茶几、衣柜、空调、220V电压插座、遮光窗帘、客房WIFI免费覆盖、洗衣机、冰箱、标准开放式厨房
+浴室：拖鞋、浴巾、浴室化妆镜、24小时热水、独立淋浴间、吹风机、一次性洗漱用品（牙具、梳子、香皂、洗发水、沐浴露、剃须刀、棉签、指甲锉）
+     </view>
+  </view>
+  <button class='get-price'>查看所有价格</button>
+</view>

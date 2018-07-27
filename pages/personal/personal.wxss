@@ -1,0 +1,94 @@
+.border-bottom15 {
+  border-bottom: 15rpx solid #f7f7f7;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.person-header {
+  padding: 92rpx 0 98rpx;
+  color: #666;
+  text-align: center;
+}
+
+.login-or-register {
+  border: 2px solid #666;
+  height: 62rpx;
+  line-height: 62rpx;
+  width: 204rpx;
+  margin: 0 auto;
+  border-radius: 33rpx;
+  font-size: 28rpx;
+}
+
+.person-note {
+  font-size: 20rpx;
+  padding-top: 22rpx;
+}
+
+.head-img {
+  height: 116rpx;
+  width: 116rpx;
+  border-radius: 58rpx;
+  margin: 0 auto;
+  background: #eee;
+}
+
+.sub-header {
+  display: flex;
+  padding-bottom: 26rpx;
+}
+
+.item {
+  width: 25%;
+  height: 146rpx;
+  text-align: center;
+}
+
+.sub-img {
+  width: 70rpx;
+  height: 77rpx;
+  margin: 20rpx 0 0;
+}
+
+.img-info {
+  display: block;
+  font-size: 24rpx;
+  padding: 6rpx 0 0;
+  color: #333;
+}
+
+.squared-title {
+  font-size: 28rpx;
+  color: #333;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-indent: 60rpx;
+  border-bottom: 1px solid #999;
+}
+
+.squared-item {
+  width: 232rpx;
+  padding: 36rpx 0 16rpx;
+  text-align: center;
+  float: left;
+}
+
+.squared-item:nth-of-type(3n) {
+  width: 286rpx;
+}
+
+.squared-img {
+  height: 66rpx;
+  width: 66rpx;
+}
+
+.squared-info {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+.face{
+  width: 74rpx;
+}

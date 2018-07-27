@@ -1,0 +1,12 @@
+<view class='container'>
+  <view class='box1' style='width: {{ sysW * 7}}px' wx:for="{{MonthNumber}}" wx:for-item="month" wx:for-index="id" wx:key="id">
+    <view class='dateBox'>{{ YearNumber[id] }} 年 {{ month}}月</view>
+    <block wx:for='{{ weekArr}}' wx:for-item="day" class="week-day" wx:key="day">
+      <view style='width: {{ sysW }}px; height: {{ sysW}}px; line-height: {{ sysW }}px;'>{{ day }}</view>
+    </block>
+    <block wx:for='{{MonthArr[id]}}' wx:for-item="date" data-date="{{date}}" wx:key="date">
+      <view style='{{ index == 0 ? "margin-left:" + sysW * FirstDay[id] + "px;" : "" }}width: {{ sysW }}px; height: {{ sysW }}px; line-height: {{ sysW }}px;' class='{{ date.day ==  getStart&& month==choseMonth1 ? "dateStart" : ""}} {{ date.day ==  getEnd&& month==choseMonth2 ? "dateStart" : ""}} {{date.day < getDate&& id==0 ? "dateOff" : ""}} {{ indexStart<date.index&& date.index< indexEnd? "dateCenter" : ""}}'
+        bindtap="getDateFun" data-year="{{YearNumber[id]}}" data-month="{{month}}" data-date="{{date.day}}" data-index="{{date.index}}">{{date.day}}</view>
+    </block>
+  </view>
+</view>

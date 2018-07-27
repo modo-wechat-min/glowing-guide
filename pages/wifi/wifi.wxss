@@ -1,0 +1,38 @@
+.box{
+  text-align: left;
+  line-height: 66rpx;
+  border-bottom: 1rpx solid #eee;
+  padding: 50rpx 0;
+  font-size: 30rpx;
+}
+.title{
+  color: #999;
+  display: inline-block;
+  width: 375rpx;
+  text-align: right;
+  box-sizing: content-box;
+
+}
+.wifi{
+  width: 519rpx;
+  height: 277rpx;
+  margin: 176rpx 115rpx;
+}
+#picker{
+  display: inline-block;
+  border: 1rpx solid #333;
+  height: 46rpx;
+  width: 150rpx;
+  line-height: 46rpx;
+  text-align: center;
+}
+.icon-down,.icon-up{
+  width: 24rpx;
+  height: 14rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABAElEQVQ4ja3TMUoDURDG8d8SUdgm2IhFCsFGhNQWYql2uUBAPIBY5wZBPIDY5wJpBWutLLS0tLNKkyIQfBaZJYkE3az7wcBj5pv/zu7Oy/CEDZxipB5t4wFTeEHCM/Ia4HmwUrC18BGJodnbVNVmMFIwW0XhEJ9RGCCrAM+iNwXr4KfhCOMw3FR4wG30joO1UueYhLG3BrwXPROc/WXu4iviogT8csHfLTvRdUw0RecXXyc8CVdl4YX65t/0eEX9xPyf9deFM9uK+wCM0F6otSOXcKfa1oGG5b3ew77le9OoCi+U4zGA7xEpclv/hRdq4jXAKc7NuuCFdvEWsVO26RvrVUSmmy/3WgAAAABJRU5ErkJggg==);
+  background-size: cover;
+  vertical-align: middle;
+}
+.icon-up{
+  transform: rotate(180deg);
+}

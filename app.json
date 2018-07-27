@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/evaluate/evaluate",
+    "pages/login/login",
+    "pages/OrderDetails/OrderDetails",
+    "pages/OrderLists/OrderLists",
+    "pages/wifi/wifi",
+    "pages/personal/personal",
+    "pages/home/home",
+    "pages/success/success",
+    "pages/StorageValue/StorageValue",
+    "pages/CreateContact/CreateContact",
+    "pages/ContactsPersons/ContactsPersons",
+    "pages/branches/branches",
+    "pages/date/date",
+    "pages/CouponLists/CouponLists",
+    "pages/OrderPayment/OrderPayment",
+    "pages/OrderEdit/OrderEdit",
+    "pages/BranchDetails/BranchDetails",
+    "pages/PurchaseVipCard/PurchaseVipCard",
+    "pages/VipCard/VipCard",
+    "pages/rule/rule",
+    "pages/BuyMembershipCard/BuyMembershipCard",
+    "pages/PreferentialActivities/PreferentialActivities"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3e3e3e",
+    "navigationBarTitleText": "摩兜公寓",
+    "enablePullDownRefresh": false,
+    "navigationBarTextStyle": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#ff6644",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "image/tabbar/home.png",
+        "selectedIconPath": "image/tabbar/home_active.png"
+      },
+      {
+        "pagePath": "pages/OrderLists/OrderLists",
+        "text": "订单",
+        "iconPath": "image/tabbar/order.png",
+        "selectedIconPath": "image/tabbar/order_active.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
+        "iconPath": "image/tabbar/personal.png",
+        "selectedIconPath": "image/tabbar/personal_active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

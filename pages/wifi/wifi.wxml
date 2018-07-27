@@ -1,0 +1,18 @@
+<view class='box'>
+  <view>
+    <view class="title">当前位置：</view>望京方恒店</view>
+  <view>
+    <view class="title">房间号：</view>
+
+      <picker bindchange="bindPickerChange" bindcancel="bindPickerCancel" value="{{index}}" id="picker" range="{{array}}" bindtap='isdown'>
+        <view class="picker">
+          {{array[index]}} <icon class='icon {{isdown?"icon-down":"icon-up"}}'></icon>
+        </view>
+      </picker>
+  </view>
+  <view>
+    <view class="title">Wifi账号：</view>100000000</view>
+  <view>
+    <text class="title">Wifi密码：</text>密码</view>
+</view>
+<image class='wifi' src='{{wifiImageUrl}}'></image>

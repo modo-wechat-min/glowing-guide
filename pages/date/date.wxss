@@ -1,0 +1,40 @@
+.container{
+  width: 100%;
+}
+.box1 .dateBox{
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 40rpx;
+}
+
+.box1{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.box1>view{
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.dateStart,.dateEnd,.dateCenter{
+  border-radius: 50%;
+  background-color: #ff6644;
+  color: #fff;
+}
+.dateCenter{
+  background: rgba(255, 102, 68, 0.4);
+}
+.dateOff{
+  color: #999;
+}
+.week-day{
+  height: 56rpx;
+}

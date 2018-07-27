@@ -1,0 +1,23 @@
+.icon{
+  width: 165rpx;
+  height: 165rpx;
+  margin: 90rpx 0 20rpx;
+}
+view{
+  text-align: center;
+  font-size: 28rpx;
+}
+.number{
+  font-size: 100rpx;
+  margin-top: 10rpx;
+}
+.charge{
+  width: 536rpx;
+  height: 76rpx;
+  border-radius: 10rpx;
+  line-height: 76rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #ff6644;
+  margin-top: 80rpx;
+}

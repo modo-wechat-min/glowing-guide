@@ -1,0 +1,44 @@
+.container{
+  padding-top: 170rpx;
+}
+.circle{
+  width: 460rpx;
+  height: 460rpx;
+  border-radius: 230rpx;
+  background: #ff6644;
+  position: relative;
+}
+.note{
+  font-size: 38rpx;
+  color: #ff6644;
+  margin: 46rpx;
+}
+.line1,.line2{
+  width: 260rpx;
+  height: 84rpx;
+  transform: rotate(-45deg);
+  background: #fff;
+  left: 150rpx;
+  top:180rpx;
+  position: absolute;
+  box-shadow: 0 80rpx 1rpx rgba(0, 0, 0, 0.2);
+  border-radius: 20rpx;
+}
+.line2{
+  width: 140rpx;
+  transform: rotate(45deg);
+  left: 96rpx;
+  top:190rpx;
+  box-shadow: none;
+}
+.btn{
+  position: fixed;
+  width: 100%;
+  height: 116rpx;
+font-size: 40rpx;
+color: #fff;
+background: linear-gradient(to right,#ff6644,#ff6644);
+bottom: 0;
+border-radius: 0;
+line-height: 116rpx;
+}

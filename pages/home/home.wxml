@@ -1,0 +1,44 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<view class="container">
+  <view class="floor1">
+    <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
+  </view>
+  <view class="floor2">
+    <icon class='in-block position'></icon>
+    <input class='serch-position' type='text' placeholder='城市或目的地' bindtap='goBranches' value='{{branchName}}' disabled='disabled'></input>
+    <view class='time-box' bindtap='toGetDate'>
+      <text class='time-title'>入住-离店日期</text>
+      <text class='time-during'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}</text>
+      <text>共{{days}}天</text>
+    </view>
+    <button class='ser-btn' bindtap='serch'>开始搜索</button>
+    <view class='safe-box'>
+      <icon class='in-block safe'></icon> 官方渠道预订享低价保证</view>
+  </view>
+  <view class='floor3'>
+    <text class='title'>相遇摩兜</text>
+    <view class='item-box'>
+      <view wx:for="{{itemLists}}" wx:for-index="index" wx:key="index" class="{{index==swiperCurrent?'item active':'item'}}" wx:for-item="itemName" bindtap="swiperPageSwith" data-index="{{index}}">{{itemName}}</view>
+    </view>
+    <swiper indicator-dots="{{indicatorDots}}" bindchange="swiperChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)">
+      <block wx:for="{{imgUrls}}" wx:for-index="index" wx:key="index">
+        <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
+          <image src="{{item}}" class="slide-image" width="355" height="150" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='floor-normal'>
+    <text class='title title-floor-normal'>寻觅摩兜</text>
+    <text class='sub-title'>找寻你心中的那份爱，让你停留下来</text>
+    <view class='img-lists'>
+      <view class='img-item-box' wx:for="{{branchLists}}" wx:for-item="item" wx:key="ID">
+        <image class='img-item' src='{{imgUrl+item.Cover}}'></image>
+        <view>{{item.BranchName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='phone'>客服电话：
+    <text bindtap='phone'>4000-777-365</text>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+.container{
+  padding: 60rpx 26rpx;
+}
+.item-box{
+  width: 100%;
+  padding-bottom: 36rpx;
+}
+.item-title{
+  font-size: 28rpx;
+  color: #666;
+  padding-left: 12rpx;
+}
+.sub-title{
+  font-size: 20rpx;
+  color: #999;
+  display: block;
+  padding: 10rpx 12rpx 22rpx;
+}
+.item-img{
+  height: 354rpx;
+  width: 100%;
+}

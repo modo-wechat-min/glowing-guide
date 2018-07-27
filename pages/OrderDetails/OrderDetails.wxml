@@ -1,0 +1,81 @@
+<view class='container'>
+  <view class='details-header width100 border1'>
+    <view class='order-status'>待支付</view>
+    <view>剩余支付时间：
+      <text class='time'>15：00</text>
+    </view>
+  </view>
+  <view class='details-price width100 border1'>
+    <view>
+      <view class='top-price'>实付房费
+        <text class='price1'>¥568</text>
+      </view>
+      <view class='total-price'>总金额 ¥600</view>
+    </view>
+    <view class='mingxi' bindtap='openFun'>
+      费用明细
+    </view>
+  </view>
+  <view class="btn-box width100">
+    <button class='btn btn-pay'>支付</button>
+    <button class='btn btn-cancel'>取消</button>
+  </view>
+  <view class='detail-body width100 border1'>
+    <view class='branch-name'>
+      望京方恒店
+    </view>
+    <view class='type'>
+      <icon class='icon icon-home'></icon> Modo.Max投影精英套房
+    </view>
+    <view class='date'>
+      <icon class='icon icon-time'></icon> 2018年06月13日-2018年06月14日
+    </view>
+  </view>
+  <view class='position width100 border1'>
+    <icon class='icon icon-position'></icon> 朝阳区阜通东大街6号方恒国际中心D座
+  </view>
+
+  <view class='width100  phone'>
+    <text>电话：010-64786321</text>
+    <view class='colorff6644'>联系酒店
+      <icon class='icon icon-phone'></icon>
+    </view>
+  </view>
+  <view class='user-box width100 '>
+    <view class='user-title'>入住人信息</view>
+    <view>入住人姓名：XXX</view>
+    <view>订单号：1213156416</view>
+    <view>联系电话：17611111111</view>
+    <view>订单备注：</view>
+  </view>
+  <view class='rule '>
+    <view class='rule-title'>退订规则：</view>
+    <view class='rule-content'>摩兜的退订原则是（仅限前台、微信、官网预订的订单）：</view>
+    <view class='rule-content'>仅预订未支付的客户，在入住当天16:00之前若仍未支付房费/定金，则订单取消，不再保留房间。</view>
+    <view class='rule-content'>预订并支付全款房费/定金的客户，在入住当天18:00之前致电可免费取消。入住当天18:00之后不能取消订单。</view>
+  </view>
+</view>
+<view class='toast' wx:if="{{toast}}" bindtap='closeFun'>
+  <view id="mingxi" catchtap='prevent'>
+    <view class='close' catchtap='closeFun'>x</view>
+    <view class='toast-title'>费用明细</view>
+    <view class='toast-lists'>
+      <view class='toast-list'>入住1晚房间总价</view>
+      <view class='toast-list colorred'>¥4564</view>
+    </view>
+    <view class='toast-lists'>
+      <view class='toast-list'>2018.06.23-20018.06.24</view>
+      <view class='toast-list '>1间 x <text class='colorred'>¥486</text></view>
+    </view>
+    <view class='toast-lists'>
+      <view class='toast-list'>会员折扣</view>
+      <view class='toast-list colorred'>¥4564</view>
+    </view>
+    <view class='toast-lists'>
+      <view class='toast-list'>优惠券</view>
+      <view class='toast-list colorred'>¥4564</view>
+    </view>
+     <view class='toast-total'>总价：<text class='colorred total-colorred'>¥4564</text></view>
+  </view>
+
+</view>

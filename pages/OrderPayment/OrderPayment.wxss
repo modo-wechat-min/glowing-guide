@@ -1,0 +1,59 @@
+.border1{
+    border-bottom: 1rpx solid #ddd;
+}
+.time-box{
+  padding:  36rpx 0 68rpx;
+  text-align: center;
+  font-size: 26rpx;
+  width: 100%;
+}
+.time{
+  margin-top: 20rpx;
+  font-size: 50rpx;
+  color: #ff6644;
+}
+.order-main,.order-last{
+  width: 100%;
+  padding:50rpx 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.room-title{
+  font-size: 38rpx;
+  margin-bottom: 62rpx;
+}
+.room-info{
+  color: #999;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+.status{
+  color: #04bd04;
+  font-size: 34rpx;
+}
+.totle{
+  font-size: 42rpx;
+  margin-top: 94rpx;
+}
+.room-right{
+  text-align: right;
+}
+.order-last{
+  flex-direction: row-reverse;
+  font-size: 36rpx;
+}
+.resuilt{
+  color: #04bd04;
+}
+.payment-btn{
+  height: 116;
+  width: 100%;
+  color: #fff;
+  background: linear-gradient(to right,#ff0000,#ff6644);
+  float: right;
+  border-radius: 0;
+  line-height: 116rpx;
+  position: fixed;
+  bottom: 0;
+}
