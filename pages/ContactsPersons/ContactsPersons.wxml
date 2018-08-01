@@ -4,20 +4,29 @@
   </view>
   <view class='header'>
     <view>常用入住人</view>
-    <view>
-      <icon></icon>编辑
-      <icon></icon>新增</view>
+    <view class='haddle'>
+      <view class='edit-box' bindtap='editFun'>
+        <icon class='icon edit'></icon>编辑</view>
+      <view class='plus-box'>
+        <navigator url='../CreateContact/CreateContact'>
+          <icon class='icon plus'></icon>新增
+        </navigator>
+      </view>
+    </view>
   </view>
   <view class='lists'>
-    <view class='lists-item'>
+    <view class='lists-item {{isEdit?"active":""}}'>
+      <icon class='icon delete {{isEdit?"active":""}}'></icon>
       <view>张明明</view>
       <view>370302188888888888</view>
     </view>
-    <view class='lists-item'>
+    <view class='lists-item {{isEdit?"active":""}}'>
+      <icon class='icon delete {{isEdit?"active":""}}'></icon>
       <view>张明明</view>
       <view>370302188888888888</view>
     </view>
-    <view class='lists-item'>
+    <view class='lists-item {{isEdit?"active":""}}'>
+      <icon class='icon delete {{isEdit?"active":""}}'></icon>
       <view>张明明</view>
       <view>370302188888888888</view>
     </view>

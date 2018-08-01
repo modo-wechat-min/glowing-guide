@@ -76,7 +76,7 @@
 }
 
 .squared-item:nth-of-type(3n) {
-  width: 286rpx;
+  margin: 0 27rpx;
 }
 
 .squared-img {

@@ -36,7 +36,7 @@
 }
 .sheng-ming::after{
   display: inline-block;
-  content: "？";
+  content: "?";
   height: 22rpx;
   width: 22rpx;
   border: 1px solid #999;

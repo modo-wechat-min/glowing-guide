@@ -57,3 +57,7 @@
   position: fixed;
   bottom: 0;
 }
+.noactive{
+  background: #999;
+  color: #fff;
+}
