@@ -3,7 +3,7 @@ let util = require('../../utils/util.js');
 Page({
   data:{
     lists:[],
-    history:[],
+    history:"",
   },
   onLoad(){
     wx.setNavigationBarTitle({
@@ -11,9 +11,12 @@ Page({
     })
     this.getBranchLists();
     //历史记录
-    this.setData({
-      history: util.getStorage("branches"),
-    })
+    if (util.getStorage("branches")){
+      this.setData({
+        history: util.getStorage("branches"),
+      })
+    }
+    
   },
   getBranchLists() {
     let _this=this;

@@ -4,7 +4,7 @@
       <view class="clear" bindtap='clearBranch'>清除</view>
     </view>
     <view class='branch-box'>
-      <view class='branch-item' wx:for="{{history}}" wx:key="ID" wx:for-item="item" bindtap='choseBranch' data-id='{{item.ID}}' data-name='{{item.BranchName}}'>
+      <view class='branch-item' wx:if="{{history}}" wx:for="{{history}}" wx:key="ID" wx:for-item="item" bindtap='choseBranch' data-id='{{item.ID}}' data-name='{{item.BranchName}}'>
         {{item.BranchName}}
       </view>
     </view>

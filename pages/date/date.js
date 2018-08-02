@@ -51,19 +51,17 @@ Page({
     });
   },
   onLoad: function (options) {
-    
-
     var time = new Date();
     var dateTime = time.getDate();
-    this.setData({
-      getDate: dateTime,
-      
-    });
+    // this.setData({
+    //   getDate: dateTime,
+    // });
 
     for (var k = 0; k < 6; k++) {
       this.dataTime(k);
     }
     var count = 0;
+    var arrayReal=[];
     for (var k = 0; k < 6; k++) {
       var array = [];
       for (var i = 1; i < this.data.LastDay[k] + 1; i++) {
@@ -73,16 +71,19 @@ Page({
         array.push(date);
         count++;
       }
-      var MonthArrParam = "MonthArr[" + k + "]";
-      this.setData({
-        [MonthArrParam]: array,
-      })
+      arrayReal[k] = array;
+      // var MonthArrParam = "MonthArr[" + k + "]";
+      // this.setData({
+      //   [MonthArrParam]: array,
+      // })
     }
     //获取父级页面传参
     let fatherStartTime = options.startTime;
     let fatherEndTime = options.endTime;
+    
     let fatherStartTimeStr = new Date(util.getDayString(fatherStartTime));
     let fatherEndTimeStr = new Date(util.getDayString(fatherEndTime));
+    console.log(fatherStartTimeStr, fatherEndTimeStr)
     let fatherMonth1 = fatherStartTimeStr.getMonth() + 1;
     let fatherMonth2 = fatherEndTimeStr.getMonth() + 1;
     let fatherday1 = fatherStartTimeStr.getDate();
@@ -98,6 +99,9 @@ Page({
       indexStart: fatherStartIndex,
       indexEnd: fatherEndIndex,
       sysW: res.windowHeight / 14,
+      MonthArr: arrayReal,
+      getDate: dateTime,
+
     });
   },
   getDateFun(e) {

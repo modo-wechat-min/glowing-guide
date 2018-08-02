@@ -25,7 +25,8 @@
   </view>
   <view class='time-box  border1'>
     <view class='sub-time-title'>入住-离店时间</view>
-    <view class='time-title' bindtap='toGetDate'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
+    <view class='time-title'>
+      <text bindtap='toGetDate'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}</text>
       <text class='totle-time' bindtap='toGetDate'>共{{days}}晚</text>
     </view>
     <icon class='icon-next icon position-next'></icon>
@@ -52,7 +53,7 @@
         </view>
       </view>
     </view>
-    
+
   </view>
 </view>
 <view class='chose-room' animation="{{animation}}">
@@ -60,7 +61,7 @@
     <text>Modo.Max投影精英套房</text>
     <text class='close' bindtap='closeFun'>X</text>
   </view>
-  <swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
     <block wx:for="{{imgUrls}}" wx:for-index="index">
       <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
         <image src="{{item}}" class="slide-image" />
@@ -91,10 +92,10 @@
     </view>
   </view>
   <view class='sheshi'>
-     <view  class='sheshi-title'>房间设施：</view><view class='sheshi-content'>
-     书桌、沙发、茶几、衣柜、空调、220V电压插座、遮光窗帘、客房WIFI免费覆盖、洗衣机、冰箱、标准开放式厨房
-浴室：拖鞋、浴巾、浴室化妆镜、24小时热水、独立淋浴间、吹风机、一次性洗漱用品（牙具、梳子、香皂、洗发水、沐浴露、剃须刀、棉签、指甲锉）
-     </view>
+    <view class='sheshi-title'>房间设施：</view>
+    <view class='sheshi-content'>
+      书桌、沙发、茶几、衣柜、空调、220V电压插座、遮光窗帘、客房WIFI免费覆盖、洗衣机、冰箱、标准开放式厨房 浴室：拖鞋、浴巾、浴室化妆镜、24小时热水、独立淋浴间、吹风机、一次性洗漱用品（牙具、梳子、香皂、洗发水、沐浴露、剃须刀、棉签、指甲锉）
+    </view>
   </view>
   <button class='get-price'>查看所有价格</button>
 </view>

@@ -16,7 +16,8 @@ const initTime=(day)=>{
   return year + "年" + month + "月" + date+"日";
 }
 const getDayString=time=>{
-  let timestr = time.replace('日', '/').replace('月', '/').replace('年', '/');
+  let timestr = time.replace('日', '').replace('月', '/').replace('年', '/');
+  console.log(timestr)
   return timestr;
 }
 const formatNumber = n => {
