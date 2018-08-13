@@ -22,50 +22,24 @@
 .person-item text {
   color: #999;
 }
-
-.nochose, .chose {
+.delete {
   position: absolute;
   right: 44rpx;
   top: 44rpx;
   font-size: 22rpx;
   border-radius: 21rpx;
-  padding: 0 12rpx;
-}
-
-.nochose {
-  height: 38rpx;
-  line-height: 38rpx;
-  border: 2rpx solid #333;
-}
-
-.chose {
+  padding: 0 20rpx;
   height: 42rpx;
   line-height: 42rpx;
   background: #f64;
   color: #fff;
 }
-
-.lists-item.active {
-  border: 1rpx solid #f64;
-}
-
-.btn-box {
-  height: 116rpx;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-}
-
-.btn-box view {
-  width: 50%;
-  background: #f64;
+.add-personal{
+  width: 566rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
-  height: 100%;
-  line-height: 116rpx;
-  text-align: center;
-}
-.btn-box .add{
-  background: #ff957d;
+  margin-top: 100rpx;
+  border-radius: 0;
+  background: #ff6644;
 }

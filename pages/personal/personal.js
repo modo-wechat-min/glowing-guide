@@ -1,5 +1,4 @@
-//index.js
-//获取应用实例
+let ports = require('../../utils/ports.js');
 const app = getApp()
 
 Page({
@@ -7,7 +6,9 @@ Page({
     isLogin:false,//是否登录
     userInfo: {},//获取用户信息
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    bgImg:ports.imgUrl + "personal.png",
+    bgImg2: ports.imgUrl + "personal2.jpg",
   },
  
   onLoad: function () {

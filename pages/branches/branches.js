@@ -6,9 +6,6 @@ Page({
     history:"",
   },
   onLoad(){
-    wx.setNavigationBarTitle({
-      title: '摩兜分店'
-    })
     this.getBranchLists();
     //历史记录
     if (util.getStorage("branches")){

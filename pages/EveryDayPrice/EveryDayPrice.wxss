@@ -1,0 +1,14 @@
+.box{
+  padding: 90rpx 20rpx;
+  flex-wrap: wrap;
+  line-height: 34rpx;
+}
+.one-day{
+  width: 20%;
+  text-align: center;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+.colorff6644{
+  margin-top: 6rpx;
+}

@@ -1,4 +1,4 @@
-/**app.wxss**/
+
 .container {
   height: 100%;
   display: flex;
@@ -8,14 +8,35 @@
   box-sizing: border-box;
   font-size: 30rpx;
 } 
+.main-box{
+  padding: 20rpx 30rpx;
+}
+.border-b1{
+  border-bottom: 1rpx solid #ddd;
+}
+.font22{
+  font-size: 22rpx!important;
+}
 .font24{
   font-size: 24rpx!important;
 }
 .font26{
   font-size: 24rpx!important;
 }
+.font30{
+  font-size: 30rpx!important;
+}
+.font40{
+  font-size: 40rpx!important;
+}
+.font44{
+  font-size: 44rpx!important;
+}
 .colorff6644{
   color: #ff6644;
+}
+.color333{
+  color: #333;
 }
 /*警示状态栏*/
 .status-bar{
@@ -45,4 +66,20 @@
 }
 .price{
   font-size: 44rpx;
+}
+.float_r{
+  float: right;
+}
+.flexone{
+  display: flex;
+  justify-content: flex-start;
+}
+.flextwo{
+  display: flex;
+  justify-content: space-between;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

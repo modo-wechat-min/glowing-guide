@@ -6,12 +6,12 @@ Page({
       ports.imgUrl + 'img_2.png',
       ports.imgUrl + 'img_3.png'
     ],//輪播圖配置
-    indicatorDots: true,
+    indicatorDots: false,
     autoplay: true,
     interval: 5000,
     duration: 1000,
     animation:"",
-    branchId: "",
+    branchId: 3,
     startTime: "",
     endTime: "",
     branchObj:{},
@@ -23,7 +23,6 @@ Page({
     this.initAnimation();
   },
   onLoad: function (options) {
-    console.log(options.days);
     var scale;
     //获取rpx与px的比
     wx.getSystemInfo({
@@ -54,8 +53,6 @@ Page({
         EndDate: _this.data.endTime,
       },
       success: function (res) {
-        // console.log(56)
-        // console.log(res)
         _this.setData({
           branchObj: res.data,
         })
@@ -74,14 +71,14 @@ Page({
     })
   },
   closeFun(){
-    this.animation.translateY(1020 / this.data.scale).step();
+    this.animation.translateY(845 / this.data.scale).step();
     this.setData({
       //输出动画
       animation: this.animation.export()
     })
   },
   openFun() {
-    this.animation.translateY(-1020 / this.data.scale).step();
+    this.animation.translateY(-845 / this.data.scale).step();
     this.setData({
       //输出动画
       animation: this.animation.export()

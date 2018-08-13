@@ -1,0 +1,31 @@
+<view class='total-score common-margin common-box'>
+  可以积分
+  <view class='score'>1000</view>
+</view>
+<view class='history common-margin'>
+  积分记录
+</view>
+<view class='common-margin score-lists common-box'>
+  <view class='history-title border-b1'>
+    本月
+  </view>
+  <view class='history-item flextwo border-b1'>
+    <view class='history-item-left'> 会员开通赠送积分
+      <view class='time'>2018-08-23</view>
+    </view>
+    <view class='history-item-left colorff6644'>
+      +500
+    </view>
+  </view>
+  <view class='history-title border-b1'>
+    本月
+  </view>
+  <view class='history-item flextwo border-b1'>
+    <view class='history-item-left'> 会员开通赠送积分
+      <view class='time'>2018-08-23</view>
+    </view>
+    <view class='history-item-left colorff6644'>
+      -500
+    </view>
+  </view>
+</view>

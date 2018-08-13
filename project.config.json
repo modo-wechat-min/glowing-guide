@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.0",
-	"appid": "wx59aaaff602f8c30c",
-	"projectname": "APP",
+	"appid": "wx57e881f5ec7a7ee2",
+	"projectname": "%E6%97%A0id",
 	"condition": {
 		"search": {
 			"current": -1,

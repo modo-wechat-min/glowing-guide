@@ -1,0 +1,32 @@
+<view class='box flexone'>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+  <view class='one-day'>
+    <view class='font26'>08月03日</view>
+    <view class='font22'>星期日</view>
+    <view class='font30 colorff6644'>¥400</view>
+  </view>
+</view>

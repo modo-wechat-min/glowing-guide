@@ -1,13 +1,14 @@
-<view class='container'>
-<image class='bg-img' src="{{loginImageUrl}}"></image>
+<view class='box'>
+  <image class='bg-img' src="{{loginImageUrl}}"></image>
   <view id="phone">
+    <view class='input-title'>手机号</view>
     <input placeholder='请输入您的手机号' class='phone' value='{{phone}}' bindinput="bindPhone"></input>
   </view>
   <view id="code">
+    <view class='input-title'>验证码</view>
     <input placeholder='请输入验证码' class='code' value='{{code}}' bindinput="bindCode"></input>
-    <button class='send' bindtap='sendFun'>发送验证码</button>
+    <view class='send' bindtap='sendFun'>发送验证码</view>
   </view>
   <button class='login' bindtap='loginFun'>登录</button>
-  <navigator class='self' url="../home/home" open-type="switchTab">随便看看</navigator>
-  <view class='note'>未注册过的手机号将自动注册成为摩兜公寓用户</view>
+  <text class='note'>未注册过的手机号将自动注册成为\n摩兜公寓用户</text>
 </view>

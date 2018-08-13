@@ -11,9 +11,5 @@ Page({
   onLoad: function (options) {
   
   },
-  editFun(){
-this.setData({
-  isEdit: !this.data.isEdit,
-})
-  }
+
 })

@@ -1,73 +1,71 @@
-<view class='container' bindtap='closeBox'>
-  <view class='room-branch'>
-    <view class='branch-name'>望京方恒店</view>
-    <view class='room-type'>Modo.Max投影精英套房</view>
+<view class='box'>
+  <view class='flexone order-head'>
+    <image class='order-img' src='{{imgUrls}}'></image>
+    <view>
+      <view class='branch'>西直门店</view>
+      <view class='type'>西直门店</view>
+    </view>
   </view>
-  <view class='room-num-box'>
-    <view class='room-num'>房间数</view>
-    <view id='room_num' catchtap='showNumBoxFun'>{{choseNum}}
-      <icon class='icon icon-down'></icon>
-      <view class='num-box' wx:if="{{showNumBox}}">
-        <view wx:for="{{numArray}}" wx:for-item="item" class='num-item' catchtap='getNum' data-item="{{item}}">{{item}}</view>
+  <view class='flextwo time-box border-b1'>
+    <view>
+      <view class='time'>08月03日</view>
+      <view class='time-note'>最早入住时间15:00</view>
+    </view>
+    <view>
+      <view class='time time-end'>08月03日</view>
+      <view class='time-note'>最早入住时间15:00</view>
+    </view>
+    <view class='days'>共1晚</view>
+  </view>
+  <view class='flextwo number-box border-b1'>
+    <view>
+      预定房间数
+    </view>
+    <view class='flexone ' id='number'>
+      <view class='reduce' hover-class="active">-</view>
+      <view class='number-input'>2</view>
+      <view class='plus' hover-class="active">+</view>
+    </view>
+  </view>
+  <view class='flextwo comein-box border-b1'>
+    <view>
+      预定到店时间(便于管家提前准备)
+    </view>
+    <view class='trangle'>
+      15:30
+    </view>
+  </view>
+  <view class='flexone note-box border-b1'>
+    备注
+    <input placeholder='输入您其他的特殊需求' class='note-input'></input>
+  </view>
+  <view class='flextwo quan-box border-b1'>
+    <view>
+      优惠券
+    </view>
+    <view class='trangle'>
+      有两张可用
+    </view>
+  </view>
+  <view class=' quan-box border-b1'>
+    <view class='mingxi-title'>费用明细</view>
+    <view class='flextwo'>
+      <view class='mingxi-item'>整日租赁费用：
+        <text>¥300</text>
+      </view>
+      <view class='look-price trangle'>
+        查看每天房价
       </view>
     </view>
-    <view>入住时间</view>-
-    <view>离店时间</view>
-    <view id="totle_day">共1晚</view>
-  </view>
-  <view class='quan-box border15'>
-    <view>
-      <icon class='icon icon-quan'></icon>优惠券</view>
-    <view>暂无可用优惠券</view>
-  </view>
-  <view class='order-box border15'>
-    <view>订单 ¥456</view>
-    <view>需支付 ¥456</view>
-  </view>
-  <view class='huangjin-box border15'>
-    <view>
-      <view>开通黄金会员（本单立享97折）</view>
-      <view class='vip-more'>了解更多会员权益</view>
+    <view class='mingxi-item'>代金券优惠：
+      <text>¥300</text>
     </view>
-    <view class='vip-price'>¥89
-      <view class='chose-vip' wx:if="{{chose1}}" bindtap='nochose'></view>
-      <view class='no-chose-vip' wx:if="{{!chose1}}" bindtap='switchchose1'>
-      </view>
+    <view class='mingxi-item'>会员卡开通费用：
+      <text>¥300</text>
     </view>
   </view>
-  <view class='huangjin-box border15'>
-    <view>
-      <view>开通黄金会员（本单立享97折）</view>
-      <view class='vip-more'>了解更多会员权益</view>
-    </view>
-    <view class='vip-price'>¥89
-      <view class='chose-vip' wx:if="{{chose1}}" bindtap='switchchose1'></view>
-      <view class='no-chose-vip' wx:if="{{!chose1}}">
-      </view>
-    </view>
-  </view>
-  <view class='note-box border15'>
-    <view>
-      备注
-    </view>
-    <input placeholder='点击输入您的其他特殊要求' id='note'></input>
-  </view>
-  <view class='rule-box border15'>
-    <view class='rule-title'>
-       退订规则： 
-    </view>
-    <view class='rule-content'>
-    摩兜的退订原则是（仅限前台、微信、官网预订的订单）：
-    </view>
-    <view class='rule-content'>
-    仅预订未支付的客户，在入住当天16:00之前若仍未支付房费/定金，则订单取消，不再保留房间。
-    </view>
-    <view class='rule-content'>
-    预订并支付全款房费/定金的客户，在入住当天18:00之前致电可免费取消。入住当天18:00之后不能取消订单。
-    </view>
-  </view>
-  <view class='btn-box'>
-  <text class='yuan'>¥</text>89
-  <button class='order-btn'>提交订单</button>
-  </view>
+</view>
+<view class='flextwo btn-box'>
+  <view>¥<text class='font44'>300</text></view>
+  <button>立即预定</button>
 </view>

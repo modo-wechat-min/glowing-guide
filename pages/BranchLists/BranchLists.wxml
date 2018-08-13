@@ -1,0 +1,67 @@
+<view class="main-box">
+  <view class='nav'>
+    <view class='city'>北京
+      <icon class='icon icon-down'></icon>
+    </view>
+    <view class='serch-box'>商圈/日期/价格
+      <icon class='icon icon-ser'></icon>
+    </view>
+  </view>
+  <view class='condition-box'>
+    <view class='condition-item active'>08.08-08.20</view>
+    <view class='condition-item'>查询价格</view>
+    <view class='default'>默认排序
+      <icon class='icon icon-down'></icon>
+    </view>
+  </view>
+  <view class='branch-item'>
+    <image class='branch-img' src='{{imgurl}}'></image>
+    <view class='flextwo position'>
+      <view>
+        <text class='price'>¥300</text> 起</view>
+      <view>
+        <icon class='icon icon-position'></icon> 距您4.0km</view>
+    </view>
+    <view class='flextwo'>
+      <view class='branch-name'>望京方恒店</view>
+      <view class='score'>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        4.9分
+      </view>
+    </view>
+    <view class='address ellipsis'>
+      望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛
+    </view>
+    <view class='flexone'>
+      <view class='note'>免押金</view>
+      <view class='note'>闪定</view>
+      <view class='note'>新上房源</view>
+    </view>
+  </view>
+  <view class='branch-item'>
+    <image class='branch-img' src='{{imgurl}}'></image>
+    <view class='flextwo'>
+      <view class='branch-name'>望京方恒店</view>
+      <view class='score'>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        4.9分
+      </view>
+    </view>
+    <view class='address ellipsis'>
+      望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛丨
+    </view>
+    <view class='flexone'>
+      <view class='note'>免押金</view>
+      <view class='note'>闪定</view>
+      <view class='note'>新上房源</view>
+    </view>
+  </view>
+</view>

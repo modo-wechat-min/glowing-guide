@@ -1,15 +1,24 @@
 {
   "pages": [
-
-    "pages/home/home",
-    "pages/OrderLists/OrderLists",
-    
-    "pages/ContactsPersons/ContactsPersons",
-    "pages/personal/personal",
-    "pages/OrderPayment/OrderPayment",
+    "pages/service/service",
+        "pages/OrderLists/OrderLists",
     "pages/evaluate/evaluate",
-    "pages/login/login",
+        "pages/OrderEdit/OrderEdit",
     "pages/OrderDetails/OrderDetails",
+    "pages/OrderPayment/OrderPayment",
+    "pages/EveryDayPrice/EveryDayPrice",
+    "pages/BranchDetails/BranchDetails",
+    "pages/home/home",
+    "pages/PersonalContacts/PersonalContacts",
+    "pages/ContactsPersons/ContactsPersons",
+    "pages/login/login",
+
+    "pages/MyScore/MyScore",
+    "pages/personal/personal",
+    "pages/BranchLists/BranchLists",
+    "pages/condition/condition",
+    
+
     "pages/wifi/wifi",
     "pages/success/success",
     "pages/StorageValue/StorageValue",
@@ -17,8 +26,7 @@
     "pages/branches/branches",
     "pages/date/date",
     "pages/CouponLists/CouponLists",
-    "pages/OrderEdit/OrderEdit",
-    "pages/BranchDetails/BranchDetails",
+
     "pages/PurchaseVipCard/PurchaseVipCard",
     "pages/VipCard/VipCard",
     "pages/rule/rule",

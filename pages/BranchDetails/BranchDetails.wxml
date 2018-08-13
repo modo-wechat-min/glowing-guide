@@ -1,59 +1,135 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
-<view class='container'>
-  <view class='img-slider'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)">
-      <block wx:for="{{imgUrls}}" wx:for-index="index">
-        <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
-          <image src="{{item}}" class="slide-image" />
-        </swiper-item>
-      </block>
-    </swiper>
+<view class='img-slider'>
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)">
+    <block wx:for="{{imgUrls}}" wx:for-index="index">
+      <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='index-box'>
+    <icon class='index-img'></icon>1/30
   </view>
-  <view class='position-box  border1'>
-    <icon class='icon-position icon'></icon>
-    <view class='position-title'>{{branchObj.Name}} </view>
-    <view class='sub-position-title'>{{branchObj.Address}}</view>
-    <icon class='icon-next icon position-next'></icon>
+</view>
+<view class='box'>
+  <view class='flextwo branch-name-box'>
+    <view class='branch'>西直门店</view>
+    <view class='start flexone'>
+      <view class='start-item'></view>
+      <view class='start-item'></view>
+      <view class='start-item'></view>
+      <view class='start-item'></view>
+      <view class='start-item'></view>
+      4.9分</view>
   </view>
-  <view class='position-box border1 tip-box'>
-    <view id='area'>
-      <icon class='area icon'></icon> 面积：45-60平方米
+  <view class='flexone note-box'>
+    <view>交通便利</view>
+    <view>管家式服务</view>
+    <view>独立卫浴</view>
+    <view>设备全</view>
+  </view>
+  <view class='position-box'>
+    <icon class='icon icon-position'></icon>
+    北京市朝阳区阜通东大街6号方恒国际中心D座
+  </view>
+  <view class='phone-box border-b1'>
+    <icon class='icon icon-phone'></icon> 010-64786321
+  </view>
+  <view class='time-box border-b1'>
+    <view class='date-title'>日期</view>
+    <view class='date flexone'>
+      <icon class='icon icon-date'></icon>|
+      <view class='chose-time'>入住时间-退房时间</view>
     </view>
-    <view>
-      <icon class='icon-type icon'></icon> 一室一厅
-    </view>
   </view>
-  <view class='time-box  border1'>
-    <view class='sub-time-title'>入住-离店时间</view>
-    <view class='time-title'>
-      <text bindtap='toGetDate'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}</text>
-      <text class='totle-time' bindtap='toGetDate'>共{{days}}晚</text>
-    </view>
-    <icon class='icon-next icon position-next'></icon>
-  </view>
-  <view class='room-lists'>
-    <view class='room-item border1' wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" wx:key="{{item.id}}">
-      <view class='room-img' bindtap='openFun'>
-        <image class='room-pic' src='{{modoImgHttp+item.Img}}'></image>
-        <view class='scale-bg'>
-          <icon class='scale icon'></icon>
+</view>
+<view class='room-lists'>
+  <view class='room-title marginl30'>房型信息</view>
+  <view class='room-item flexone  marginl30'>
+    <view class='room-head flextwo'>
+      <view class='scale'>
+        <icon class='icon icon-scale'></icon>
+      </view>
+      <image class='room-img' src='{{imgUrls[0]}}' bindtap='openFun'></image>
+      <view class='flextwo right-info'>
+        <view>
+          <view class='room-type'>MODO.Max投影精英套房</view>
+          <view class='room-note'>55-65㎡ 床型1.8m </view>
+        </view>
+        <view class='right-price'>
+          <view>¥
+            <text class='font40'>399</text>起</view>
+          <view>会员9.5折起</view>
         </view>
       </view>
-      <view class='room-info'>
-        <view class='room-left'>
-          <view class='room-type'>{{item.Name}}</view>
-          <view class='room-note'>{{item.Area}}㎡ 床型：{{item.BedTypeDescribe}}</view>
-        </view>
-        <view class='room-right'>
-          <view class='price-box'>¥
-            <text class='room-price'>{{item.VIPPrice}}</text>
+    </view>
+    <view class='room-detail'>
+      <view class='detail-box'>
+        <view class='detail-title border-b1'>微信专享</view>
+        <view class='flextwo'>
+          <view class='left-note'>
+            <view>14:00退房</view>
+            <view>微信粉丝</view>
           </view>
-          <button class='booking-btn' wx:if="{{item.CanSoldNumber>0}}">预定</button>
-          <button class='close-btn' wx:if="{{item.CanSoldNumber==0}}">满房</button>
+          <view class='righr-note flexone'>
+            <view class='money-show'>
+              <view>
+                ¥
+                <text class='font40'>399</text>
+              </view>
+              <view>最低可享9.5折</view>
+            </view>
+            <view class='book-box'>
+              预定
+              <view class='online'>在线付</view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
-
+  </view>
+  <view class='room-item flexone border-b1 marginl30'>
+    <view class='room-head flextwo'>
+      <view class='scale'>
+        <icon class='icon icon-scale'></icon>
+      </view>
+      <image class='room-img' src='{{imgUrls[0]}}' bindtap='openFun'></image>
+      <view class='flextwo right-info'>
+        <view>
+          <view class='room-type'>MODO.Max投影精英套房</view>
+          <view class='room-note'>55-65㎡ 床型1.8m </view>
+        </view>
+        <view class='right-price'>
+          <view>¥
+            <text class='font40'>399</text>起</view>
+          <view>会员9.5折起</view>
+        </view>
+      </view>
+    </view>
+    <view class='room-detail'>
+      <view class='detail-box'>
+        <view class='detail-title border-b1'>微信专享</view>
+        <view class='flextwo'>
+          <view class='left-note'>
+            <view>14:00退房</view>
+            <view>微信粉丝</view>
+          </view>
+          <view class='righr-note flexone'>
+            <view class='money-show'>
+              <view>
+                ¥
+                <text class='font40'>399</text>
+              </view>
+              <view>最低可享9.5折</view>
+            </view>
+            <view class='book-box'>
+              预定
+              <view class='online'>在线付</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 <view class='chose-room' animation="{{animation}}">
@@ -61,7 +137,7 @@
     <text>Modo.Max投影精英套房</text>
     <text class='close' bindtap='closeFun'>X</text>
   </view>
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
+  <swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
     <block wx:for="{{imgUrls}}" wx:for-index="index">
       <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
         <image src="{{item}}" class="slide-image" />
@@ -89,12 +165,6 @@
     </view>
     <view class='chose-room-tip'>
       <text class='chose-room-title'>宽带</text>有WIFI且免费
-    </view>
-  </view>
-  <view class='sheshi'>
-    <view class='sheshi-title'>房间设施：</view>
-    <view class='sheshi-content'>
-      书桌、沙发、茶几、衣柜、空调、220V电压插座、遮光窗帘、客房WIFI免费覆盖、洗衣机、冰箱、标准开放式厨房 浴室：拖鞋、浴巾、浴室化妆镜、24小时热水、独立淋浴间、吹风机、一次性洗漱用品（牙具、梳子、香皂、洗发水、沐浴露、剃须刀、棉签、指甲锉）
     </view>
   </view>
   <button class='get-price'>查看所有价格</button>

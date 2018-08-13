@@ -1,7 +1,6 @@
 <view class='lists'>
   <view class='lists-item'>
-    <view class='nochose'>未选择</view>
-    <!-- <view class='chose'>未选择</view> -->
+    <view class='delete'>删 除</view>
     <view class='number'>常用入住人1</view>
     <view class='person-item'>
       <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
@@ -9,16 +8,12 @@
       <text>身份证号：</text>370302188888888888</view>
   </view>
   <view class='lists-item active'>
-    <!-- <view class='nochose'>未选择</view> -->
-    <view class='chose'>已选择</view>
+    <view class='delete'>删 除</view>
     <view class='number'>常用入住人1</view>
     <view class='person-item'>
       <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
     <view class='person-item'>
       <text>身份证号：</text>370302188888888888</view>
   </view>
-  <view class='btn-box'>
-  <view>确定</view>
-  <view class='add'>添加联系人</view>
-  </view>
+  <button class='add-personal'>新增入住人</button>
 </view>

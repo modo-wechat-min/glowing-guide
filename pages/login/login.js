@@ -2,7 +2,7 @@ let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
-    loginImageUrl: ports.imgUrl + 'login.jpg',
+    loginImageUrl: ports.imgUrl + 'login.png',
     phone:"",
     code:"",
   },

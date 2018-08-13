@@ -5,7 +5,7 @@ Page({
       flag:1,//flag的1.2.3.4分别对应四个切换窗口
       height:0,
       orderLists:[],
-      boolean:false,
+      boolean:true,
   },
   tapSwitch(e){
     let index = e.currentTarget.dataset.index;
