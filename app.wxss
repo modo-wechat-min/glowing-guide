@@ -11,6 +11,9 @@
 .main-box{
   padding: 20rpx 30rpx;
 }
+.main-box2{
+  padding: 40rpx 30rpx;
+}
 .border-b1{
   border-bottom: 1rpx solid #ddd;
 }
@@ -21,9 +24,12 @@
   font-size: 24rpx!important;
 }
 .font26{
-  font-size: 24rpx!important;
+  font-size: 26rpx!important;
 }
 .font30{
+  font-size: 30rpx!important;
+}
+.font34{
   font-size: 30rpx!important;
 }
 .font40{
@@ -37,6 +43,9 @@
 }
 .color333{
   color: #333;
+}
+.color999{
+  color: #999;
 }
 /*警示状态栏*/
 .status-bar{
@@ -82,4 +91,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.shadow{
+  box-shadow: 4rpx 0 8rpx rgba(0, 0, 0, 0.1),
+                -4rpx 0 8rpx rgba(0, 0, 0, 0.1),
+                0rpx 4rpx 8rpx rgba(0, 0, 0, 0.1),
+                0rpx -4rpx 8rpx rgba(0, 0, 0, 0.1);
 }

@@ -1,91 +1,34 @@
-<view class='container' style='min-height: {{ height }}px'>
-  <view class='coupon-item coupon-no'>
-    <view>不使用优惠券</view>
-    <view class='chose-vip' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-    <view class='no-chose-vip' wx:if="{{!nochose}}"></view>
+<view class='main-box2'>
+  <view wx:if="{{!isComePersonal}}" class='flextwo shadow head-box'>
+    <view class='font26'>不使用代金券</view>
+    <view class='nochose'>未选择</view>
   </view>
-  <view class='coupon-num'>
-    <view>有5个红包可用</view>
-    <view>优惠券说明</view>
-  </view>
-   <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
+  <view class=' shadow item'>
+    <view class='flextwo border-d1'>
+      <view class=''>
+        <view class='font26'>20元代金券</view>
+        <view class='time-limit'>6个月免费</view>
       </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+      <view class='status' wx:if="{{!isComePersonal}}">已选择</view>
+      <view class='status touse' wx:if="{{isComePersonal}}">去使用</view>
+    </view>
+    <view class='flextwo item-note'>
+      <view>任意金额可用</view>
+      <view>6个月免费</view>
     </view>
   </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
+  <view class=' shadow item'>
+    <view class='flextwo border-d1'>
+      <view class=''>
+        <view class='font26'>20元代金券</view>
+        <view class='time-limit'>6个月免费</view>
       </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+      <view class='status' wx:if="{{!isComePersonal}}">已选择</view>
+      <view class='status touse' wx:if="{{isComePersonal}}">去使用</view>
     </view>
-  </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
-    </view>
-  </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
-    </view>
-  </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
-    </view>
-  </view> 
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
-    </view>
-  </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
-    </view>
-  </view>
-  <view class='coupon-item item-card'>
-    <view class='card'>
-      <view>
-        <view class='card-name'>20元优惠券</view>
-        <text class='card-text'>6个月免费</text>
-      </view>
-      <view class='chose-vip middle' wx:if="{{nochose}}" bindtap='nochoseFun'></view>
-      <view class='no-chose-vip middle' wx:if="{{!nochose}}"></view>
+    <view class='flextwo item-note'>
+      <view class='colorff6644'>任意金额可用</view>
+      <view>6个月免费</view>
     </view>
   </view>
 </view>

@@ -1,1 +1,118 @@
-/* pages/condition/condition.wxss */
+.time{
+  width: 50%;
+  text-align: center;
+  color: #999;
+  font-size: 32rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  position: relative;
+}
+.startTime::after{
+  content: "";
+  width: 1rpx ;
+  background: #ddd;
+  height: 120rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.timebox{
+  position: relative;
+}
+.timebox::after{
+  content: "";
+  height: 1rpx ;
+  background: #ddd;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 140rpx;
+}
+.trading-area{
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-top: 60rpx;
+
+}
+.lists{
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item{
+  position: relative;
+  padding-left: 48rpx;
+  width: 26%;
+  margin-top: 42rpx;
+  font-size: 28rpx;
+}
+
+.item::before{
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  border: 1rpx solid #666;
+  border-radius: 6rpx;
+  content: "";
+ left: 0rpx;
+ top: -1rpx;
+}
+.active::after{
+  position: absolute;
+  content: "";
+  display: inline-block;
+background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAaCAYAAACkVDyJAAABw0lEQVRIib3VT4hNYRjH8c+97sKUmjULSTYjhShZKIvJAjM10qCUomaHlSkZZuoig2QjWZPNVWxs1CQbSWPrz56FsPIvbhqL91wdd857zrmcO0+dOud9fj3f53mf87xvbWFi2BJYAxNo15cAth7PcQM/+g08jBfYnHy/6yewidtYnlr70OgDqIbrOJHh+9SPCi9FYPClauBk8sRsoErgXlws0KyrCrgGd7CsQLejCmADdzFYQjteBXAa2ws0bVzD6P+OxTacLtC8xBHMQ16FO/EMayP+Bm7J79s9bO3AYsDVaOGxUMH5SLCT2JgDu4pxfE8vpoErkuCvsT+1fhBbuoKtxEwObBKnsNDtqAtH0SG8wRkMdGlqwumRtpkkwRjsSiyTOqaEGVqVk/EwdiXvQzga0U3lwTrAJjbgQZ4Qs6kEs/7um7hQEONPD19hTGjyx4h2E87hQIbvPo4XwdLAjrWEah9G9NMWj8G8cNH++hcgvMeIUM2ivyxDO4ZvZWAxoATUFLbvZ0TTxj68LQvLA3ashd34muE7i6e9wMoAYQ57/L1tj3C5V1hZIDzBqLC9n3FMcX8zrZfbYk4Y+EE99i1tvwEj0E5d4Q+z+wAAAABJRU5ErkJggg==");
+width: 34rpx;
+height: 34rpx;
+background-size: cover;
+left: -0rpx;
+}
+.price-box{
+  border-top:1rpx solid #ddd;
+margin-top: 42rpx ;
+padding: 26rpx 0 42rpx;
+}
+.price{
+  width: 176rpx ;
+  height: 56rpx;
+  line-height: 56rpx;
+  color: #666;
+  border: 1rpx solid #666;
+  font-size: 26rpx;
+  text-align: center;
+}
+.line{
+  height: 1rpx;
+  width: 118rpx;
+  margin: 0 20rpx;
+background: #666;
+margin-top: 28rpx;
+}
+.btn-box{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 116rpx;
+  left: 0;
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #ddd;
+}
+.reset,.serch{
+height: 72rpx;
+width: 264rpx;
+color: #ff6644;
+line-height:72rpx;
+border-radius: 0rpx; 
+text-align: center;
+margin-top: 21rpx;
+border: 1rpx solid #ff6644;
+}
+.serch{
+  height: 74rpx;
+  line-height: 74rpx;
+  background: #ff6644;
+  color: #fff;
+  width: 374rpx;
+  border: none;
+}

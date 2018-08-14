@@ -1,81 +1,60 @@
-.chose-vip,.no-chose-vip{
-  height: 28rpx;
-  width: 28rpx;
-  border: 2rpx solid #333;
-  border-radius: 16rpx;
-  position: relative;
+.main-box2 {
+  font-size: 22rpx;
 }
-.no-chose-vip{
-  border: 2rpx solid #ff6644;
-}
-.no-chose-vip::before,.no-chose-vip::after{
-  height: 2rpx;
-  width: 18rpx;
-  position: absolute;
-  display: inline-block;
-  content: "";
-  background: #ff6644;
-  top:13rpx;
-  left: 10rpx;
-  transform: rotate(-50deg);
-}
-.no-chose-vip::after{
-  transform: rotate(40deg);
-  width: 8rpx;
-  top: 17rpx;
-  left: 6rpx;
-}
-.container{
-  padding: 30rpx;
-  font-size: 24rpx;
-  height: 100%;
-  width: 100%;
-  background: #f2f2f2;
-  overflow-y: auto;
-  display: flex;
-  justify-content: flex-start;
-}
-.coupon-item{
-  width: 100%;
-  background: #fff;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  border: 1rpx solid transparent;
-}
-.coupon-no{
-  padding: 20rpx 30rpx;
-}
-.coupon-num{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 60rpx;
-  line-height: 60rpx;
+
+.head-box {
+  height: 86rpx;
+  line-height: 86rpx;
   padding: 0 30rpx;
-  box-sizing: border-box;
 }
-.item-card{
-  padding: 13rpx ;
-  margin-bottom: 20rpx;
+
+.nochose {
+  height: 36rpx;
+  width: 100rpx;
+  line-height: 36rpx;
+  border-radius: 19rpx;
+  border: 1rpx solid #666;
+  margin-top: 23rpx;
+  text-align: center;
 }
-.card{
-  border: 1rpx dotted #ddd;
-  width: 100%;
-  height: 100%;
-  padding: 32rpx 13rpx;
-  display: flex;
-  justify-content: space-between;
+
+.shadow {
+  margin-bottom: 40rpx;
 }
-.card-name{
-  font-size:24rpx;
+
+.item {
+  padding: 30rpx;
 }
-.card-text{
-  margin-top: 14rpx;
-  color: #999;
+
+.time-limit {
   font-size: 20rpx;
+  color: #999;
+  margin: 12rpx 0 20rpx;
 }
-.middle{
-  margin-top: 14rpx;
-  vertical-align: middle;
+
+.border-d1 {
+  border-bottom: 1rpx dotted #f64;
+}
+
+.item-note {
+  margin-top: 20rpx;
+  color: #999;
+}
+
+.status {
+  height: 38rpx;
+  width: 100rpx;
+  background: #f64;
+  border-radius: 19rpx;
+  line-height: 38rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 18rpx;
+}
+
+.touse {
+  background: transparent;
+  border: 1rpx solid #f64;
+  color: #f64;
+  border-radius: 20rpx;
 }

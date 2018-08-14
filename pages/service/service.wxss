@@ -1,1 +1,127 @@
-/* pages/service/service.wxss */
+.box{
+  padding: 0 10rpx;
+}
+.icon-title{
+  font-size: 36rpx;
+height: 136rpx;
+line-height: 136rpx;
+text-indent: 20rpx;
+}
+.flexone{
+  flex-wrap: wrap;
+}
+.lists{
+  position: relative;
+}
+.lists::after{
+  position: absolute;
+content: "";
+display: inline-block;
+height: 1rpx;
+background: #ddd;
+width: 690rpx;
+left: 20rpx;
+bottom: -60rpx;
+}
+.list-item{
+  width: 20%;
+  text-align: center;
+  font-size: 24rpx;
+  margin-bottom: 30rpx;
+}
+.icon{
+  background: url("http://192.168.1.183:8085/icon.png");
+  width: 74rpx;
+  height: 74rpx;
+  background-size: 544rpx 487rpx;
+}
+.lock{
+  background-position: -2rpx -13rpx;
+}
+.chui{
+  background-position: -159rpx -388rpx;
+}
+.bing{
+  background-position: -80rpx -238rpx;
+}
+.xi{
+  background-position: -156rpx -164rpx;
+}
+.tai{
+  background-position: -156rpx -88rpx;
+}
+.wifi{
+  background-position: -388rpx -388rpx;
+}
+.ti{
+  background-position: -310rpx -238rpx;
+}
+.nuan{
+  background-position: -388rpx -238rpx;
+}
+.xifa{
+  background-position: -310rpx -160rpx;
+}
+.mu{
+  background-position: -233rpx -160rpx;
+}
+.yujin{
+  background-position: -156rpx -12rpx;
+}
+.yumao{
+  background-position: -80rpx -12rpx;
+}
+.maojin{
+  background-position: -80rpx -160rpx;
+}
+.xiang{
+  background-position: -80rpx -86rpx;
+}
+.duli{
+  background-position: -234rpx -236rpx;
+}
+.yugang{
+  background-position: -234rpx -12rpx;
+}
+.page{
+  background-position: -234rpx -86rpx;
+}
+.shose{
+  background-position: -310rpx -86rpx;
+}
+.ci{
+  background-position: -80rpx -388rpx; 
+}
+.wei{
+  background-position: -2rpx -86rpx;  
+}
+.you{
+  background-position: -2rpx -162rpx;  
+}
+.chu{
+  background-position: -386rpx -313rpx;  
+}
+.dai{
+  background-position: -80rpx -310rpx;
+}
+.chuang{
+  background-position: -310rpx -310rpx;
+}
+.xing{
+background-position: -156rpx -236rpx;
+}
+.cha{
+background-position: -312rpx -386rpx;
+}
+.pao{
+  background-position: -388rpx -86rpx;
+}
+.xiao{
+  background-position: -312rpx -12rpx;
+}
+.weixiu{
+  background-position: -388rpx -12rpx;
+}
+.allhour{
+  background-position: -2rpx -386rpx;
+}

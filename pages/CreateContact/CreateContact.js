@@ -2,10 +2,8 @@ let ports = require('../../utils/ports.js');
 Page({
   data: {
     bgImageUrl: ports.imgUrl + 'id_card.jpg',
-    idImageUrl: ports.imgUrl + 'id_card2.jpg',
     flag: false,
     tempFilePaths: "",
-    hasImg: false,
   },
 
   onLoad: function(options) {

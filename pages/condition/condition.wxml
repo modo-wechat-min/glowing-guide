@@ -1,3 +1,42 @@
-<view class="main-box">
-
+<view class="main-box2">
+  <view class='font34'>选择日期</view>
+  <view class='flexone timebox'>
+    <view class='time startTime'>456456</view>
+    <view class='time'>548645</view>
+  </view>
+  <view class='tilte trading-area font34'>
+    商圈
+  </view>
+  <view class='flexone lists'>
+    <view class='item active'>
+      望京
+    </view>
+    <view class='item'>
+      望京
+    </view>
+    <view class='item'>
+      望京
+    </view>
+    <view class='item'>
+      望京
+    </view>
+    <view class='item'>
+      望京
+    </view>
+    <view class='item'>
+      望京
+    </view>
+  </view>
+  <view class='tilte font34 price-box'>
+    每晚价格
+  </view>
+  <view class='flexone'>
+    <input class='price' placeholder='最低价'></input>
+    <view class='line'></view>
+    <input class='price' placeholder='最高价'></input>
+  </view>
+</view>
+<view class='btn-box flextwo'>
+<view class='reset'>重置</view>
+<view class='serch'>查询</view>
 </view>

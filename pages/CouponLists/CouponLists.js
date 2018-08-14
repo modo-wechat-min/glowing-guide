@@ -1,17 +1,7 @@
-
 Page({
   data: {
-    nochose:false,
-    height:0,
+    isComePersonal: true,
   },
-  onLoad(){
-    this.setData({
-      height: wx.getSystemInfoSync().windowHeight,
-    })
+  onLoad() {
   },
-  nochoseFun(e){
-    this.setData({
-      nochose: !this.data.nochose,
-    })
-  }
 })

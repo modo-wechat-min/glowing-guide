@@ -1,2 +1,149 @@
-<!--pages/service/service.wxml-->
-<text>pages/service/service.wxml</text>
+<view class='box'>
+  <view class="icon-title">电器</view>
+  <view class='flexone lists border-b1'>
+    <view class='list-item'>
+      <icon class='icon lock'></icon>
+      <view>智能门锁</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon chui'></icon>
+      <view>吹风机</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon bing'></icon>
+      <view>冰箱</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon xi'></icon>
+      <view>洗衣机</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon tai'></icon>
+      <view>台灯</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon chui'></icon>
+      <view>空调</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon chui'></icon>
+      <view>共享空气净化</view>
+    </view>
+  </view>
+  <view class="icon-title">设施</view>
+  <view class='flexone lists border-b1'>
+    <view class='list-item'>
+      <icon class='icon wifi'></icon>
+      <view>WIFI</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon ti'></icon>
+      <view>电梯</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon nuan'></icon>
+      <view>暖气</view>
+    </view>
+  </view>
+  <view class="icon-title">卫生间</view>
+  <view class='flexone lists border-b1'>
+    <view class='list-item'>
+      <icon class='icon chui'></icon>
+      <view>吹风机</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon xifa'></icon>
+      <view>洗发水</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon mu'></icon>
+      <view>沐浴露</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon yujin'></icon>
+      <view>浴巾</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon yumao'></icon>
+      <view>浴帽</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon maojin'></icon>
+      <view>毛巾</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon xiang'></icon>
+      <view>香皂</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon duli'></icon>
+      <view>独立卫浴</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon yugang'></icon>
+      <view>浴缸</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon page'></icon>
+      <view>卫生纸</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon shose'></icon>
+      <view>拖鞋</view>
+    </view>
+  </view>
+  <view class="icon-title">厨房</view>
+  <view class='flexone lists border-b1'>
+    <view class='list-item'>
+      <icon class='icon ci'></icon>
+      <view>电磁炉</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon wei'></icon>
+      <view>微波炉</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon you'></icon>
+      <view>油烟机</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon chu'></icon>
+      <view>出具租赁</view>
+    </view>
+  </view>
+  <view class="icon-title">服务</view>
+  <view class='flexone lists'>
+    <view class='list-item'>
+      <icon class='icon dai'></icon>
+      <view>代收快递</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon chuang'></icon>
+      <view>床品更换</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon xing'></icon>
+      <view>行李寄存</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon cha'></icon>
+      <view>查询</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon pao'></icon>
+      <view>跑腿</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon xiao'></icon>
+      <view>娱乐消遣</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon weixiu'></icon>
+      <view>维修</view>
+    </view>
+    <view class='list-item'>
+      <icon class='icon allhour'></icon>
+      <view>24小时前台</view>
+    </view>
+  </view>
+</view>

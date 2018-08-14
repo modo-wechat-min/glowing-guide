@@ -1,43 +1,55 @@
-.box{
+.box {
   padding: 50rpx 30rpx 150rpx;
 }
-.order-img{
+
+.order-img {
   width: 200rpx;
   height: 132rpx;
   padding: 12rpx;
 }
-.branch{
+
+.branch {
   font-size: 34rpx;
   margin: 24rpx 0 16rpx 18rpx;
 }
-.type{
+
+.type {
   font-size: 26rpx;
   margin-left: 18rpx;
 }
-.order-head{
-  box-shadow: 4rpx 0 8rpx rgba(0, 0, 0, 0.1),-4rpx 0 8rpx rgba(0, 0, 0, 0.1),0rpx 4rpx 8rpx rgba(0, 0, 0, 0.1),0rpx -4rpx 8rpx rgba(0, 0, 0, 0.1);
+
+.order-head {
+  box-shadow: 4rpx 0 8rpx rgba(0, 0, 0, 0.1),
+                -4rpx 0 8rpx rgba(0, 0, 0, 0.1),
+                0rpx 4rpx 8rpx rgba(0, 0, 0, 0.1),
+                0rpx -4rpx 8rpx rgba(0, 0, 0, 0.1);
 }
-.time-box{
+
+.time-box {
   padding: 52rpx 0;
   position: relative;
 }
-.time{
+
+.time {
   font-size: 38rpx;
   margin-bottom: 10rpx;
 }
-.time-note{
+
+.time-note {
   font-size: 24rpx;
-  color: #aaaaaa;
+  color: #aaa;
 }
-.time-end{
+
+.time-end {
   text-align: right;
 }
-.days{
+
+.days {
   position: absolute;
   width: 90rpx;
   height: 36rpx;
   border-radius: 19rpx;
-  border:1rpx solid #aaa;
+  border: 1rpx solid #aaa;
   left: 50%;
   top: 50%;
   margin-left: -46rpx;
@@ -46,12 +58,14 @@
   text-align: center;
   line-height: 36rpx;
 }
-.number-box,.comein-box,.note-box,.quan-box{
+
+.number-box, .comein-box, .note-box, .quan-box {
   line-height: 56rpx;
   padding: 38rpx 0;
   font-size: 30rpx;
 }
-#number view{
+
+#number view {
   height: 56rpx;
   border: 1rpx solid #d0d0d0;
   width: 56rpx;
@@ -59,32 +73,39 @@
   text-align: center;
   font-size: 36rpx;
 }
-#number .number-input{
-width: 88rpx;
-font-size: 26rpx;
-border: 1rpx solid #666;
-}
-#number .reduce.active,#number .plus.active{
+
+#number .number-input {
+  width: 88rpx;
+  font-size: 26rpx;
   border: 1rpx solid #666;
 }
-.note-input{
+
+#number .reduce.active, #number .plus.active {
+  border: 1rpx solid #666;
+}
+
+.note-input {
   height: 30rpx;
   width: 580rpx;
   padding-left: 50rpx;
 }
-.mingxi-title{
+
+.mingxi-title {
   font-size: 30rpx;
 }
-.mingxi-item,.look-price{
-height: 42rpx;
-line-height: 42rpx;
-font-size: 24rpx;
-color: #999;
+
+.mingxi-item, .look-price {
+  height: 42rpx;
+  line-height: 42rpx;
+  font-size: 24rpx;
+  color: #999;
 }
-.trangle{
+
+.trangle {
   position: relative;
 }
-.trangle::after{
+
+.trangle::after {
   display: inline-block;
   width: 14rpx;
   height: 14rpx;
@@ -93,7 +114,8 @@ color: #999;
   content: "";
   transform: rotate(45deg);
 }
-.btn-box{
+
+.btn-box {
   height: 116rpx;
   line-height: 116rpx;
   padding: 0 30rpx;
@@ -105,14 +127,29 @@ color: #999;
   background: #fff;
   box-sizing: border-box;
   font-size: 34rpx;
-  color: #ff6644;
+  color: #f64;
 }
-button{
+
+button {
   height: 90rpx;
   width: 266rpx;
-  background: linear-gradient(to right,#ff4d4d,#ff6644);
+  background: linear-gradient(to right, #ff4d4d, #f64);
   line-height: 90rpx;
   margin: 13rpx 0;
   color: #fff;
   font-size: 36rpx;
+}
+
+.room-user {
+  box-shadow: 3rpx 0 6rpx rgba(0, 0, 0, 0.1),
+                -3rpx 0 6rpx rgba(0, 0, 0, 0.1),
+                0rpx 3rpx 6rpx rgba(0, 0, 0, 0.1),
+                0rpx -3rpx 6rpx rgba(0, 0, 0, 0.1);
+  padding: 10rpx;
+  color: #aaa;
+  margin: 20rpx 0 30rpx;
+}
+.delete{
+  float: right;
+  color: #333;
 }

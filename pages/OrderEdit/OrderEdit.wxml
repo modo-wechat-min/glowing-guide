@@ -3,7 +3,7 @@
     <image class='order-img' src='{{imgUrls}}'></image>
     <view>
       <view class='branch'>西直门店</view>
-      <view class='type'>西直门店</view>
+      <view class='type'>Modo.Max投影精英套房</view>
     </view>
   </view>
   <view class='flextwo time-box border-b1'>
@@ -13,7 +13,7 @@
     </view>
     <view>
       <view class='time time-end'>08月03日</view>
-      <view class='time-note'>最早入住时间15:00</view>
+      <view class='time-note'>最晚退房时间12:00</view>
     </view>
     <view class='days'>共1晚</view>
   </view>
@@ -27,12 +27,43 @@
       <view class='plus' hover-class="active">+</view>
     </view>
   </view>
-  <view class='flextwo comein-box border-b1'>
+  <view class=' comein-box border-b1'>
     <view>
-      预定到店时间(便于管家提前准备)
+      入住人信息
     </view>
-    <view class='trangle'>
-      15:30
+    <view class=' room-user'>
+      <view class='flextwo'>
+        <view>房间1</view>
+        <view class='trangle'>选择入住人</view>
+      </view>
+      <view class='user-info font24'>
+        <text decode="{{true}}">姓&emsp;&emsp;名：<text class='color333'>孟春</text>
+        <text class='delete'>删除</text></text>
+        <view>身份证号：
+          <text class='color333'>45646456456456456456</text>
+        </view>
+      </view>
+    </view>
+     <view class=' room-user'>
+      <view class='flextwo'>
+        <view>房间1</view>
+        <view class='trangle'>选择入住人</view>
+      </view>
+      <view class='user-info font24'>
+        <text decode="{{true}}">姓&emsp;&emsp;名：<text class='color333'>孟春</text>
+        <text class='delete'>删除</text></text>
+        <view>身份证号：
+          <text class='color333'>45646456456456456456</text>
+        </view>
+      </view>
+    </view>
+    <view class='flextwo'>
+      <view>
+        预定到店时间(便于管家提前准备)
+      </view>
+      <view class='trangle'>
+        15:30
+      </view>
     </view>
   </view>
   <view class='flexone note-box border-b1'>
@@ -66,6 +97,8 @@
   </view>
 </view>
 <view class='flextwo btn-box'>
-  <view>¥<text class='font44'>300</text></view>
+  <view>¥
+    <text class='font44'>300</text>
+  </view>
   <button>立即预定</button>
 </view>

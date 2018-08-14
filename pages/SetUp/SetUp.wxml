@@ -1,0 +1,48 @@
+<view class='box'>
+  <view class='flextwo item'>
+    <view>
+      <icon class='icon headimg'></icon>
+      <text decode='{{true}}'>头&emsp;&emsp;像</text>
+    </view>
+    <view class='img-icon'>
+      
+    </view>
+  </view>
+  <view class='flextwo item'>
+    <view>
+      <icon class='icon sub-name'></icon>
+      <text decode='{{true}}'>昵&emsp;&emsp;称</text>
+    </view>
+    <view>
+      小米
+    </view>
+  </view>
+  <view class='flextwo item active'>
+    <view>
+      <icon class='icon sex-icon'></icon>
+      <text decode='{{true}}'>性&emsp;&emsp;别</text>
+    </view>
+    <view>
+      男
+    </view>
+  </view>
+  <view class='flextwo item'>
+    <view>
+      <icon class='icon phone-icon'></icon>
+      <text>手机号码</text>
+    </view>
+    <view>
+      45615315646
+    </view>
+  </view>
+  <view class='flextwo item active'>
+    <view>
+      <icon class='icon birthday'></icon>
+      <text decode='{{true}}'>生&emsp;&emsp;日</text>
+    </view>
+    <view>
+      1998-12-24
+    </view>
+  </view>
+<view class='login-out item'>退出登录</view>
+</view>

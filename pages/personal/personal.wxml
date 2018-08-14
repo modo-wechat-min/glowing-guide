@@ -30,7 +30,11 @@
   <view>常用入住人</view>
   <view class='one-item-right'>入住人信息</view>
 </view>
-<view class='one-item flextwo '>
+<view class='one-item flextwo border-b1'>
   <view>我的合同</view>
-  <view class='one-item-right'>长租合同</view>
+  <view class='one-item-right '>长租合同</view>
+</view>
+<view class='one-item flextwo '>
+  <view>设置</view>
+  <view class='one-item-right'></view>
 </view>
