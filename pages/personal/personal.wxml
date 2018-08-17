@@ -1,24 +1,23 @@
 <view class='person-header border-bottom15 width100'>
   <image class='bg-img' src='{{bgImg}}'></image>
   <image class='head-img' src='{{userInfo.avatarUrl}}'></image>
-  <view class='person-note font24' wx:if="{{isLogin}}">{{userInfo.nickName}}</view>
-  <view class='person-note font24' wx:else>未登录</view>
+  <view class='person-note font24'>{{result===""?"未登录":result.Name}}</view>
 </view>
 <view class='person-main-box '>
   <view class='main-box-item'>
     <icon class='icon icon-dai'></icon>
     <view class='item-title'>代金券</view>
-    <view class='item-content'>2张</view>
+    <view class='item-content'>{{result===""?"0":result.VoucherCount}}张</view>
   </view>
   <view class='main-box-item'>
     <icon class='icon icon-score'></icon>
-    <view class='item-title'>代金券</view>
-    <view class='item-content'>0积分</view>
+    <view class='item-title'>积分</view>
+    <view class='item-content'>{{result===""?"0":result.Score}}积分</view>
   </view>
   <view class='main-box-item'>
     <icon class='icon icon-storage'></icon>
-    <view class='item-title'>代金券</view>
-    <view class='item-content'>0积分</view>
+    <view class='item-title'>储值</view>
+    <view class='item-content'>余额{{result===""?"0":result.Balance}}</view>
   </view>
 </view>
 <view class='img-box'>
@@ -26,15 +25,21 @@
   <view class='open-vip'>开通会员（最高享95折优惠）</view>
   <view class='more-vip'>了解更多会员权益></view>
 </view>
-<view class='one-item flextwo border-b1'>
-  <view>常用入住人</view>
-  <view class='one-item-right'>入住人信息</view>
-</view>
-<view class='one-item flextwo border-b1'>
-  <view>我的合同</view>
-  <view class='one-item-right '>长租合同</view>
-</view>
-<view class='one-item flextwo '>
-  <view>设置</view>
-  <view class='one-item-right'></view>
-</view>
+<navigator url='../PersonalContacts/PersonalContacts'>
+  <view class='one-item flextwo border-b1'>
+    <view>常用入住人</view>
+    <view class='one-item-right'>入住人信息</view>
+  </view>
+</navigator>
+<navigator url='../PersonalContacts/PersonalContacts'>
+  <view class='one-item flextwo border-b1'>
+    <view>我的合同</view>
+    <view class='one-item-right '>长租合同</view>
+  </view>
+</navigator>
+<navigator url='../SetUp/SetUp'>
+  <view class='one-item flextwo '>
+    <view>设置</view>
+    <view class='one-item-right'></view>
+  </view>
+</navigator>

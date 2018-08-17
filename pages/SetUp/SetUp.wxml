@@ -23,7 +23,11 @@
       <text decode='{{true}}'>性&emsp;&emsp;别</text>
     </view>
     <view>
-      男
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
     </view>
   </view>
   <view class='flextwo item'>
@@ -41,7 +45,11 @@
       <text decode='{{true}}'>生&emsp;&emsp;日</text>
     </view>
     <view>
-      1998-12-24
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+    <view class="picker">
+       {{date}}
+    </view>
+  </picker>
     </view>
   </view>
 <view class='login-out item'>退出登录</view>

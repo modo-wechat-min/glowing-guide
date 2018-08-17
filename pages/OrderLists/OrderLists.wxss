@@ -23,7 +23,9 @@
   border-radius: 6rpx;
   padding: 30rpx 20rpx;
   position: relative;
-  margin: 26rpx 0rpx;
+  margin: 26rpx 30rpx;
+  width: 690rpx;
+  box-sizing: border-box;
 }
 .branch{
   font-size: 34rpx;
@@ -88,4 +90,11 @@
   height: 313rpx;
   background-size: cover;
   margin-left: -20rpx;
+}
+.box{
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+scroll-view{
+overflow-x: visible;
 }

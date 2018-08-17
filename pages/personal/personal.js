@@ -3,12 +3,12 @@ const app = getApp()
 
 Page({
   data: {
-    isLogin:false,//是否登录
     userInfo: {},//获取用户信息
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     bgImg:ports.imgUrl + "personal.png",
     bgImg2: ports.imgUrl + "personal2.jpg",
+    result:"",
   },
  
   onLoad: function () {
@@ -37,7 +37,8 @@ Page({
           })
         }
       })
-    }
+    };
+     this.getInit();
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -45,6 +46,19 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  getInit() {
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/UserCenter?UserID=" + 0 +"&OpenID="+"djsl",
+      method: 'get',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData({
+          result: res.data, //获取当前轮播图片的下标
+        })
+      },
     })
   }
 })

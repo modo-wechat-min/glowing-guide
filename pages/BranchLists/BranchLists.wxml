@@ -1,67 +1,53 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class="main-box">
   <view class='nav'>
-    <view class='city'>北京
+    <view class='city'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
       <icon class='icon icon-down'></icon>
     </view>
-    <view class='serch-box'>商圈/日期/价格
+    <view class='serch-box' bindtap='toOption'>商圈/日期/价格
       <icon class='icon icon-ser'></icon>
     </view>
   </view>
   <view class='condition-box'>
-    <view class='condition-item active'>08.08-08.20</view>
-    <view class='condition-item'>查询价格</view>
+    <view class='condition-item active'>{{filters.numberTime(startTime)}}-{{filters.numberTime(endTime)}}</view>
+    <view class='condition-item' wx:if="{{!minPrice}}">查询价格</view>
+    <view class='condition-item active' wx:if="{{minPrice}}">{{minPrice}}-{{maxPrice}}</view>
     <view class='default'>默认排序
       <icon class='icon icon-down'></icon>
     </view>
+
   </view>
-  <view class='branch-item'>
-    <image class='branch-img' src='{{imgurl}}'></image>
-    <view class='flextwo position'>
-      <view>
-        <text class='price'>¥300</text> 起</view>
-      <view>
-        <icon class='icon icon-position'></icon> 距您4.0km</view>
-    </view>
-    <view class='flextwo'>
-      <view class='branch-name'>望京方恒店</view>
-      <view class='score'>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        4.9分
+  <view class='branch-item' wx:for="{{branchLists}}" wx:key="index" wx:for-item="item" bindtap='goBranchDetails' data-id='{{item.ID}}'>
+      <image class='branch-img' src='{{imgPorts+item.Cover}}'></image>
+      <view class='flextwo position'>
+        <view>
+          <text class='price'>¥{{item.Adjustmentprice}}</text> 起</view>
+        <view>
+          <icon class='icon icon-position'></icon> 距您{{filters.decimalTwo(disArray[index].distance?disArray[index].distance:0)}}km</view>
       </view>
-    </view>
-    <view class='address ellipsis'>
-      望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛
-    </view>
-    <view class='flexone'>
-      <view class='note'>免押金</view>
-      <view class='note'>闪定</view>
-      <view class='note'>新上房源</view>
-    </view>
-  </view>
-  <view class='branch-item'>
-    <image class='branch-img' src='{{imgurl}}'></image>
-    <view class='flextwo'>
-      <view class='branch-name'>望京方恒店</view>
-      <view class='score'>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        <icon class='icon icon-start'></icon>
-        4.9分
+      <view class='flextwo'>
+        <view class='branch-name'>{{item.BranchName}}</view>
+        <view class='score'>
+          <icon class='icon icon-start'></icon>
+          <icon class='icon icon-start'></icon>
+          <icon class='icon icon-start'></icon>
+          <icon class='icon icon-start'></icon>
+          <icon class='icon icon-start'></icon>
+          {{item.ScoreAvg}}分
+        </view>
       </view>
-    </view>
-    <view class='address ellipsis'>
-      望京SOHO丨嘉茂中心丨沃尔玛丨望京SOHO丨嘉茂中心丨沃尔玛丨
-    </view>
-    <view class='flexone'>
-      <view class='note'>免押金</view>
-      <view class='note'>闪定</view>
-      <view class='note'>新上房源</view>
-    </view>
+      <view class='address ellipsis'>
+        {{item.Address}}
+      </view>
+      <view class='flexone'>
+        <view class='note'>免押金</view>
+        <view class='note'>闪定</view>
+        <view class='note'>新上房源</view>
+      </view>
   </view>
 </view>

@@ -1,9 +1,23 @@
 var DateFr = {
-  deleteYearTime: function (time){
-    return time.slice(time.indexOf("年")+1);
+  deleteYearTime: function(time) {
+    return time.slice(time.indexOf("年") + 1);
+  },
+  numberTime: function(time) {
+    return time.slice(time.indexOf("年") + 1).replace("月", ".").replace("日", "");
+  },
+  decimalTwo: function(number) {
+    var number = number / 1000
+    return number.toFixed(2);
+  },
+  formalTime: function(time) {
+    var d=time.substring(0, time.indexOf("T"));
+    var array = d.split("-");
+    return array[0] + '年' + array[1] + '月'+array[2] + '日';
   }
 }
 module.exports = {
-  deleteYearTime: DateFr.deleteYearTime
+  deleteYearTime: DateFr.deleteYearTime,
+  numberTime: DateFr.numberTime,
+  decimalTwo: DateFr.decimalTwo,
+  formalTime: DateFr.formalTime,
 }
-

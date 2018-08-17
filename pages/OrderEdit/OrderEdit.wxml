@@ -1,3 +1,4 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class='box'>
   <view class='flexone order-head'>
     <image class='order-img' src='{{imgUrls}}'></image>
@@ -8,23 +9,23 @@
   </view>
   <view class='flextwo time-box border-b1'>
     <view>
-      <view class='time'>08月03日</view>
+      <view class='time'>{{filters.deleteYearTime(startTime)}}</view>
       <view class='time-note'>最早入住时间15:00</view>
     </view>
     <view>
-      <view class='time time-end'>08月03日</view>
+      <view class='time time-end'>{{filters.deleteYearTime(endTime)}}</view>
       <view class='time-note'>最晚退房时间12:00</view>
     </view>
-    <view class='days'>共1晚</view>
+    <view class='days'>共{{days}}晚</view>
   </view>
-  <view class='flextwo number-box border-b1'>
+  <view class='flextwo number-box border-b1'>  
     <view>
       预定房间数
     </view>
     <view class='flexone ' id='number'>
-      <view class='reduce' hover-class="active">-</view>
-      <view class='number-input'>2</view>
-      <view class='plus' hover-class="active">+</view>
+      <view class='reduce {{number<=1?"disable":""}}' hover-class="active" bindtap='getNumber' data-number='{{false}}'>-</view>
+      <view class='number-input'>{{number}}</view>
+      <view class='plus' hover-class="active" bindtap='getNumber' data-number='{{true}}'>+</view>
     </view>
   </view>
   <view class=' comein-box border-b1'>

@@ -1,29 +1,35 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
-  <view class="floor1">
-    <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
-  </view>
-  <view class="floor2">
-    <view class='flextwo border'>
+<view class="floor1">
+  <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
+</view>
+<view class="floor2">
+  <view class='flextwo border'>
+    <view>
+      <view class='font24'>选择城市</view>
       <view>
-        <view class='font24'>选择城市</view>
-        <view>北京</view>
-      </view>
-      <view class='position-box'>
-        <icon class='icon position'></icon>
-        <view class='color999'>我的位置</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">
+            {{array[index]}}
+          </view>
+        </picker>
       </view>
     </view>
-    <view class='flextwo'>
-      <view>
-        <view class='font24'>入离店日期</view>
-        <view>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
-          <text class='total'>共{{days}}天</text>
-        </view>
-      </view>
-      <view>
+    <view class='position-box'>
+      <icon class='icon position'></icon>
+      <view class='color999'>我的位置</view>
+    </view>
+  </view>
+  <view class='flextwo' bindtap='toGetDate'>
+    <view >
+      <view class='font24'>入离店日期</view>
+      <view>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
+        <text class='total'>共{{days}}天</text>
       </view>
     </view>
-    <button class='ser-btn' bindtap='serch'>预定公寓</button>
+    <view>
+    </view>
   </view>
+  <button class='ser-btn' bindtap='goBranchLists'>预定公寓</button>
+</view>
 <image src='{{homeImageUrl2}}' class='second-img'>
 </image>

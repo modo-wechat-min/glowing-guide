@@ -67,13 +67,15 @@
 
 #number view {
   height: 56rpx;
-  border: 1rpx solid #d0d0d0;
+  border: 1rpx solid #666;
   width: 56rpx;
   margin-left: 6rpx;
   text-align: center;
   font-size: 36rpx;
 }
-
+#number view.disable{
+  border: 1rpx solid #d0d0d0;
+}
 #number .number-input {
   width: 88rpx;
   font-size: 26rpx;

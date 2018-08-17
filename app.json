@@ -1,29 +1,36 @@
 {
   "pages": [
+        "pages/MyScore/MyScore",
+    "pages/OrderDetails/OrderDetails",
+    "pages/evaluate/evaluate",
+    "pages/service/service",
+    "pages/CouponLists/CouponLists",
+    "pages/CreateContact/CreateContact",
+    "pages/login/login",
+    "pages/home/home",
+    "pages/OrderLists/OrderLists",
+    "pages/personal/personal",
+    "pages/BranchLists/BranchLists",
+    "pages/branches/branches",
+    "pages/condition/condition",
+    
     "pages/Destination/Destination",
     "pages/SetUp/SetUp",
-    "pages/home/home",
-    "pages/CreateContact/CreateContact",
+    
     "pages/PersonalContacts/PersonalContacts",
     "pages/ContactsPersons/ContactsPersons",
-    "pages/CouponLists/CouponLists",
+    
     "pages/OrderEdit/OrderEdit",
-    "pages/condition/condition",
-    "pages/service/service",
-    "pages/OrderLists/OrderLists",
-    "pages/evaluate/evaluate",
-    "pages/OrderDetails/OrderDetails",
+    
+   
+    
     "pages/OrderPayment/OrderPayment",
     "pages/EveryDayPrice/EveryDayPrice",
     "pages/BranchDetails/BranchDetails",
-    "pages/login/login",
-    "pages/MyScore/MyScore",
-    "pages/personal/personal",
-    "pages/BranchLists/BranchLists",
+
     "pages/wifi/wifi",
     "pages/success/success",
     "pages/StorageValue/StorageValue",
-    "pages/branches/branches",
     "pages/date/date",
     "pages/PurchaseVipCard/PurchaseVipCard",
     "pages/VipCard/VipCard",

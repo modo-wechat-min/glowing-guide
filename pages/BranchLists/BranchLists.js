@@ -1,62 +1,84 @@
 let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
+let QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+let qqmapsdk;
+var demo = new QQMapWX({
+  key: 'GN2BZ-EHZ62-Y62U5-CX56F-EV4EQ-XBFN4' // 必填
+});
 Page({
   data: {
     imgurl: ports.imgUrl + 'img_1.png',
+    index: 0,
+    array: ['北京', '南京'],
+    startTime: "",
+    endTime: "",
+    minPrice: "",
+    maxPrice: "",
+    branchLists: [],
+    imgPorts: ports.modoImgHttp,
+    disArray: [],
+    days:1,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
-  },
+    this.setData({
+      startTime: options.StartDate,
+      endTime: options.EndDate,
+      days: options.days,
+      index: options.CityIndex,
+    })
+    this.getBranchLists();
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  toOption() {
+    wx.navigateTo({
+      url: '../condition/condition?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&minPrice=" + this.data.minPrice + "&maxPrice=" + this.data.maxPrice,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  getBranchLists() {
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "/API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime,
+      method: 'get',
+      success: function (res) {
+        // console.log(res.data);
+        _this.setData({
+          branchLists: res.data, //获取当前轮播图片的下标
+        })
+        _this.getDistance();
+      },
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  getDistance() {
+    let _this = this;
+    let lists = this.data.branchLists;
+    var newLists = lists.map(function (item, key, ary) {
+      var obj = {};
+      obj.latitude = item.Dimension;
+      obj.longitude = item.Longitude;
+      return obj;
+    });
+    demo.calculateDistance({
+      to: newLists,
+      success: function (res) {
+        _this.setData({
+          disArray: res.result.elements,
+        })
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+    });
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  goBranchDetails(e){
+    var branchId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../BranchDetails/BranchDetails?BranchID=' + branchId + '&StartDate=' + this.data.startTime + "&EndDate=" + this.data.endTime +"&days="+this.data.days,
+    })
   }
 })

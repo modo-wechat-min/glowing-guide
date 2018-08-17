@@ -1,8 +1,10 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class="main-box2">
   <view class='font34'>选择日期</view>
-  <view class='flexone timebox'>
-    <view class='time startTime'>456456</view>
-    <view class='time'>548645</view>
+  <view class='flexone timebox' bindtap='toGetDate'>
+    <view class='time startTime'>{{startTime?filters.deleteYearTime(startTime):"入住时间"}}</view>
+    <view class='time'>{{endTime?filters.deleteYearTime(endTime):"退房时间"}}</view>
+    <view wx:if="{{days>0}}" class="total-day">共{{days}}晚</view>
   </view>
   <view class='tilte trading-area font34'>
     商圈
@@ -31,12 +33,12 @@
     每晚价格
   </view>
   <view class='flexone'>
-    <input class='price' placeholder='最低价'></input>
+    <input class='price' placeholder='最低价' bindinput="minPriceFun" value='{{minPrice}}'></input>
     <view class='line'></view>
-    <input class='price' placeholder='最高价'></input>
+    <input class='price' placeholder='最高价' bindinput="maxPriceFun" value='{{maxPrice}}'></input>
   </view>
 </view>
 <view class='btn-box flextwo'>
-<view class='reset'>重置</view>
-<view class='serch'>查询</view>
+  <view class='reset' bindtap='reset'>重置</view>
+  <view class='serch' bindtap='pageBack'>查询</view>
 </view>

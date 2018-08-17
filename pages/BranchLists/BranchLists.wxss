@@ -30,7 +30,10 @@
   right: 1rpx;
   top: -4rpx;
 }
-
+picker {
+  display: inline-block;
+  margin-right: 10rpx;
+}
 .serch-box {
   margin-left: 20rpx;
   width: 480rpx;
@@ -62,7 +65,7 @@
 .condition-item {
   float: left;
   margin-right: 20rpx;
-  padding: 21rpx 20rpx;
+  padding: 16rpx 20rpx;
   border-radius: 8rpx;
   border: 1rpx solid #999;
 }
@@ -71,11 +74,11 @@
   background: #f64;
   color: #fff;
   border: none;
-  padding: 23rpx 20rpx;
+  padding: 18rpx 20rpx;
 }
 
 .default {
-  margin-top: 20rpx;
+  margin-top: 16rpx;
   font-size: 30rpx;
 }
 .branch-item{

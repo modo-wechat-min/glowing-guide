@@ -10,13 +10,13 @@ const formatTime = date => {
 const initTime=(day)=>{
   let time=new Date();
   time.setDate(time.getDate() + day);
-  let year = time.getFullYear()
-  let month = time.getMonth() + 1
-  let date = time.getDate()
+  let year = time.getFullYear();
+  let month = formatNumber(time.getMonth() + 1);
+  let date = formatNumber(time.getDate());
   return year + "年" + month + "月" + date+"日";
 }
 const getDayString=time=>{
-  let timestr = time.replace('日', '').replace('月', '/').replace('年', '/');
+  let timestr = time.replace('日', '').replace('月', '/').replace('年', '/'); 
   console.log(timestr)
   return timestr;
 }
@@ -24,6 +24,8 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
+
 
 
 /* store封装 */

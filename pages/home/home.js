@@ -2,15 +2,13 @@ let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
-    branchName: "",
-    branchId: "",
-    branchLists: [],
     homeImageUrl: ports.imgUrl + 'home_1.jpg',
     homeImageUrl2: ports.imgUrl + 'home_2.jpg',
     startTime: "",
     endTime: "",
     days: 1,
-
+    index: 0,
+    array: ['北京', '南京'],
   },
   onLoad: function() {
     this.setData({
@@ -29,10 +27,14 @@ Page({
       phoneNumber: '4000-777-365'
     })
   },
-  serch() {
-    wx.navigateTo({
-      url: '../BranchDetails/BranchDetails?BranchID=' + this.data.branchId + '&StartDate=' + this.data.startTime + '&EndDate=' + this.data.endTime + '&days=' + this.data.days,
+  bindPickerChange: function(e) {
+    this.setData({
+      index: e.detail.value
     })
-  }
-
+  },
+  goBranchLists() {
+    wx.navigateTo({
+      url: '../BranchLists/BranchLists?CityIndex=' + this.data.index + '&StartDate=' + this.data.startTime + '&EndDate=' + this.data.endTime + '&days=' + this.data.days,
+    })
+  },
 })

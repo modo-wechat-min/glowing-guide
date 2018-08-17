@@ -118,6 +118,7 @@
   width: 146rpx;
   height: 90rpx;
   float: left;
+  border-radius: 10rpx;
 }
 
 .right-info {
@@ -141,6 +142,7 @@
 
 .room-item {
   flex-wrap: wrap;
+  position: relative;
 }
 
 .room-head {
@@ -156,6 +158,7 @@
 .room-note {
   font-size: 24rpx;
   color: #666;
+  max-width: 340rpx;
 }
 
 .right-price {
@@ -334,4 +337,13 @@ padding: 12rpx 0;
   bottom: 0;
   width: 100%;
   left: 0;
+}
+.border-abs::after{
+  position: absolute;
+  width: 690rpx;
+  height: 1rpx;
+  background: #ddd;
+  top: 134rpx;
+  left: 0;
+  content: "";
 }
