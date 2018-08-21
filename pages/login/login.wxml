@@ -7,8 +7,8 @@
   <view id="code">
     <view class='input-title'>验证码</view>
     <input placeholder='请输入验证码' class='code' value='{{code}}' bindinput="bindCode"></input>
-    <view class='send' bindtap='sendFun'>发送验证码</view>
+    <view class='send' bindtap='sendFun'>{{time==0?"发送验证码":time+"s"}}</view>
   </view>
-  <button class='login' bindtap='loginFun'>登录</button>
+  <button class='login' bindtap='loginFun' hover-class='btn-active'>登录</button>
   <text class='note'>未注册过的手机号将自动注册成为\n摩兜公寓用户</text>
 </view>

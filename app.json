@@ -1,33 +1,28 @@
 {
   "pages": [
-        "pages/MyScore/MyScore",
-    "pages/OrderDetails/OrderDetails",
+    "pages/login/login",
     "pages/evaluate/evaluate",
+    
+    "pages/MyScore/MyScore",
+    "pages/OrderDetails/OrderDetails",
+    
     "pages/service/service",
     "pages/CouponLists/CouponLists",
     "pages/CreateContact/CreateContact",
-    "pages/login/login",
     "pages/home/home",
     "pages/OrderLists/OrderLists",
     "pages/personal/personal",
     "pages/BranchLists/BranchLists",
     "pages/branches/branches",
     "pages/condition/condition",
-    
     "pages/Destination/Destination",
     "pages/SetUp/SetUp",
-    
     "pages/PersonalContacts/PersonalContacts",
     "pages/ContactsPersons/ContactsPersons",
-    
     "pages/OrderEdit/OrderEdit",
-    
-   
-    
     "pages/OrderPayment/OrderPayment",
     "pages/EveryDayPrice/EveryDayPrice",
     "pages/BranchDetails/BranchDetails",
-
     "pages/wifi/wifi",
     "pages/success/success",
     "pages/StorageValue/StorageValue",

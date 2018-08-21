@@ -1,3 +1,4 @@
+let ports = require('./ports.js');
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -7,16 +8,16 @@ const formatTime = date => {
   const second = date.getSeconds()
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-const initTime=(day)=>{
-  let time=new Date();
+const initTime = (day) => {
+  let time = new Date();
   time.setDate(time.getDate() + day);
   let year = time.getFullYear();
   let month = formatNumber(time.getMonth() + 1);
   let date = formatNumber(time.getDate());
-  return year + "年" + month + "月" + date+"日";
+  return year + "年" + month + "月" + date + "日";
 }
-const getDayString=time=>{
-  let timestr = time.replace('日', '').replace('月', '/').replace('年', '/'); 
+const getDayString = time => {
+  let timestr = time.replace('日', '').replace('月', '/').replace('年', '/');
   console.log(timestr)
   return timestr;
 }
@@ -25,8 +26,38 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+var Promise = require('./es6-promise.min.js');
+// 获取用户信息
+function getOpenId() {
+  var openId = getStorage("openId",false);
+  return new Promise((resolve, reject) => {
+    if (openId) {
+      resolve();
+    } else {
+      wx.login({
+        success: function(res) {
+          if (res.code) {
+            //发起网络请求,后期看需要promise化不？
+            wx.request({
+              url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code,
+              success: function(res) {
+                console.log(JSON.parse(res.data).openid);
+                setStorage('openId', JSON.parse(res.data).openid,false);
+              }
+            });
+          } else {
+            wx.showToast({
+              title: '获取用户登录态失败！' + res.errMsg,
+              duration: 2000
+            });
+          }
+        }
+      });
 
 
+    }
+  });
+}
 
 /* store封装 */
 function setStorage(key, value, isSync = true) {
@@ -46,6 +77,7 @@ function setStorage(key, value, isSync = true) {
     });
   }
 }
+
 function getStorage(key, isSync = true) {
   if (isSync) {
     try {
@@ -62,15 +94,16 @@ function getStorage(key, isSync = true) {
   } else {
     wx.getStorage({
       key: key,
-      success: function (res) {
+      success: function(res) {
         return res.data;
       },
-      fail: function () {
+      fail: function() {
         return '';
       }
     });
   }
 }
+
 function removeStorage(key, isSync = true) {
   if (isSync) {
     try {
@@ -84,11 +117,18 @@ function removeStorage(key, isSync = true) {
   } else {
     wx.removeStorage({
       key: key,
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
       }
     });
   }
+}
+
+function throwMsg(msg){
+  wx.showToast({
+    title: msg,
+    icon: "none",
+  })
 }
 
 
@@ -104,4 +144,6 @@ module.exports = {
   setStorage: setStorage,
   getStorage: getStorage,
   removeStorage: removeStorage,
+  getOpenId: getOpenId,
+  throwMsg: throwMsg,
 }

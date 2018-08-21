@@ -15,6 +15,8 @@
   border-bottom: 1rpx solid #333;
   color: #858585;
   font-size: 30rpx;
+  height: 52rpx;
+  line-height: 52rpx;
 }
 
 .input-title {
@@ -54,4 +56,7 @@
   width: 100%;
   margin-top: 40rpx;
   line-height: 34rpx;
+}
+.btn-active{
+background: #bd362f;
 }
