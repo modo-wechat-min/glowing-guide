@@ -1,12 +1,14 @@
 let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
 Page({
   data: {
-    imgurl: ports.imgUrl + 'img_1.png',
-    type: 1, //1表示待支付，2表示已取消，3支付完成
+    orderObj:null,
+    modoImgHttp: ports.modoImgHttp,
+    hidden: false,
   },
 
   onLoad: function(options) {
-
+    this.getOrderInfo(options.TypeValueID)
   },
   phone() {
     wx.makePhoneCall({
@@ -14,17 +16,21 @@ Page({
     })
   },
   delete() {
-    wx.showModal({
-      title: '提示',
-      content: '确定删除订单吗',
-      success: function(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else {
-          console.log('用户点击取消')
-        }
-
-      }
+    util.deleteOrder(this.data.orderObj.BillID);
+    wx.navigateBack({ changed: true });
+  },
+  getOrderInfo(TypeValueID){
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID,
+      method: 'get',
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          orderObj: res.data,
+          hidden: true,
+        })
+      },
     })
   }
 })

@@ -1,0 +1,37 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<view class='header'>
+  <view>
+    <picker mode="date" bindtap='getPicker' value="{{date}}" fields="month" bindchange="bindDateChange" bindcancel="bindDateCancel">
+      <view class="picker">
+        {{filters.monthTime(date)}}
+      </view>
+      <icon class='icon-down {{dateActive?"icon-up":""}}'> </icon>
+    </picker>
+  </view>
+  <view class='total flexone'>
+    <view>充值 ¥456</view>
+    <view>消费 ¥789</view>
+  </view>
+</view>
+<view class='lists'>
+  <view class='item border-b1'>
+    <icon class='icon icont1'></icon>
+    <view class='right-info'>
+      <view class='flextwo'>
+        <view>储值充值-中国银行(0100)</view>
+        <view class='number'>+200</view>
+      </view>
+      <view class='time'>8月27日 13:01</view>
+    </view>
+  </view>
+  <view class='item border-b1'>
+    <icon class='icon icont2'></icon>
+    <view class='right-info'>
+      <view class='flextwo'>
+        <view>储值充值-中国银行(0100)</view>
+        <view class='number'>-200</view>
+      </view>
+      <view class='time'>8月27日 13:01</view>
+    </view>
+  </view>
+</view>

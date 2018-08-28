@@ -1,34 +1,30 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
 <view class='main-box2'>
   <view wx:if="{{!isComePersonal}}" class='flextwo shadow head-box'>
     <view class='font26'>不使用代金券</view>
-    <view class='nochose'>未选择</view>
+    <view class='nochose' bindtap='goback'>未选择</view>
   </view>
-  <view class=' shadow item'>
+  <view class=' shadow item' wx:for="{{listsObj}}" wx-index="{{index}}" wx:key="index" bindtap='chosenFun' data-index='{{index}}'>
     <view class='flextwo border-d1'>
-      <view class=''>
-        <view class='font26'>20元代金券</view>
-        <view class='time-limit'>6个月免费</view>
+      <view>
+        <view class='font26'>{{item.InitValue}}元代金券</view>
+        <view class='time-limit'>{{item.Status==2?"已激活":""}}</view>
       </view>
-      <view class='status' wx:if="{{!isComePersonal}}">已选择</view>
-      <view class='status touse' wx:if="{{isComePersonal}}">去使用</view>
-    </view>
-    <view class='flextwo item-note'>
-      <view>任意金额可用</view>
-      <view>6个月免费</view>
-    </view>
-  </view>
-  <view class=' shadow item'>
-    <view class='flextwo border-d1'>
-      <view class=''>
-        <view class='font26'>20元代金券</view>
-        <view class='time-limit'>6个月免费</view>
-      </view>
-      <view class='status' wx:if="{{!isComePersonal}}">已选择</view>
-      <view class='status touse' wx:if="{{isComePersonal}}">去使用</view>
+      <view class='{{chosenIndex==index?"status":""}} {{chosenIndex!=index?"nochose":""}}' wx:if="{{!isComePersonal}}" hover-class='btn-active'>{{chosenIndex==index?"已选择":"未选择"}}</view>
+      <navigator wx:if="{{isComePersonal}}" url='../BranchLists/BranchLists?CityIndex={{0}}'>
+        <view class='status touse' hover-class='btn-active'>去使用</view>
+      </navigator>
     </view>
     <view class='flextwo item-note'>
       <view class='colorff6644'>任意金额可用</view>
-      <view>6个月免费</view>
+      <view>有效期至：{{filters.formalTime(item.EndDate)}}</view>
     </view>
+  </view>
+  <view id='nodata' wx:if="{{listsObj.length==0&&nodata}}">
+    <icon class='nodata'></icon>
+    <view>没有可用优惠券</view>
   </view>
 </view>

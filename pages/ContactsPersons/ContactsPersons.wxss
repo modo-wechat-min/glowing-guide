@@ -46,7 +46,8 @@
 }
 
 .lists-item.active {
-  border: 1rpx solid #f64;
+  border: 1rpx solid #f64; 
+  padding: 43rpx;
 }
 
 .btn-box {

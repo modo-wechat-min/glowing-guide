@@ -1,0 +1,36 @@
+<view class='box'>
+  <view class='title'>储值卡：</view>
+  <view class='lists flextwo'>
+    <view class='item active'>46</view>
+    <view class='item'>789</view>
+    <view class='item'>46</view>
+    <view class='item'>789</view>
+  </view>
+  <view class='number-box flexone'>
+    <view>购买数量：</view>
+    <view class='flexone number-haddler'>
+      <view class='disable'>-</view>
+      <view class='number'>1</view>
+      <view>+</view>
+    </view>
+  </view>
+  <view class='money-box flexone'>
+    <view>支付金额：</view>
+    <view class='money-details'>
+      1000.00元 (1000普卡x1张)
+    </view>
+  </view>
+  <navigator class='payment' hover-class='btn-active'>立即支付</navigator>
+  <view class='rule'>
+    <view>支付金额：</view>
+    <view class='rule-item'>
+    1、首次购买赠送vip会员（仅限本人使用）
+    </view>
+    <view class='rule-item'>
+    2、最终解释权归本公司所有
+    </view>
+    <view class='rule-item'>
+    3、更多详情致电：<view class='phone' bindtap='phone'>4000-777-365</view>
+    </view>
+  </view>
+</view>

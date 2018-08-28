@@ -1,32 +1,10 @@
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class='box flexone'>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
-  </view>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
-  </view>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
-  </view>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
-  </view>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
-  </view>
-  <view class='one-day'>
-    <view class='font26'>08月03日</view>
-    <view class='font22'>星期日</view>
-    <view class='font30 colorff6644'>¥400</view>
+  <view class='one-day' wx:for="{{priceLists}}" wx:key="index">
+    <view class='font26'>{{item.Date}}</view>
+    <view class='font22'>{{item.MonthStr}}</view>
+    <view class='font30 colorff6644'>¥{{item.VIPPirce}}</view>
   </view>
 </view>

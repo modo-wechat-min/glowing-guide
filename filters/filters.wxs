@@ -1,6 +1,10 @@
 var DateFr = {
   deleteYearTime: function(time) {
-    return time.slice(time.indexOf("年") + 1);
+    if(!time) {
+      return ;
+    }else{
+      return time.slice(time.indexOf("年") + 1);
+    }
   },
   numberTime: function(time) {
     return time.slice(time.indexOf("年") + 1).replace("月", ".").replace("日", "");
@@ -9,10 +13,51 @@ var DateFr = {
     var number = number / 1000
     return number.toFixed(2);
   },
+  decimalTwoScore: function (number) {
+    return number.toFixed(2);
+  },
   formalTime: function(time) {
+    if (!time) return false;
     var d=time.substring(0, time.indexOf("T"));
     var array = d.split("-");
     return array[0] + '年' + array[1] + '月'+array[2] + '日';
+  },
+  formalTime2: function (time) {
+    return time.substring(0, time.indexOf("T"));
+  },
+  formalTime1: function (time) {
+    var date = getDate(time);
+    var M = date.getMonth() + 1;
+    var y = date.getFullYear();
+    var d = date.getDate();
+    if (M < 10) M = "0" + M;
+    if (d < 10) d = "0" + d;
+    return y + '年' + M + '月' + d+ '日';
+  },
+  formalTime2: function (time) {
+    var date = getDate(time);
+    var M = date.getMonth() + 1;
+    var y = date.getFullYear();
+    var d = date.getDate();
+    if (M < 10) M = "0" + M;
+    if (d < 10) d = "0" + d;
+    return y + '-' + M + '-' + d;
+  },
+  leaseTime:function(time){
+    if (!time){
+      return;
+    }
+    var time = time.split('');
+    time.splice(10, 1, '至');
+    console.log(time.join('')+"111")
+    return time.join('');
+  },
+  monthTime: function (time){
+    if (!time) {
+      return;
+    }
+    var array = time.split("-");
+    return array[0] + '年' + array[1] + '月';
   }
 }
 module.exports = {
@@ -20,4 +65,10 @@ module.exports = {
   numberTime: DateFr.numberTime,
   decimalTwo: DateFr.decimalTwo,
   formalTime: DateFr.formalTime,
+  formalTime1: DateFr.formalTime1,
+  formalTime2: DateFr.formalTime2,
+  decimalTwoScore: DateFr.decimalTwoScore,
+  formalTime2: DateFr.formalTime2,
+  leaseTime: DateFr.leaseTime,
+  monthTime: DateFr.monthTime,
 }

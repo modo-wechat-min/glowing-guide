@@ -1,7 +1,0 @@
-<view class='container'>
-   <view wx:for="{{titles}}" wx:for-index="index" wx:for-item="item" class='item-box'>
-   <text class='item-title'>{{item.title}}</text>
-   <text class='sub-title'>{{item.subtitle}}</text>
-   <image src='{{imgUrls[index]}}' class='item-img'></image>
-   </view>
-</view>

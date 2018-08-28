@@ -1,26 +1,25 @@
 let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
 Page({
   data: {
-    imgUrls: [
-      ports.imgUrl + 'img_1.png',
-      ports.imgUrl + 'img_2.png',
-      ports.imgUrl + 'img_3.png'
-    ], //輪播圖配置
-    indicatorDots: false,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
+    isFresh:"",
+    hidden: false,
     animation: "",
-    branchId: 3,
+    branchId: 0,
     startTime: "",
     endTime: "",
     branchObj: {},
+    typeObj: null,
+    RoomTypeID: "",
     modoImgHttp: ports.modoImgHttp,
     modoHttp2: ports.modoHttp2,
     days: 1,
     scale: 0,
-    itemIndex:0,
-    imgIndex:1,
+    itemIndex: 0,
+    imgIndex: 1,
+    marker: [],
+    latitude: "",
+    longitude: "",
   },
   onReady() {
     this.initAnimation();
@@ -48,27 +47,58 @@ Page({
   },
   getBranchInfo() {
     let _this = this;
+    _this.setData({
+      hidden: false,
+    })
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/BranchDetail?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime,
       method: 'get',
       success: function(res) {
         console.log(res)
+        let latitude = res.data.Dimension;
+        let longitude = res.data.Longitude;
+        let marker = [];
+        marker[0] = {
+          iconPath: "../../image/location.png",
+          id: 0,
+          latitude: latitude,
+          longitude: longitude,
+          width: 50,
+          height: 50
+        }
         _this.setData({
           branchObj: res.data,
+          marker: marker,
+          latitude: latitude,
+          longitude: longitude,
+          hidden: true,
         })
       },
     })
   },
-  toGetDate: function() { // 获取日期
-    wx.navigateTo({
-      url: '../date/date?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days,
+  phone(e) {
+    let phone = e.currentTarget.dataset.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone,
     })
   },
-  toBook(e){
+  toGetDate: function() { // 获取日期
+    wx.navigateTo({
+      url: '../date/date?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&isFresh=" + true,
+    })
+  },
+  toBook(e) {
+    console.log(util.checkRight())
+    if (!util.checkRight()){
+      return ;
+    }
+    if (!util.checkIsLogin()) {
+      return;
+    }
     let dataset = e.currentTarget.dataset;
     console.log(dataset)
     wx.navigateTo({
-      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + dataset.branchid + "&typeId=" + dataset.type,
+      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + dataset.branchid + "&RoomTypeID=" + dataset.type,
     })
   },
   initAnimation() {
@@ -84,21 +114,54 @@ Page({
       animation: this.animation.export()
     })
   },
-  openFun() {
+  openFun(e) {
+    console.log(e)
+    this.getRoomTypeInfo(e.currentTarget.dataset.roomtypeid);
     this.animation.translateY(-845 / this.data.scale).step();
     this.setData({
       //输出动画
       animation: this.animation.export()
     })
+
   },
-  getItemDetails(e){
+  getItemDetails(e) {
     this.setData({
       itemIndex: e.currentTarget.dataset.index
     })
   },
-  swiperPageSwith(e){
+  swiperPageSwith(e) {
     this.setData({
       imgIndex: e.detail.current + 1,
     })
   },
+  //获取房型信息
+  getRoomTypeInfo(type) {
+    let RoomTypeID = type;
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/RoomTypeDetail?RoomTypeID=" + RoomTypeID,
+      method: 'get',
+      success: function(res) {
+        console.log(res)
+        _this.setData({
+          typeObj: res.data,
+          RoomTypeID: RoomTypeID,
+        })
+      },
+    })
+  },
+  toDailyPrice(e) {
+    wx.navigateTo({
+      url: '../EveryDayPrice/EveryDayPrice?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&RoomTypeID=" + this.data.RoomTypeID,
+    })
+  },
+  onShow() {
+    if (this.data.isFresh) {
+      console.log(66)
+      this.getBranchInfo();
+    }
+  },
+  noteFun(){
+    util.throwMsg("该房型已售完");
+  }
 })

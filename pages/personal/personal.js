@@ -1,4 +1,5 @@
 let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
 const app = getApp()
 
 Page({
@@ -12,46 +13,22 @@ Page({
   },
  
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    };
+    util.getUserInfoFun(this);
+    if (!util.checkRight()) {
+      return;
+    }
+    if (!util.checkIsLogin()) {
+      return;
+    }
      this.getInit();
   },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  
   getInit() {
     let _this = this;
+    let UserID = util.getStorage("userID");
+    let OpenID = util.getStorage("openId");
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/UserCenter?UserID=" + 0 +"&OpenID="+"djsl",
+      url: ports.modoHttp + "API/WeChatMiniProgram/UserCenter?UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
       success: function (res) {
         console.log(res.data);
@@ -59,6 +36,22 @@ Page({
           result: res.data, //获取当前轮播图片的下标
         })
       },
+    })
+  },
+  toPage(e){
+    if (!util.checkRight()) {
+      return;
+    }
+    if (!util.checkIsLogin()) {
+      return;
+    }
+    let page = e.currentTarget.dataset.page;
+    let url = '../' + page + '/' + page
+    if (page =="CouponLists"){
+      url +="?isComePersonal="+true;
+    }
+    wx.navigateTo({
+      url: url,
     })
   }
 })

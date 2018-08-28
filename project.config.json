@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.0",
-	"appid": "wx5f0f5f54e432a52a",
-	"projectname": "%E5%AD%9F%E6%98%A5",
+	"appid": "wx59aaaff602f8c30c",
+	"projectname": "modo",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -23,13 +23,72 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 8,
+			"list": [
+				{
+					"id": 0,
+					"name": "分店详情页",
+					"pathName": "pages/BranchDetails/BranchDetails",
+					"query": "BranchID=6&EndDate=2018年08月26日&StartDate=2018年08月21日&days=10"
+				},
+				{
+					"id": 1,
+					"name": "订单详情页",
+					"pathName": "pages/OrderDetails/OrderDetails",
+					"query": "TypeValueID=257622"
+				},
+				{
+					"id": 2,
+					"name": "服务页面",
+					"pathName": "pages/service/service",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "点评",
+					"pathName": "pages/evaluate/evaluate",
+					"query": "TypeValueID=257641"
+				},
+				{
+					"id": -1,
+					"name": "个人中心联系人",
+					"pathName": "pages/PersonalContacts/PersonalContacts",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "联系人",
+					"pathName": "pages/ContactsPersons/ContactsPersons",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "优惠券",
+					"pathName": "pages/CouponLists/CouponLists",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的积分",
+					"pathName": "pages/MyScore/MyScore",
+					"query": "BranchID=6&EndDate=2018年08月26日&StartDate=2018年08月21日&days=10"
+				},
+				{
+					"id": -1,
+					"name": "储值",
+					"pathName": "pages/StorageValue/StorageValue",
+					"query": "BranchID=6&EndDate=2018年08月26日&StartDate=2018年08月21日&days=10"
+				}
+			]
 		}
 	}
 }

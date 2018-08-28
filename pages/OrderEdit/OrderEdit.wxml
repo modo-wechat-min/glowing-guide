@@ -1,24 +1,27 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class='box'>
   <view class='flexone order-head'>
-    <image class='order-img' src='{{imgUrls}}'></image>
+    <image class='order-img' src='{{modoImgHttp+orderObj.RoomTypeImg}}'></image>
     <view>
-      <view class='branch'>西直门店</view>
-      <view class='type'>Modo.Max投影精英套房</view>
+      <view class='branch'>{{orderObj.BranchName}}</view>
+      <view class='type'>{{orderObj.RoomTypneName}}</view>
     </view>
   </view>
   <view class='flextwo time-box border-b1'>
-    <view>
+    <view bindtap='toGetDate'>
       <view class='time'>{{filters.deleteYearTime(startTime)}}</view>
       <view class='time-note'>最早入住时间15:00</view>
     </view>
-    <view>
+    <view bindtap='toGetDate'>
       <view class='time time-end'>{{filters.deleteYearTime(endTime)}}</view>
       <view class='time-note'>最晚退房时间12:00</view>
     </view>
     <view class='days'>共{{days}}晚</view>
   </view>
-  <view class='flextwo number-box border-b1'>  
+  <view class='flextwo number-box border-b1'>
     <view>
       预定房间数
     </view>
@@ -32,29 +35,19 @@
     <view>
       入住人信息
     </view>
-    <view class=' room-user'>
+    <view class=' room-user' wx:for="{{roomArray}}" wx:index="{{index}}" wx:key="index">
       <view class='flextwo'>
-        <view>房间1</view>
-        <view class='trangle'>选择入住人</view>
+        <view>房间{{index+1}}</view>
+        <view class='trangle' bindtap='chosePerson' data-index='{{index}}'>选择入住人</view>
       </view>
-      <view class='user-info font24'>
-        <text decode="{{true}}">姓&emsp;&emsp;名：<text class='color333'>孟春</text>
-        <text class='delete'>删除</text></text>
-        <view>身份证号：
-          <text class='color333'>45646456456456456456</text>
+      <view class='user-info font24' wx:if="{{item.Name}}">
+        <view>姓
+          <text decode="{{true}}">&emsp;&emsp;</text>名：
+          <text class='color333'>{{personArray[index].Name}}</text>
+          <view class='delete' bindtap='deletePerson' data-index='{{index}}'>删除</view>
         </view>
-      </view>
-    </view>
-     <view class=' room-user'>
-      <view class='flextwo'>
-        <view>房间1</view>
-        <view class='trangle'>选择入住人</view>
-      </view>
-      <view class='user-info font24'>
-        <text decode="{{true}}">姓&emsp;&emsp;名：<text class='color333'>孟春</text>
-        <text class='delete'>删除</text></text>
         <view>身份证号：
-          <text class='color333'>45646456456456456456</text>
+          <text class='color333'>{{personArray[index].CardNumber}}</text>
         </view>
       </view>
     </view>
@@ -62,44 +55,53 @@
       <view>
         预定到店时间(便于管家提前准备)
       </view>
-      <view class='trangle'>
-        15:30
+      <view class='trangle trangle-time'>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeArray}}" range-key="value">
+          <view class="picker">
+            {{timeArray[index].value}}
+          </view>
+        </picker>
       </view>
     </view>
   </view>
   <view class='flexone note-box border-b1'>
-    备注
-    <input placeholder='输入您其他的特殊需求' class='note-input'></input>
+    <view class='note-title'>备注</view>
+    <input placeholder='输入您其他的特殊需求' class='note-input' value='{{Remark}}' bindinput="bindRemark"></input>
   </view>
   <view class='flextwo quan-box border-b1'>
     <view>
       优惠券
     </view>
-    <view class='trangle'>
-      有两张可用
-    </view>
+    <navigator url='../CouponLists/CouponLists?chosenIndex={{couponObj.ID}}'>
+      <view class='trangle' wx:if="{{!couponObj}}">
+        {{orderObj.VoucherCount>0?"有"+orderObj.VoucherCount+"张可用":"无可用优惠券"}}
+      </view>
+      <view class='trangle' wx:else>
+        已选优惠券
+      </view>
+    </navigator>
   </view>
   <view class=' quan-box border-b1'>
     <view class='mingxi-title'>费用明细</view>
     <view class='flextwo'>
-      <view class='mingxi-item'>整日租赁费用：
-        <text>¥300</text>
+      <view class='mingxi-item'>房租总费用：
+        <text>¥{{orderObj.TotalMoney}}</text>
       </view>
-      <view class='look-price trangle'>
+      <view class='look-price trangle trangle-day' bindtap='toDailyPrice'>
         查看每天房价
       </view>
     </view>
-    <view class='mingxi-item'>代金券优惠：
-      <text>¥300</text>
+    <view class='mingxi-item' wx:if="{{couponObj}}">代金券优惠：
+      <text>-¥{{couponObj.InitValue}}</text>
     </view>
-    <view class='mingxi-item'>会员卡开通费用：
+    <!-- <view class='mingxi-item'>会员卡开通费用：
       <text>¥300</text>
-    </view>
+    </view> --> 
   </view>
 </view>
 <view class='flextwo btn-box'>
   <view>¥
-    <text class='font44'>300</text>
+    <text class='font44'>{{couponObj.InitValue?orderObj.TotalMoney-couponObj.InitValue:orderObj.TotalMoney}}</text>
   </view>
-  <button>立即预定</button>
+  <button bindtap='bookFun' class=' {{CanSoldNumber<=0?"disable-class":""}}'>立即预定</button>
 </view>

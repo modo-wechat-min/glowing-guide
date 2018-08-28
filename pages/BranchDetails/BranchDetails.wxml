@@ -1,26 +1,29 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class='img-slider'>
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)"  bindchange="swiperPageSwith">
-    <block wx:for="{{branchObj.Images}}" wx:for-index="index" wx:for-item="item">
+  <swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" indicator-active-color="rgba(255, 102, 89, 1)" bindchange="swiperPageSwith">
+    <block wx:for="{{branchObj.Images}}" wx:for-index="index" wx:key="index" wx:for-item="item">
       <swiper-item>
         <image src="{{modoImgHttp+item}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
   <view class='index-box'>
-    <icon class='index-img'></icon>{{imgIndex}}/{{branchObj.Images.length}} 
+    <icon class='index-img'></icon> {{imgIndex}}/{{branchObj.Images.length}}
   </view>
 </view>
 <view class='box'>
   <view class='flextwo branch-name-box'>
     <view class='branch'>{{branchObj.Name}}</view>
-    <view class='start flexone'>
+    <view class='start flexone' wx:if="{{branchObj.ScoreAvg}}">
       <view class='start-item'></view>
       <view class='start-item'></view>
       <view class='start-item'></view>
       <view class='start-item'></view>
       <view class='start-item'></view>
-      4.9分</view>
+      {{filters.decimalTwoScore(branchObj.ScoreAvg)}}分</view>
   </view>
   <view class='flexone note-box'>
     <view>交通便利</view>
@@ -32,8 +35,8 @@
     <icon class='icon icon-position'></icon>
     {{branchObj.Address}}
   </view>
-  <view class='phone-box border-b1'>
-    <icon class='icon icon-phone'></icon> 010-64786321
+  <view class='phone-box border-b1' bindtap='phone' data-phone='{{branchObj.Telephone}}'>
+    <icon class='icon icon-phone'></icon> {{branchObj.Telephone?branchObj.Telephone:branchObj.Mobile}}
   </view>
   <view class='time-box border-b1'>
     <view class='date-title'>日期</view>
@@ -45,17 +48,16 @@
 </view>
 <view class='room-lists'>
   <view class='room-title marginl30'>房型信息</view>
-  <view  wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" bindtap='getItemDetails' data-index='{{index}}'
-  class='room-item flexone  marginl30 {{index!=itemIndex?"border-abs":""}}'>
-    <view class='room-head flextwo'> 
+  <view wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap='getItemDetails' data-index='{{index}}' class='room-item flexone  marginl30 {{index!=itemIndex?"border-abs":""}}'>
+    <view class='room-head flextwo'>
       <view class='scale'>
         <icon class='icon icon-scale'></icon>
       </view>
-      <image class='room-img' src='{{modoImgHttp+item.Img}}' bindtap='openFun'></image>
+      <image class='room-img' src='{{modoImgHttp+item.Img}}' bindtap='openFun' data-RoomTypeID='{{item.ID}}'></image>
       <view class='flextwo right-info'>
         <view>
-          <view class='room-type'>{{item.Name}}</view>
-          <view class='room-note ellipsis'>{{item.Area}}㎡ 床型{{item.BedTypeDescribe}} </view>
+          <view class='room-type'>{{item.Name}}{{item.ID}}</view>
+          <view class='room-note ellipsis'>{{item.Area}}㎡ 床型{{item.BedTypeDescribe?item.BedTypeDescribe:""}} </view>
         </view>
         <view class='right-price'>
           <view>¥
@@ -64,11 +66,11 @@
         </view>
       </view>
     </view>
-    <view class='room-detail' wx:if="{{index==itemIndex}}">
+    <view class='room-detail' wx:if="{{index==itemIndex}}"> 
       <view class='detail-box'>
         <view class='detail-title border-b1'>微信专享</view>
         <view class='flextwo'>
-          <view class='left-note'>
+          <view class='left-note'> 
             <view>14:00退房</view>
             <view>微信粉丝</view>
           </view>
@@ -80,83 +82,94 @@
               </view>
               <view>最低可享9.5折</view>
             </view>
-            <view class='book-box' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.Type}}'>
+            <view class='book-box' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">
               预定
               <view class='online'>在线付</view>
+            </view>
+            <view class='book-box' wx:else bindtap='noteFun'>
+            预定
+              <view class='online noroom'>满房</view>
             </view>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <!-- <view class='room-item flexone border-b1 marginl30'>
-    <view class='room-head flextwo'>
-      <view class='scale'>
-        <icon class='icon icon-scale'></icon>
-      </view>
-      <image class='room-img' src='{{imgUrls[0]}}' bindtap='openFun'></image>
-      <view class='flextwo right-info'>
-        <view>
-          <view class='room-type'>MODO.Max投影精英套房</view>
-          <view class='room-note'>55-65㎡ 床型1.8m </view>
-        </view>
-        <view class='right-price'>
-          <view>¥
-            <text class='font40'>399</text>起</view>
-          <view>会员9.5折起</view>
-        </view>
-      </view>
+</view>
+<view class='branch-more-box border-b1'>
+  <view class='map-title'>
+    周边及交通
+  </view>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14"  bindcontroltap="controltap" markers="{{marker}}" bindmarkertap="markertap"  bindregionchange="regionchange" show-location style="width: 100%; height: 386rpx;"></map>
+  <view class='map-more'>
+    <icon class='icon icon-map'></icon>
+    <view class='color666 font28 aside'>
+      <text class='color333'>| 周边商圈：</text>好玩的、好吃的、好喝的、各种
     </view>
-    <view class='room-detail'>
-      <view class='detail-box'>
-        <view class='detail-title border-b1'>微信专享</view>
-        <view class='flextwo'>
-          <view class='left-note'>
-            <view>14:00退房</view>
-            <view>微信粉丝</view>
-          </view>
-          <view class='righr-note flexone'>
-            <view class='money-show'>
-              <view>
-                ¥
-                <text class='font40'>399</text>
-              </view>
-              <view>最低可享9.5折</view>
-            </view>
-            <view class='book-box'>
-              预定
-              <view class='online'>在线付</view>
-            </view>
-          </view>
-        </view>
-      </view>
+  </view>
+</view>
+<view class='service-box border-b1'>
+  <view class='flextwo service-title'>
+    <view>服务/设施</view>
+    <navigator url='../service/service'>
+    <view class='font26 color999 getall-service relative'>查看全部</view>
+    </navigator>
+  </view>
+  <view class='service-lists'>
+    <view>
+      <icon class='icon icont wifi'></icon>
+      <view>Wi-Fi</view>
     </view>
-  </view> -->
+    <view>
+      <icon class='icon icont chui'></icon>
+      <view>吹风机</view>
+    </view>
+    <view>
+      <icon class='icon icont bing'></icon>
+      <view>电冰箱</view>
+    </view>
+    <view>
+      <icon class='icon icont xi'></icon>
+      <view>洗衣机</view>
+    </view>
+    <view>
+      <icon class='icon icont wei'></icon>
+      <view>微波炉</view>
+    </view>
+  </view>
+</view>
+<view class='rule-box'>
+  <view class='rule-tile'>
+    退订规则
+  </view>
+  <view class='rule-item'>摩兜的退订原则是（仅限前台、微信、官网预订的订单）:</view>
+  <view class='rule-item'>仅预订未支付的客户，在入住当天16:00之前若仍未支付房费/定金，则订单取消，不再保留房间。</view>
+  <view class='rule-item'>预订并支付全款房费/定金的客户，在入住当天18:00之前致电可免费取消。入住当天18:00之后不能取消订单。</view>
 </view>
 <view class='chose-room' animation="{{animation}}">
   <view class='chose-room-type'>
-    <text>Modo.Max投影精英套房</text>
+    <text>{{typeObj.Name}}</text>
     <text class='close' bindtap='closeFun'>X</text>
   </view>
-  <swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
-    <block wx:for="{{imgUrls}}" wx:for-index="index">
+  <swiper indicator-dots="{{true}}" autoplay="{{false}}" interval="{{interval}}" duration="{{true}}" indicator-active-color="rgba(255, 102, 89, 1)" class='chose-room-slider'>
+    <block wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index">
       <swiper-item bindtap="swiperPageSwith" data-index="{{index}}">
-        <image src="{{item}}" class="slide-image" />
+        <image src="{{modoImgHttp+item}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
   <view class='room-tip-box'>
     <view class='chose-room-tip'>
-      <text class='chose-room-title'>面积</text> 55-65㎡
+      <text class='chose-room-title'>面积</text> {{typeObj.Area}}㎡
     </view>
     <view class='chose-room-tip'>
-      <text class='chose-room-title'>楼层</text>27层
+      <text class='chose-room-title'>楼层</text> {{typeObj.FloorArea?typeObj.FloorArea:""}}层
+    </view>
+    <view class='chose-room-tip ellipsis'>
+      <text class='chose-room-title'>床型</text> {{typeObj.BedType?typeObj.BedType:""}}
     </view>
     <view class='chose-room-tip'>
-      <text class='chose-room-title'>床型</text>1.8m
-    </view>
-    <view class='chose-room-tip'>
-      <text class='chose-room-title'>屋檐</text>不可吸烟
+      <text class='chose-room-title'>屋檐</text>不可吸烟 
     </view>
     <view class='chose-room-tip'>
       <text class='chose-room-title'>加床</text>不可加床
@@ -168,5 +181,5 @@
       <text class='chose-room-title'>宽带</text>有WIFI且免费
     </view>
   </view>
-  <button class='get-price'>查看所有价格</button>
+  <button class='get-price' hover-class='btn-active' bindtap='toDailyPrice'>查看所有价格</button>
 </view>

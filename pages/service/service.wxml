@@ -1,6 +1,6 @@
 <view class='box'>
   <view class="icon-title">电器</view>
-  <view class='flexone lists border-b1'>
+  <view class='flexone lists'>
     <view class='list-item'>
       <icon class='icon lock'></icon>
       <view>智能门锁</view>
@@ -22,16 +22,16 @@
       <view>台灯</view>
     </view>
     <view class='list-item'>
-      <icon class='icon chui'></icon>
+      <icon class='icon kong'></icon>
       <view>空调</view>
     </view>
     <view class='list-item'>
-      <icon class='icon chui'></icon>
+      <icon class='icon gong'></icon>
       <view>共享空气净化</view>
     </view>
   </view>
   <view class="icon-title">设施</view>
-  <view class='flexone lists border-b1'>
+  <view class='flexone lists'>
     <view class='list-item'>
       <icon class='icon wifi'></icon>
       <view>WIFI</view>
@@ -46,7 +46,7 @@
     </view>
   </view>
   <view class="icon-title">卫生间</view>
-  <view class='flexone lists border-b1'>
+  <view class='flexone lists'>
     <view class='list-item'>
       <icon class='icon chui'></icon>
       <view>吹风机</view>
@@ -93,7 +93,7 @@
     </view>
   </view>
   <view class="icon-title">厨房</view>
-  <view class='flexone lists border-b1'>
+  <view class='flexone lists'>
     <view class='list-item'>
       <icon class='icon ci'></icon>
       <view>电磁炉</view>

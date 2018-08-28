@@ -1,24 +1,24 @@
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
+  <icon class='no-person'></icon>
 <view class='lists'>
-  <view class='lists-item'>
-    <view class='nochose'>未选择</view>
-    <!-- <view class='chose'>未选择</view> -->
-    <view class='number'>常用入住人1</view>
+  <view class='lists-item {{choseID==index?"active":""}}' wx:for="{{listsObj}}" wx:index="{{index}}" wx:key="index" bindtap='choseThisPerson' data-id='{{index}}'>
+    <view class='{{choseID!=index?"nochose":""}} {{choseID==index?"chose":""}}'>{{choseID==index?"已选择":"未选择"}}</view>
+    <view class='number'>常用入住人{{index+1}}</view>
     <view class='person-item'>
-      <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
+      <text decode="{{true}}">姓&emsp;&emsp;名：</text>{{item.Name}}</view>
     <view class='person-item'>
-      <text>身份证号：</text>370302188888888888</view>
+      <text>身份证号：</text>{{item.CardNumber}}</view>
   </view>
-  <view class='lists-item active'>
-    <!-- <view class='nochose'>未选择</view> -->
-    <view class='chose'>已选择</view>
-    <view class='number'>常用入住人1</view>
-    <view class='person-item'>
-      <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
-    <view class='person-item'>
-      <text>身份证号：</text>370302188888888888</view>
-  </view>
+<view id='nodata' wx:if="{{listsObj.length==0&&nodata}}">
+    <icon class='nodata'></icon>
+    <view>没有找到联系人</view>
+ </view>
   <view class='btn-box'>
-  <view>确定</view>
-  <view class='add'>添加联系人</view>
+    <view bindtap='conformPerson'>确定</view>
+    <view class='add'>
+      <navigator url='../CreateContact/CreateContact'>添加联系人</navigator>
+    </view>
   </view>
 </view>

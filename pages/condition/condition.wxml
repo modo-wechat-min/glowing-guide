@@ -7,26 +7,11 @@
     <view wx:if="{{days>0}}" class="total-day">共{{days}}晚</view>
   </view>
   <view class='tilte trading-area font34'>
-    商圈
+    商圈{{KeyWord}}
   </view>
   <view class='flexone lists'>
-    <view class='item active'>
-      望京
-    </view>
-    <view class='item'>
-      望京
-    </view>
-    <view class='item'>
-      望京
-    </view>
-    <view class='item'>
-      望京
-    </view>
-    <view class='item'>
-      望京
-    </view>
-    <view class='item'>
-      望京
+    <view class='item {{index==tradingIndex ?"active":""}}' wx:for="{{tradingArea}}" wx:key="{{index}}" bindtap='getTradingArea' data-index='{{index}}'>
+      {{item}}
     </view>
   </view>
   <view class='tilte font34 price-box'>
@@ -39,6 +24,6 @@
   </view>
 </view>
 <view class='btn-box flextwo'>
-  <view class='reset' bindtap='reset'>重置</view>
-  <view class='serch' bindtap='pageBack'>查询</view>
+  <view class='reset' bindtap='reset' hover-class='btn-active'>重置</view>
+  <view class='serch' bindtap='pageBack' hover-class='btn-active'>查询</view>
 </view>

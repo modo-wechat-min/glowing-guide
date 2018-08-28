@@ -1,31 +1,47 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
 <view class='total-score common-margin common-box'>
-  可以积分
-  <view class='score'>1000</view>
+  可用积分
+  <view class='score'>{{scoreObj.Score}}</view>
 </view>
 <view class='history common-margin'>
   积分记录
 </view>
 <view class='common-margin score-lists common-box'>
-  <view class='history-title border-b1'>
-    本月
-  </view>
-  <view class='history-item flextwo border-b1'>
-    <view class='history-item-left'> 会员开通赠送积分
-      <view class='time'>2018-08-23</view>
+  <view>
+    <view class='history-title border-b1'>
+      本月积分
     </view>
-    <view class='history-item-left colorff6644'>
-      +500
+    <view class='history-item flextwo border-b1' wx:for="{{scoreObj.ThisMonthList}}" wx:key="index">
+      <view class='history-item-left'>
+        <view class='time'>{{filters.formalTime2(item.Date)}}</view>
+      </view>
+      <view class='history-item-left colorff6644'>
+        {{item.Status==0?"+"+item.Score:"-"+item.Score}}
+      </view>
+    </view>
+    <view class='history-item flextwo border-b1' wx:if="{{scoreObj.ThisMonthList.length==0}}">
+      本月暂无积分记录
+    </view>
+    <view class='history-title border-b1' wx:if="{{moreScore}}">
+      历史积分
+    </view>
+    <view class='history-item flextwo border-b1' wx:if="{{moreScore}}" wx:for="{{scoreObj.HistoryList}}" wx:key="index">
+      <view class='history-item-left'>
+        <view class='time'>{{filters.formalTime2(item.Date)}}</view>
+      </view>
+      <view class='history-item-left colorff6644'>
+        {{item.Status==0?"+"+item.Score:"-"+item.Score}}
+      </view>
+    </view>
+    <view class='history-item flextwo border-b1' wx:if="{{moreScore&&scoreObj.HistoryList.length==0}}">
+      历史暂无积分记录
     </view>
   </view>
-  <view class='history-title border-b1'>
-    本月
+  <view class='get-more ' bindtap='moreFun'>
+    {{moreScore?"收起历史积分":"查看历史积分"}}
+    <icon class='icon icon-dowm {{moreScore?"icon-up":""}}'></icon>
   </view>
-  <view class='history-item flextwo border-b1'>
-    <view class='history-item-left'> 会员开通赠送积分
-      <view class='time'>2018-08-23</view>
-    </view>
-    <view class='history-item-left colorff6644'>
-      -500
-    </view>
-  </view>
-</view>
+</view> 

@@ -26,11 +26,11 @@
   margin: 0rpx 0 10rpx;
   font-size: 40rpx;
   color: #333;
-  padding-top: 40rpx;
+  padding-top: 34rpx;
 }
 
 .type {
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #333;
   margin-bottom: 10rpx;
 }

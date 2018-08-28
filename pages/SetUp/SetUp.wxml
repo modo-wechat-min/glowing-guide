@@ -1,12 +1,15 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class='box'>
   <view class='flextwo item'>
     <view>
       <icon class='icon headimg'></icon>
       <text decode='{{true}}'>头&emsp;&emsp;像</text>
     </view>
-    <view class='img-icon'>
-      
-    </view>
+    <image class='img-icon' src='{{userInfo.avatarUrl}}'>
+    </image>
   </view>
   <view class='flextwo item'>
     <view>
@@ -14,7 +17,7 @@
       <text decode='{{true}}'>昵&emsp;&emsp;称</text>
     </view>
     <view>
-      小米
+      {{userInfo.nickName}}
     </view>
   </view>
   <view class='flextwo item active'>
@@ -36,7 +39,7 @@
       <text>手机号码</text>
     </view>
     <view>
-      45615315646
+      {{personObj.Mobile?personObj.Mobile:""}}
     </view>
   </view>
   <view class='flextwo item active'>
@@ -45,12 +48,12 @@
       <text decode='{{true}}'>生&emsp;&emsp;日</text>
     </view>
     <view>
-      <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
     <view class="picker">
-       {{date}}
+       {{filters.formalTime2(date)}}
     </view>
   </picker>
     </view>
   </view>
-<view class='login-out item'>退出登录</view>
+<view class='login-out item' bindtap='loginOut'>退出登录</view>
 </view>

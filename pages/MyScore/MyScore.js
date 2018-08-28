@@ -1,66 +1,37 @@
-// pages/MyScore/MyScore.js
+let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    scoreObj: "",
+    UserID: 0,
+    hidden: false,
+    moreScore: false,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad: function(options) {
+    let UserID = util.getStorage("userID", true);
+    this.setData({
+      UserID: UserID
+    })
+    this.getScore();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  getScore() {
+    let _this = this;
+    console.log(_this.data.UserID + "123")
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetMyScoreRecord?UserID=" + _this.data.UserID,
+      method: 'get',
+      success: function(res) {
+        console.log(res)
+        _this.setData({
+          scoreObj: res.data,
+          hidden: true,
+        })
+      },
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  moreFun() {
+    this.setData({
+      moreScore: !this.data.moreScore,
+    })
   }
 })

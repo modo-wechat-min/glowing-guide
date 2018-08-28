@@ -29,7 +29,7 @@
     <view>
     </view>
   </view>
-  <button class='ser-btn' bindtap='goBranchLists'>预定公寓</button>
+  <view class='ser-btn' bindtap='goBranchLists' hover-class='btn-active'>预定公寓</view>
 </view>
 <image src='{{homeImageUrl2}}' class='second-img'>
 </image>

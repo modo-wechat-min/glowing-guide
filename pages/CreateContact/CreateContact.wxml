@@ -1,12 +1,12 @@
 <view wx:if="{{flag}}">
-  <image src='{{bgImageUrl}}'>
+  <image src='{{tempFilePaths?tempFilePaths:bgImageUrl}}' bindtap='chooseimage'>
   </image>
   <view class='tip'>点击上方图片上传身份证照片</view>
-  <button class='confirm'>
-    确认
+  <button class='confirm' bindtap='chooseimage'>
+    证件扫描
   </button>
   <view class='note'>
-    请确保上传的身份信息与实际入住人一直，因两者不符而
+    请确保上传的身份信息与实际入住人一致，因两者不符而
   </view>
   <view class='note'>
     造成的一切法律责任由本人承担。
@@ -23,6 +23,6 @@
     确认
   </button>
   <view class='note'>
-    如果识别出现问题请重新返回进行扫面确认
+    如果识别出现问题请重新返回进行扫描确认
   </view>
 </view>

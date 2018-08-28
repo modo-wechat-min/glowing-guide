@@ -74,7 +74,7 @@ background-size: cover;
   position: relative;
   color: #fff;
   font-size: 22rpx;
-  padding: 46rpx 0 0 230rpx;
+  padding: 46rpx 0 0 210rpx;
   box-sizing: border-box;
 }
 .img-box-img{

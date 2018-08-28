@@ -1,0 +1,14 @@
+image {
+  width: 500rpx;
+  height: 473rpx;
+  margin: 100rpx 0 60rpx;
+}
+.btn{
+  width: 666rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background: #ff6644;
+  margin-top: 30rpx;
+}

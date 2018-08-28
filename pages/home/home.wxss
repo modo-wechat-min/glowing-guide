@@ -15,6 +15,7 @@
   font-size: 28rpx;
   border: 1rpx solid #999;
   border-radius: 8rpx;
+  overflow: hidden;
 }
 .font24{
   color: #999;
@@ -42,6 +43,7 @@
   font-size: 32rpx;
   height: 100rpx;
   line-height: 100rpx;
+  text-align: center;
 }
 .total{
   font-size: 22rpx;

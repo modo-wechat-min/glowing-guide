@@ -1,0 +1,32 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
+<view class='box'>
+  <view class='header'>
+    <view class='branch-name'>
+      {{contractObj.BranchName}}
+    </view>
+    <view class='type'>
+      {{contractObj.RoomType}}
+    </view>
+    <view class='contract-id color999'>
+      合同号：{{contractObj.Code}}
+    </view>
+  </view>
+  <view class='payment-item' wx:for="{{contractObj.BudgetList}}" wx:key="index">
+    <view class='flextwo item-title'>
+      <view class='item-index'>
+        <text wx:if="{{item.ExpenseType==1}}">第{{index+1}}期-</text>{{item.PayName}}</view>
+      <view wx:if="{{item.IsPay==0}}" class='colorff6644'>
+        <icon class='wait-icon icon'></icon>待支付</view>
+      <view wx:else class='payed'>
+        <icon class='payed-icon icon'></icon>已支付</view>
+    </view>
+    <view class=' item-content'>
+      <view>租约周期：{{filters.leaseTime(item.Lease)}}</view>
+      <view class='item-time'>付款日期：{{filters.formalTime(item.PayDate)}} </view>
+      <view>房租费用：¥3000 <navigator class='payment-btn'>立即支付</navigator></view>
+    </view>
+  </view>
+</view>

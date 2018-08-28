@@ -1,4 +1,7 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class="main-box">
   <view class='nav'>
     <view class='city'>
@@ -9,18 +12,17 @@
       </picker>
       <icon class='icon icon-down'></icon>
     </view>
-    <view class='serch-box' bindtap='toOption'>商圈/日期/价格
-      <icon class='icon icon-ser'></icon>
+    <view class='serch-box' bindtap='toOption'>{{KeyWord?KeyWord:"商圈/日期/价格"}}
+      <icon class='icon icon-ser'></icon> 
     </view>
   </view>
   <view class='condition-box'>
-    <view class='condition-item active'>{{filters.numberTime(startTime)}}-{{filters.numberTime(endTime)}}</view>
-    <view class='condition-item' wx:if="{{!minPrice}}">查询价格</view>
-    <view class='condition-item active' wx:if="{{minPrice}}">{{minPrice}}-{{maxPrice}}</view>
-    <view class='default'>默认排序
+    <view class='condition-item active' hover-class='btn-active' bindtap='toOption'>{{filters.numberTime(startTime)}}-{{filters.numberTime(endTime)}}</view>
+    <view class='condition-item active' hover-class='btn-active' bindtap='toOption' wx:if="{{minPrice>0&&maxPrice>0}}">{{minPrice}}-{{maxPrice}}</view>
+    <view class='condition-item' bindtap='toOption' wx:else hover-class='btn-active'>查询价格</view>
+    <view class='default' bindtap='defaultFun'>默认排序
       <icon class='icon icon-down'></icon>
     </view>
-
   </view>
   <view class='branch-item' wx:for="{{branchLists}}" wx:key="index" wx:for-item="item" bindtap='goBranchDetails' data-id='{{item.ID}}'>
       <image class='branch-img' src='{{imgPorts+item.Cover}}'></image>
@@ -32,7 +34,7 @@
       </view>
       <view class='flextwo'>
         <view class='branch-name'>{{item.BranchName}}</view>
-        <view class='score'>
+        <view class='score' wx:if="{{item.ScoreAvg>4}}">
           <icon class='icon icon-start'></icon>
           <icon class='icon icon-start'></icon>
           <icon class='icon icon-start'></icon>

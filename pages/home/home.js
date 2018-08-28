@@ -8,7 +8,7 @@ Page({
     endTime: "",
     days: 1,
     index: 0,
-    array: ['北京', '南京'],
+    array: ['不限','北京', '南京'],
   },
   onLoad: function() {
     this.setData({

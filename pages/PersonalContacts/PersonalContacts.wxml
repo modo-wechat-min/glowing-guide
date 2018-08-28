@@ -1,19 +1,20 @@
+<loading hidden="{{hidden}}">
+  加载中...
+ </loading>
 <view class='lists'>
-  <view class='lists-item'>
-    <view class='delete'>删 除</view>
-    <view class='number'>常用入住人1</view>
+  <view class='lists-item' wx:for="{{listsObj}}" wx:key="{{index}}">
+    <view class='delete' bindtap='deletePerson' data-id='{{item.ID}}'>删 除</view>
+    <view class='number'>常用入住人{{index+1}}</view>
     <view class='person-item'>
-      <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
+      <text decode="{{true}}">姓&emsp;&emsp;名：</text>{{item.Name}}</view>
     <view class='person-item'>
-      <text>身份证号：</text>370302188888888888</view>
+      <text>身份证号：</text>{{item.CardNumber}}</view>
   </view>
-  <view class='lists-item active'>
-    <view class='delete'>删 除</view>
-    <view class='number'>常用入住人1</view>
-    <view class='person-item'>
-      <text decode="{{true}}">姓&emsp;&emsp;名：</text>张明明</view>
-    <view class='person-item'>
-      <text>身份证号：</text>370302188888888888</view>
-  </view>
-  <button class='add-personal'>新增入住人</button>
+ <view id='nodata' wx:if="{{listsObj.length==0&&nodata}}">
+    <icon class='nodata'></icon>
+    <view>没有找到联系人</view>
+ </view>
+  <navigator class='add-personal' url='../CreateContact/CreateContact'>
+    新增入住人
+  </navigator>
 </view>

@@ -1,47 +1,35 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
 <view class='box'>
   <view class='order'>
     <view class='bordern1'>
-      <image class='room-img'></image>
+      <image class='room-img' src='{{imgPorts+orderObj.RoomTypeUrl}}'></image>
       <view class='room-info'>
-        <view class='branch'>望京方恒店</view>
-        <view class='type'>Modo.Max投影精英套房</view>
-        <view class='time'>2018年06月13日-2018年06月14日</view>
+        <view class='branch'>{{orderObj.BranchName}}</view>
+        <view class='type'>{{orderObj.RoomTypeName}}</view>
+        <view class='time'>{{orderObj.DateLease}}</view>
       </view>
     </view>
     <view class=''>
-      <view class='discribe'>总体描述</view>
+      <view class='discribe'>{{orderObj.thisReviewName}}</view>
       <view class='star-box'>
-        <view class='star' wx:for="{{array}}"></view>
+        <view class='star {{thisReviewNameScore>=index+1?"active":""}}' wx:for="{{array}}" wx:key="index" bindtap="bindReviewNameScore" data-index="{{index}}"></view>
       </view>
     </view>
-
   </view>
   <view class='sub-score'>
     <view class='sub-score-title'>给房间评分</view>
-    <view class='score-item'>
-      <view class='sub-score-subtitle'>卫生状况</view>
+    <view class='score-item' wx:for="{{reviewItemListArray}}" wx:key="index" wx:for-index="groupindex">
+      <view class='sub-score-subtitle'>{{item.ReviewShortName}}</view>
       <view class='star-box1'>
-        <view class='star' wx:for="{{array}}"></view>
-      </view>
-    </view>
-    <view class='score-item'>
-      <view class='sub-score-subtitle'>设施质量</view>
-      <view class='star-box1'>
-        <view class='star' wx:for="{{array}}"></view>
-      </view>
-    </view>
-    <view class='score-item'>
-      <view class='sub-score-subtitle'>服务态度</view>
-      <view class='star-box1'>
-        <view class='star active' wx:for="{{array}}"></view>
+        <view bindtap='evaluateFun' data-cellindex='{{cellindex}}' data-groupindex='{{groupindex}}' class='star {{item.ReviewItemValue>=cellindex+1?"active":""}}' wx:for="{{array}}" wx:key="index" wx:for-item="cell" wx:for-index="cellindex"></view>
       </view>
     </view>
   </view>
   <view class='note'>
-    <textarea placeholder='亲，写点什么吧，您的意见可以帮助我们更加完善！'></textarea>
+    <textarea placeholder='亲，写点什么吧，您的意见可以帮助我们更加完善！' value='{{note}}' bindinput="bindNote"></textarea>
   </view>
-  <view class='img-lists'>
-    <image wx:for="{{tempFilePaths}}" class='img-item' wx:for-item="item" src='{{item}}'></image>
-  </view>
-  <button class='btn'>发布评论</button>
+  <button class='btn' hover-class='btn-active' bindtap='publicFun'>发布评论</button>
 </view>

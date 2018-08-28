@@ -1,4 +1,8 @@
 let util = require('../../utils/util.js');
+let YearParamArray = [];
+let MonthParamAraay = [];
+let LastDayParamArray = [];
+let FirstDayParamArray = [];
 Page({
   data: {
     sysW: null,
@@ -18,8 +22,8 @@ Page({
     indexEnd: "",
     startTime: "",
     endTime: "",
+    isFresh:false,
   },
-
   //获取日历相关参数
   dataTime: function (index) {
     var date = new Date();
@@ -27,10 +31,6 @@ Page({
     var year = date.getFullYear();
     var month = date.getMonth();
     var months = date.getMonth() + 1;
-    var YearParam = "YearNumber[" + index + "]";
-    var MonthParam = "MonthNumber[" + index + "]";
-    var LastDayParam = "LastDay[" + index + "]";
-    var FirstDayParam = "FirstDay[" + index + "]";
     //最后一天是几号
     var d = new Date(year, months, 0);
     var lastDay = d.getDate();
@@ -39,24 +39,17 @@ Page({
     if (index==0){
       this.setData({
         firstArrayDay: firstDay1,
-      });
-      
+      }); 
     }
     var firstMonthDay = firstDay1.getDay();
-    this.setData({
-      [YearParam]: year,
-      [MonthParam]: months,
-      [LastDayParam]: lastDay,
-      [FirstDayParam]: firstMonthDay,
-    });
+    YearParamArray[index] = year;
+    MonthParamAraay[index] = months;
+    LastDayParamArray[index] = lastDay;
+    FirstDayParamArray[index] = firstMonthDay;
   },
   onLoad: function (options) {
     var time = new Date();
     var dateTime = time.getDate();
-    // this.setData({
-    //   getDate: dateTime,
-    // });
-
     for (var k = 0; k < 6; k++) {
       this.dataTime(k);
     }
@@ -64,7 +57,7 @@ Page({
     var arrayReal=[];
     for (var k = 0; k < 6; k++) {
       var array = [];
-      for (var i = 1; i < this.data.LastDay[k] + 1; i++) {
+      for (var i = 1; i < LastDayParamArray[k] + 1; i++) {
         var date = {};
         date.day = i;
         date.index = count;
@@ -72,18 +65,13 @@ Page({
         count++;
       }
       arrayReal[k] = array;
-      // var MonthArrParam = "MonthArr[" + k + "]";
-      // this.setData({
-      //   [MonthArrParam]: array,
-      // })
     }
     //获取父级页面传参
+    let isFresh = options.isFresh;
     let fatherStartTime = options.startTime;
     let fatherEndTime = options.endTime;
-    
     let fatherStartTimeStr = new Date(util.getDayString(fatherStartTime));
     let fatherEndTimeStr = new Date(util.getDayString(fatherEndTime));
-    console.log(fatherStartTimeStr, fatherEndTimeStr)
     let fatherMonth1 = fatherStartTimeStr.getMonth() + 1;
     let fatherMonth2 = fatherEndTimeStr.getMonth() + 1;
     let fatherday1 = fatherStartTimeStr.getDate();
@@ -92,6 +80,11 @@ Page({
     let fatherEndIndex = (fatherEndTimeStr - this.data.firstArrayDay) / 1000 / 60 / 60 / 24;
     var res = wx.getSystemInfoSync();
     this.setData({
+      isFresh: isFresh,
+      YearNumber: YearParamArray,
+      MonthNumber: MonthParamAraay,
+      LastDay: LastDayParamArray,
+      FirstDay: FirstDayParamArray,
       choseMonth1: fatherMonth1,
       choseMonth2: fatherMonth2,
       getStart: fatherday1,
@@ -101,7 +94,6 @@ Page({
       sysW: res.windowHeight / 14,
       MonthArr: arrayReal,
       getDate: dateTime,
-
     });
   },
   getDateFun(e) {
@@ -114,7 +106,6 @@ Page({
     if (month == this.data.MonthNumber[0] && date < this.data.getDate) {
       return false;
     }
-
     if (this.data.flag == 2) {
       this.setData({
         getStart: date,
@@ -159,8 +150,8 @@ Page({
       'startTime': this.data.startTime,
       "endTime": this.data.endTime,
       "days": days,
+      'isFresh': this.data.isFresh,
     });
     wx.navigateBack({ changed: true });
   },
-  
 })

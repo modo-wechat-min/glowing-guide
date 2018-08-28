@@ -105,6 +105,7 @@
 
 .trangle {
   position: relative;
+  padding-right: 20rpx;
 }
 
 .trangle::after {
@@ -115,8 +116,16 @@
   border-right: 1rpx solid #999;
   content: "";
   transform: rotate(45deg);
+  right: 0;
+  top: 24rpx;
+  position: absolute;
 }
-
+.trangle-time::after{
+  top: 22rpx;
+}
+.trangle-day::after{
+  top: 16rpx;
+}
 .btn-box {
   height: 116rpx;
   line-height: 116rpx;
@@ -154,4 +163,11 @@ button {
 .delete{
   float: right;
   color: #333;
+}
+.disable-class{
+  background: #9e9e9e;
+}
+.note-title{
+  height: 46rpx;
+  line-height: 46rpx;
 }

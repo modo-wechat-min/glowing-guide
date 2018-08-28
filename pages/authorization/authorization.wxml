@@ -1,0 +1,5 @@
+<view class="container">
+    <image src='{{rightImageUrl}}'></image>
+    <text class='font26 color333'>请完成微信授权以继续使用</text>
+    <button class='btn' hover-class='btn-active' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权微信用户信息 </button>
+</view>

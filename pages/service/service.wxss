@@ -1,127 +1,170 @@
-.box{
+.box {
   padding: 0 10rpx;
 }
-.icon-title{
+
+.icon-title {
   font-size: 36rpx;
-height: 136rpx;
-line-height: 136rpx;
-text-indent: 20rpx;
+  height: 136rpx;
+  line-height: 136rpx;
+  text-indent: 20rpx;
 }
-.flexone{
+
+.flexone {
   flex-wrap: wrap;
 }
-.lists{
+
+.lists {
   position: relative;
 }
-.lists::after{
+
+.lists::after {
   position: absolute;
-content: "";
-display: inline-block;
-height: 1rpx;
-background: #ddd;
-width: 690rpx;
-left: 20rpx;
-bottom: -60rpx;
+  content: "";
+  display: inline-block;
+  height: 1rpx;
+  background: #ddd;
+  width: 690rpx;
+  left: 20rpx;
+  bottom: -10rpx;
 }
-.list-item{
+.lists:last-of-type:after{
+  display: none;
+}
+.list-item {
   width: 20%;
   text-align: center;
   font-size: 24rpx;
   margin-bottom: 30rpx;
 }
-.icon{
-  background: url("http://192.168.1.183:8085/icon.png");
+
+.icon {
+  background: url("http://pe3iijnkh.bkt.clouddn.com/icon.png");
   width: 74rpx;
   height: 74rpx;
   background-size: 544rpx 487rpx;
 }
-.lock{
+
+.lock {
   background-position: -2rpx -13rpx;
 }
-.chui{
-  background-position: -159rpx -388rpx;
+
+.chui {
+  background-position: -159rpx -386rpx;
 }
-.bing{
-  background-position: -80rpx -238rpx;
+
+.bing {
+  background-position: -80rpx -236rpx;
 }
-.xi{
+
+.xi {
   background-position: -156rpx -164rpx;
 }
-.tai{
+
+.tai {
   background-position: -156rpx -88rpx;
 }
-.wifi{
-  background-position: -388rpx -388rpx;
+.kong{
+  background-position: -2rpx -236rpx;
 }
-.ti{
-  background-position: -310rpx -238rpx;
+.gong{
+  background-position: -2rpx -311rpx;
 }
-.nuan{
-  background-position: -388rpx -238rpx;
+.wifi {
+  background-position: -388rpx -386rpx;
 }
-.xifa{
+
+.ti {
+  background-position: -310rpx -236rpx;
+}
+
+.nuan {
+  background-position: -388rpx -236rpx;
+}
+
+.xifa {
   background-position: -310rpx -160rpx;
 }
-.mu{
+
+.mu {
   background-position: -233rpx -160rpx;
 }
-.yujin{
+
+.yujin {
   background-position: -156rpx -12rpx;
 }
-.yumao{
+
+.yumao {
   background-position: -80rpx -12rpx;
 }
-.maojin{
+
+.maojin {
   background-position: -80rpx -160rpx;
 }
-.xiang{
+
+.xiang {
   background-position: -80rpx -86rpx;
 }
-.duli{
+
+.duli {
   background-position: -234rpx -236rpx;
 }
-.yugang{
+
+.yugang {
   background-position: -234rpx -12rpx;
 }
-.page{
+
+.page {
   background-position: -234rpx -86rpx;
 }
-.shose{
+
+.shose {
   background-position: -310rpx -86rpx;
 }
-.ci{
-  background-position: -80rpx -388rpx; 
+
+.ci {
+  background-position: -80rpx -386rpx;
 }
-.wei{
-  background-position: -2rpx -86rpx;  
+
+.wei {
+  background-position: -2rpx -86rpx;
 }
-.you{
-  background-position: -2rpx -162rpx;  
+
+.you {
+  background-position: -3rpx -160rpx;
 }
-.chu{
-  background-position: -386rpx -313rpx;  
+
+.chu {
+  background-position: -388rpx -311rpx;
 }
-.dai{
+
+.dai {
   background-position: -80rpx -310rpx;
 }
-.chuang{
+
+.chuang {
   background-position: -310rpx -310rpx;
 }
-.xing{
-background-position: -156rpx -236rpx;
+
+.xing {
+  background-position: -156rpx -236rpx;
 }
-.cha{
-background-position: -312rpx -386rpx;
+
+.cha {
+  background-position: -312rpx -386rpx;
 }
-.pao{
+
+.pao {
   background-position: -388rpx -86rpx;
 }
-.xiao{
+
+.xiao {
   background-position: -312rpx -12rpx;
 }
-.weixiu{
+
+.weixiu {
   background-position: -388rpx -12rpx;
 }
-.allhour{
-  background-position: -2rpx -386rpx;
+
+.allhour {
+  background-position: -4rpx -386rpx;
 }

@@ -57,6 +57,3 @@
   margin-top: 40rpx;
   line-height: 34rpx;
 }
-.btn-active{
-background: #bd362f;
-}
