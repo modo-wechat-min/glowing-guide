@@ -14,10 +14,10 @@
         </picker>
       </view>
     </view>
-    <view class='position-box'>
+    <picker class='position-box' bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <icon class='icon position'></icon>
       <view class='color999'>我的位置</view>
-    </view>
+    </picker>
   </view>
   <view class='flextwo' bindtap='toGetDate'>
     <view >

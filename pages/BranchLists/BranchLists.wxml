@@ -1,8 +1,8 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <loading hidden="{{hidden}}">
   加载中...
- </loading>
-<view class="main-box">
+</loading>
+<view class="main-box" bindtap='closeFun'>
   <view class='nav'>
     <view class='city'>
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -12,44 +12,56 @@
       </picker>
       <icon class='icon icon-down'></icon>
     </view>
-    <view class='serch-box' bindtap='toOption'>{{KeyWord?KeyWord:"商圈/日期/价格"}}
-      <icon class='icon icon-ser'></icon> 
+    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==0}}">商圈/日期/价格 
+      <icon class='icon icon-ser'></icon>
+    </view>
+    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==1}}">{{tradeArray[0].TradName}}
+      <icon class='icon icon-ser'></icon>
+    </view>
+    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==2}}">{{tradeArray[0].TradName+" "+tradeArray[1].TradName}}
+      <icon class='icon icon-ser'></icon>
+    </view>
+    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length>2}}">{{tradeArray[0].TradName+" "+tradeArray[1].TradName+"..."}}
+      <icon class='icon icon-ser'></icon>
     </view>
   </view>
   <view class='condition-box'>
     <view class='condition-item active' hover-class='btn-active' bindtap='toOption'>{{filters.numberTime(startTime)}}-{{filters.numberTime(endTime)}}</view>
-    <view class='condition-item active' hover-class='btn-active' bindtap='toOption' wx:if="{{minPrice>0&&maxPrice>0}}">{{minPrice}}-{{maxPrice}}</view>
+    <view class='condition-item active' hover-class='btn-active' bindtap='toOption' wx:if="{{minPrice>=0&&maxPrice>0}}">{{minPrice}}-{{maxPrice}}</view>
     <view class='condition-item' bindtap='toOption' wx:else hover-class='btn-active'>查询价格</view>
-    <view class='default' bindtap='defaultFun'>默认排序
-      <icon class='icon icon-down'></icon>
+    <view class='default'>
+      <view catchtap='openOrderFun'>{{order[orderIndex].name}}
+        <icon class='icon icon-down'></icon>
+      </view>
+      <view class='order' wx:if="{{openOrder}}">
+        <view class='{{orderIndex==index?"colorff6644":""}}' wx:for="{{order}}" wx:key="{{index}}" catchtap='getThisOrder' data-index='{{index}}'>{{item.name}}</view>
+      </view>
     </view>
   </view>
   <view class='branch-item' wx:for="{{branchLists}}" wx:key="index" wx:for-item="item" bindtap='goBranchDetails' data-id='{{item.ID}}'>
-      <image class='branch-img' src='{{imgPorts+item.Cover}}'></image>
-      <view class='flextwo position'>
-        <view>
-          <text class='price'>¥{{item.Adjustmentprice}}</text> 起</view>
-        <view>
-          <icon class='icon icon-position'></icon> 距您{{filters.decimalTwo(disArray[index].distance?disArray[index].distance:0)}}km</view>
+    <image class='branch-img' src='{{imgPorts+item.Cover}}'></image>
+    <view class='flextwo position'>
+      <view>
+        <text class='price'>¥{{item.Adjustmentprice}}</text> 起</view>
+      <view>
+        <icon class='icon icon-position'></icon> 距您{{filters.decimalTwo(item.distance?item.distance:0)}}km</view>
+    </view>
+    <view class='flextwo'>
+      <view class='branch-name'>{{item.BranchName}}</view>
+      <view class='score' wx:if="{{item.ScoreAvg>4}}">
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        <icon class='icon icon-start'></icon>
+        {{item.ScoreAvg}}分
       </view>
-      <view class='flextwo'>
-        <view class='branch-name'>{{item.BranchName}}</view>
-        <view class='score' wx:if="{{item.ScoreAvg>4}}">
-          <icon class='icon icon-start'></icon>
-          <icon class='icon icon-start'></icon>
-          <icon class='icon icon-start'></icon>
-          <icon class='icon icon-start'></icon>
-          <icon class='icon icon-start'></icon>
-          {{item.ScoreAvg}}分
-        </view>
-      </view>
-      <view class='address ellipsis'>
-        {{item.Address}}
-      </view>
-      <view class='flexone'>
-        <view class='note'>免押金</view>
-        <view class='note'>闪定</view>
-        <view class='note'>新上房源</view>
-      </view>
+    </view>
+    <view class='address ellipsis'>
+      {{item.Address}}
+    </view>
+    <view class='flexone'>
+      <view class='note' wx:for="{{item.markingList}}" wx:key="index">{{item.MarkingName}}</view>
+    </view>
   </view>
 </view>

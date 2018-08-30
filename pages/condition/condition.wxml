@@ -1,4 +1,7 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
 <view class="main-box2">
   <view class='font34'>选择日期</view>
   <view class='flexone timebox' bindtap='toGetDate'>
@@ -7,11 +10,11 @@
     <view wx:if="{{days>0}}" class="total-day">共{{days}}晚</view>
   </view>
   <view class='tilte trading-area font34'>
-    商圈{{KeyWord}}
+    商圈
   </view>
   <view class='flexone lists'>
-    <view class='item {{index==tradingIndex ?"active":""}}' wx:for="{{tradingArea}}" wx:key="{{index}}" bindtap='getTradingArea' data-index='{{index}}'>
-      {{item}}
+    <view class='item {{ item.isChosen?"active":""}}' wx:for="{{tradeArray}}" wx:key="{{index}}" bindtap='getTradingArea' data-index='{{index}}'>
+      {{item.TradName}}
     </view>
   </view>
   <view class='tilte font34 price-box'>

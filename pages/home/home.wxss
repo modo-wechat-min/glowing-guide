@@ -52,7 +52,7 @@
 }
 .flextwo{
   position: relative;
-  padding: 30rpx 50rpx 30rpx 30rpx;
+  padding: 30rpx;
 }
 .flextwo::after{
   content: "";
@@ -64,6 +64,9 @@
   position: absolute;
   right: 30rpx;
   top: 60rpx;
+}
+.border::after{
+  display: none;
 }
 .second-img{
   height: 463rpx;

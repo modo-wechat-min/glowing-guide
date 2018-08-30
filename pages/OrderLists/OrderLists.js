@@ -8,7 +8,7 @@ Page({
     height: 0,
     orderLists: [],
     height: 200,
-    hidden: false,
+    hidden: true,
     RentType: 0, //0-短租 1-长租
     nodata:false,
   },
@@ -20,12 +20,8 @@ Page({
     this.getLists();
   },
   onLoad: function(options) {
-    console.log(111)
-    if (!util.checkIsLogin()) { 
-      return false;
-    }
     this.setData({
-      height: wx.getSystemInfoSync().windowHeight,  
+      height: wx.getSystemInfoSync().windowHeight,   
     });
   },
   getRentType(e) {
@@ -34,7 +30,7 @@ Page({
       RentType: e.currentTarget.dataset.type,
       PageIndex:1,
     });
-    this.getLists(); 
+    
   },
   deleteOrder(e) {
     let _this=this;
@@ -56,7 +52,7 @@ Page({
                 })
                 _this.getLists();
               } else {
-                throwMsg(res.data.ErrorMessage);
+                util.throwMsg(res.data.ErrorMessage);  
               }
             },
           })
@@ -89,11 +85,16 @@ Page({
           hidden: true,
           nodata: true,
         })
+        if (isMore) {//无数据提醒
+          if (res.data.length == 0) {
+            util.throwMsg("没有更多数据了，亲！");
+          }
+        }
       },
     })
   },
-  lower: function(e) {
-    //延迟300毫秒防止多次触发，防抖动 
+  onReachBottom(){
+  //延迟300毫秒防止多次触发，防抖动 
     let time = 300;
     let _this = this;
     clearTimeout(timer);
@@ -104,12 +105,11 @@ Page({
       })
       _this.getLists(true);
     }, time)
-    console.log(e)
-  }, 
+  },
   onShow(){
-    if (!util.checkRight()) {
-      return;
-    }
+    util.checkRight(this.init);
+  },
+  init(){
     if (!util.checkIsLogin()) {
       return;
     }

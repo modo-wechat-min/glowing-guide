@@ -15,11 +15,12 @@
     </view>
   </view>
   <view wx:if="{{orderLists.length>0}}" class='main-box {{RentType==1?"long-box":""}}'>
-    <scroll-view scroll-y='true' scroll-x='false' style="height:{{height}}px" bindscrolltolower='lower'>
+    <!-- <scroll-view scroll-y='true' scroll-x='false' style="height:{{height}}px" bindscrolltolower='lower'> -->
       <view class='order-item' wx:for="{{orderLists}}" wx:key="index" wx-item="item">
         <view class='icon-long' wx:if="{{RentType==1}}">长</view>
-        <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结转，5订单关闭，6客户取消 -->
-        <view class='{{item.Status==5||item.Status==6?"icon-cancel":""}} {{item.Status==1?"icon-wait":""}} {{item.Status==0||item.Status==3?"icon-success":""}}'>{{item.StatusToString}}</view>
+        <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结帐，5订单关闭，6客户取消 -->
+        <!-- item.Status==5||item.Status==6?"icon-cancel":""}} {{item.Status==1?"icon-wait":""}} {{item.Status==0||item.Status==3?"icon-success":"" -->
+        <view class='{{item.Status==4||item.Status==6?"icon-cancel":""}} {{item.Status==0?"icon-wait":""}} {{item.Status==1?"icon-waitpay":""}} {{item.Status==2?"icon-success":""}}  {{item.Status==3?"icon-ing":""}} {{item.Status==5?"icon-close":""}}'>{{item.StatusToString}}</view>
         <view class='order-number'>
           订单号：{{item.Number}}
         </view>
@@ -44,7 +45,7 @@
           </view>
         </view>
       </view>
-    </scroll-view>
+    <!-- </scroll-view> -->
   </view>
   <view wx:if="{{orderLists.length==0&&nodata}}" id='noorder'>
     <icon class='nodata'></icon>

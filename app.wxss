@@ -53,6 +53,25 @@
 .color999{
   color: #999;
 }
+ /* 0等待确认，1预定未付，2预定已付，3消费中，4已结帐，5订单关闭，6客户取消  */
+ .icon-cancel{
+   color: #333;
+ }
+.icon-success{
+  color: #07c904;
+}
+.icon-wait{
+  color: #ff6644;
+}
+.icon-waitpay{
+  color: #fc8702;
+}
+.icon-ing{
+  color: #2dbaf1;
+}
+.icon-close{
+  color:#047fff;
+}
 /*警示状态栏*/
 .status-bar{
     position: fixed;

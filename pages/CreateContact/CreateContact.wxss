@@ -48,3 +48,8 @@ image {
 .name{
   margin-top: 142rpx;
 }
+.repeat{
+  display: inline-block;
+  text-decoration: underline;
+  color: blue;
+}

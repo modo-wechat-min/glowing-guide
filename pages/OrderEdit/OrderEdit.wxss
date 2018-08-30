@@ -59,7 +59,7 @@
   line-height: 36rpx;
 }
 
-.number-box, .comein-box, .note-box, .quan-box {
+.number-box, .comein-box, .note-box, .quan-box,.storage-box {
   line-height: 56rpx;
   padding: 38rpx 0;
   font-size: 30rpx;
@@ -139,6 +139,7 @@
   box-sizing: border-box;
   font-size: 34rpx;
   color: #f64;
+  z-index: 99;
 }
 
 button {
@@ -170,4 +171,17 @@ button {
 .note-title{
   height: 46rpx;
   line-height: 46rpx;
+}
+.storage,.storage-active{
+  height:30rpx;
+width:30rpx;
+border-radius:15rpx;
+box-sizing:border-box;
+border:4rpx solid #ddd;
+vertical-align:middle;
+margin:-6rpx 0 0 6rpx;
+
+}
+.storage-active{
+  border:10rpx solid #ff6644;
 }

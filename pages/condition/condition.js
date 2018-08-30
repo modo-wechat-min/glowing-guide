@@ -1,3 +1,4 @@
+let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
@@ -6,25 +7,23 @@ Page({
     days: 0,
     minPrice: "",
     maxPrice: "",
-    tradingArea: ["三里屯", "中关村", "西直门", "望京", "国贸CBD", "五道口", "西单", "王府井", "崇文门"],
-    tradingIndex: null,
+    tradeArray: [],
     KeyWord: "",
-    options:"",
+    options: "",
+    hidden: false,
   },
   onLoad: function(options) {
-    let tradingIndex = null;
-    if (options.KeyWord) {
-      tradingIndex = this.data.tradingArea.indexOf(options.KeyWord);
-    }
     this.setData({
       startTime: options.startTime,
       endTime: options.endTime,
-      minPrice: options.minPrice,
-      maxPrice: options.maxPrice,
+      days: options.days,
+      minPrice: options.minPrice == 0 ? "" : options.minPrice,
+      maxPrice: options.maxPrice == 0 ? "" : options.maxPrice,
       KeyWord: options.KeyWord,
-      tradingIndex: tradingIndex,
       options: options,
+      tradeArray: options.tradeArray,
     })
+    this.getTradings();
   },
   toGetDate: function() { // 获取日期
     var _this = this;
@@ -33,7 +32,6 @@ Page({
     })
   },
   minPriceFun(e) {
-    console.log(55)
     this.setData({
       minPrice: e.detail.value,
     })
@@ -44,41 +42,78 @@ Page({
     })
   },
   reset() {
+    let array = this.data.tradeArray;
+    array = array.map(function(item, key) {
+      item.isChosen = false;
+      return item;
+    })
     this.setData({
-      startTime: this.data.options.startTime,
-      endTime: this.data.options.endTime,
-      days: 0,
-      minPrice: 0,
-      maxPrice: 0,
-      tradingIndex: null,
+      startTime: util.initTime(0),
+      endTime: util.initTime(1),
+      days: 1,
+      minPrice: "",
+      maxPrice: "",
+      tradeArray: array,
     })
   },
   getTradingArea(e) {
-    let tradingIndex = e.currentTarget.dataset.index;
-    if (tradingIndex == this.data.tradingIndex) {
-      tradingIndex = null;
-    }
+    let index = e.currentTarget.dataset.index;
+    let array = this.data.tradeArray;
+    array[index].isChosen = !array[index].isChosen
+
     this.setData({
-      tradingIndex: tradingIndex,
+      tradeArray: array,
     })
   },
   pageBack(e) {
+    var array = this.data.tradeArray;
+    array = array.filter(function(item, key, array) {
+      if (item.isChosen) {
+        return item;
+      }
+    })
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1]; // 当前页面
     var prevPage = pages[pages.length - 2]; // 上一级页面
-    var KeyWord = this.data.tradingArea[this.data.tradingIndex] ? this.data.tradingArea[this.data.tradingIndex] : "";
     var days = (new Date(util.getDayString(this.data.endTime)) - new Date(util.getDayString(this.data.startTime))) / 1000 / 60 / 60 / 24;
     prevPage.setData({
       'startTime': this.data.startTime,
       "endTime": this.data.endTime,
-      "minPrice": this.data.minPrice,
-      "maxPrice": this.data.maxPrice,
+      "minPrice": this.data.minPrice == "" ? 0 : this.data.minPrice,
+      "maxPrice": this.data.maxPrice == "" ? 0 : this.data.maxPrice,
       "days": days,
-      'KeyWord': KeyWord,
+      "tradeArray": array,
     });
     prevPage.getBranchLists();
     wx.navigateBack({
       changed: true
     });
   },
+  getTradings() {
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchTrad",
+      method: 'get',
+      success: function(res) {
+        let array = res.data;
+        let tradeArray = _this.data.tradeArray ? JSON.parse(_this.data.tradeArray) : "";
+        array = array.map(function(item, key, arr) {
+          item.isChosen = false;
+          if (tradeArray.length > 0) {
+            tradeArray.map(function(item2, key2) {
+              if (item2.ID == item.ID) {
+                item.isChosen = true;
+              }
+            })
+          }
+          return item;
+        })
+        _this.setData({
+          tradeArray: array, //获取当前轮播图片的下标
+          hidden: true,
+        })
+
+      },
+    })
+  }
 })

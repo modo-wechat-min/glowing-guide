@@ -14,19 +14,15 @@ Page({
  
   onLoad: function () {
     util.getUserInfoFun(this);
-    if (!util.checkRight()) {
-      return;
-    }
-    if (!util.checkIsLogin()) {
-      return;
-    }
-     this.getInit();
   },
   
   getInit() {
+    if (!util.checkIsLogin()) {
+      return;
+    }
     let _this = this;
     let UserID = util.getStorage("userID");
-    let OpenID = util.getStorage("openId");
+    let OpenID = util.getStorage("openId"); 
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/UserCenter?UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
@@ -39,19 +35,25 @@ Page({
     })
   },
   toPage(e){
-    if (!util.checkRight()) {
-      return;
-    }
+    this.setData({
+      page: e.currentTarget.dataset.page,
+    })
+    util.checkRight(this.pageFun)
+  },
+  pageFun(){
     if (!util.checkIsLogin()) {
       return;
     }
-    let page = e.currentTarget.dataset.page;
+    let page = this.data.page;
     let url = '../' + page + '/' + page
-    if (page =="CouponLists"){
-      url +="?isComePersonal="+true;
+    if (page == "CouponLists") {
+      url += "?isComePersonal=" + true;  
     }
     wx.navigateTo({
       url: url,
     })
+  },
+  onShow(){
+    util.checkRight(this.getInit())
   }
 })

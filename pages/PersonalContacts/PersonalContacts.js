@@ -6,10 +6,7 @@ Page({
     hidden: false,
     nodata: false,
   },
-  onLoad: function(options) {
-    this.getLists();
-  },
-  getLists() {
+  onShow: function(options) {
     util.getContractsLists(this);
   },
   deletePerson(e) {
@@ -31,14 +28,13 @@ Page({
               OpenID: openId,
             },
             success: function(res) {
-              console.log(res)
               if (res.data.Code == "SUCCESS") {
                 wx.showToast({
                   title: '操作成功',
                   icon: 'success',
                   duration: 2000
                 })
-                _this.getLists();
+                util.getContractsLists(_this);
               } else {
                 util.throwMsg(res.data.ErrorMessage);
               }

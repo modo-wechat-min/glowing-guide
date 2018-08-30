@@ -2,7 +2,7 @@ let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
-    orderObj:null,
+    orderObj: null,
     modoImgHttp: ports.modoImgHttp,
     hidden: false,
   },
@@ -17,18 +17,23 @@ Page({
   },
   delete() {
     util.deleteOrder(this.data.orderObj.BillID);
-    wx.navigateBack({ changed: true });
+    wx.navigateBack({
+      changed: true
+    });
   },
-  getOrderInfo(TypeValueID){
+  getOrderInfo(TypeValueID) {
     let _this = this;
+    let openId = util.getStorage("openId");
+    let UserID = util.getStorage("userID");
+    console.log(ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID + "&OpenID=" + openId + "&UserID=" + UserID)
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID,
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID + "&OpenID=" + openId + "&UserID=" + UserID,
       method: 'get',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         _this.setData({
           orderObj: res.data,
-          hidden: true,
+          hidden: true, 
         })
       },
     })

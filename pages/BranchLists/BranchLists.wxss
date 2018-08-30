@@ -60,8 +60,33 @@ picker {
 
 .default {
   float: right;
+  position: relative;
 }
-
+.order{
+  position: absolute;
+  background: #fff;
+  box-shadow: 4rpx 4rpx 8rpx rgba(0, 0, 0, 0.1) ,-4rpx -4rpx 8rpx rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  text-align: center;
+  font-size: 26rpx;
+  width: 120%;
+  left: -10%;
+  line-height: 60rpx;
+  top: 60rpx;
+  border-radius: 8rpx;
+}
+.order::before{
+  height: 14rpx;
+  width: 14rpx;
+  border-right: 2rpx solid rgba(0, 0, 0, 0.1);
+  border-top: 2rpx solid rgba(0, 0, 0, 0.1);
+  transform: rotate(-45deg);
+  position: absolute;
+  background: #fff;
+  z-index: 99999;
+  content: "";
+  top: -10rpx;
+}
 .condition-item {
   float: left;
   margin-right: 20rpx;

@@ -4,7 +4,7 @@ Page({
   data: {
     listsObj:null,
     choseID:-1,
-    index:"",
+    index:"", 
     hidden: false,
     nodata:false,
   },
@@ -12,7 +12,6 @@ Page({
     this.setData({
       index: options.index,
     })
-    this.getLists();
   },
   getLists(){
     util.getContractsLists(this);
@@ -28,9 +27,13 @@ Page({
     var prevPage = pages[pages.length - 2]; // 上一级页面
     var array= prevPage.data.roomArray;
     array[this.data.index] = this.data.listsObj[this.data.choseID];
+    console.log(array)
     prevPage.setData({
       roomArray: array,
     });
     wx.navigateBack({ changed: true });
+  },
+  onShow(){
+    this.getLists();
   }
 })

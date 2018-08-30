@@ -3,12 +3,9 @@ let util = require('../../utils/util.js');
 Page({
   data: {
     bgImageUrl: ports.imgUrl + 'id_card.jpg',
-    flag: true,
     tempFilePaths: "",
-  },
-
-  onLoad: function(options) {
-
+    Name: "",
+    Number: "",
   },
   chooseimage() {
     let _this = this;
@@ -38,11 +35,28 @@ Page({
             'OpenID': openId
           },
           success: function(res) {
-            var data = res.data;
-            console.log(data)
+            console.log(res)
+            var data = JSON.parse(res.data);
+            if (data.Code == "SUCCESS") {
+              _this.setData({
+                Name: data.Name,
+                Number: data.Number,
+              })
+            } else {
+              util.throwMsg(data.ErrorMessage);
+            }
           }
         })
       }
+    })
+  },
+  confirmFun(){
+    wx.navigateBack({ changed: true });
+  },
+  repeatFun(){
+    this.setData({
+      Name: "",
+      Number: "",
     })
   }
 })

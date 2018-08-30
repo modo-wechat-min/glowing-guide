@@ -430,6 +430,6 @@ padding: 12rpx 0;
 .rule-tile{
   margin-bottom: -10rpx;
 }
-.rule-box{
+.last-box{
   padding-bottom: 60rpx;
 }

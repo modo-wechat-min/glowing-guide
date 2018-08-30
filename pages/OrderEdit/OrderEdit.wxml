@@ -43,11 +43,11 @@
       <view class='user-info font24' wx:if="{{item.Name}}">
         <view>姓
           <text decode="{{true}}">&emsp;&emsp;</text>名：
-          <text class='color333'>{{personArray[index].Name}}</text>
+          <text class='color333'>{{item.Name}}</text>
           <view class='delete' bindtap='deletePerson' data-index='{{index}}'>删除</view>
         </view>
         <view>身份证号：
-          <text class='color333'>{{personArray[index].CardNumber}}</text>
+          <text class='color333'>{{item.CardNumber}}</text>
         </view>
       </view>
     </view>
@@ -81,11 +81,19 @@
       </view>
     </navigator>
   </view>
+  <view class='flextwo storage-box border-b1'>
+    <view>
+      储值余额：¥200
+    </view>
+    <view bindtap='isUseStorageFun'>
+    是否使用<icon class='icon {{!isUseStorage?"storage":""}} {{isUseStorage?"storage-active":""}}'></icon>
+    </view>
+  </view>
   <view class=' quan-box border-b1'>
     <view class='mingxi-title'>费用明细</view>
     <view class='flextwo'>
-      <view class='mingxi-item'>房租总费用：
-        <text>¥{{orderObj.TotalMoney}}</text>
+      <view class='mingxi-item'>单间总租金：
+        <text>¥{{orderObj.TotalMoney}}{{number>1?"*"+number+"间":""}}</text>
       </view>
       <view class='look-price trangle trangle-day' bindtap='toDailyPrice'>
         查看每天房价
@@ -101,7 +109,7 @@
 </view>
 <view class='flextwo btn-box'>
   <view>¥
-    <text class='font44'>{{couponObj.InitValue?orderObj.TotalMoney-couponObj.InitValue:orderObj.TotalMoney}}</text>
+    <text class='font44'>{{couponObj.InitValue?orderObj.TotalMoney*number-couponObj.InitValue:orderObj.TotalMoney*number}}</text>
   </view>
   <button bindtap='bookFun' class=' {{CanSoldNumber<=0?"disable-class":""}}'>立即预定</button>
 </view>

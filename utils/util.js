@@ -25,11 +25,12 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-function initMonth(){
-  let date=new Date();
+
+function initMonth() {
+  let date = new Date();
   console.log(666)
   console.log(date.getFullYear() + "-" + date.getMonth() + 1)
-  return date.getFullYear() + "-" + formatNumber((date.getMonth()+1));
+  return date.getFullYear() + "-" + formatNumber((date.getMonth() + 1));
 }
 var Promise = require('./es6-promise.min.js');
 // 获取用户信息
@@ -51,8 +52,8 @@ function getOpenId() {
             });
           } else {
             wx.showToast({
-              title: '获取用户登录态失败！' + res.errMsg,
-              duration: 2000
+              title: '获取用户登录态失败！' + res.errMsg, 
+              duration: 2000 
             });
           }
         }
@@ -169,9 +170,10 @@ function getContractsLists(obj) {
   let _this = obj;
   let UserID = getStorage("userID");
   wx.request({
-    url: ports.modoHttp + "API/WeChatMiniProgram/GetContact?UserID=" + 312456,
+    url: ports.modoHttp + "API/WeChatMiniProgram/GetContact?UserID=" + UserID,
     method: 'get',
     success: function(res) {
+      console.log(res)
       _this.setData({
         listsObj: res.data,
         hidden: true,
@@ -201,17 +203,25 @@ function checkIsLogin() {
   }
 }
 //是否授权
-function checkRight() {
-  let app=getApp();
-  if (!app.globalData.userInfo) {
-    let url = getCurrentPageUrl();
-    wx.navigateTo({
-      url: '../authorization/authorization?url=' + url,
-    })
-    return false;
-  } else {
-    return true;
-  }
+function checkRight(fn, options) {
+  let app = getApp();
+  wx.getSetting({
+    success(res) {
+      if (!res.authSetting['scope.userInfo']) {
+        let url = getCurrentPageUrl();
+        wx.navigateTo({
+          url: '../authorization/authorization?url=' + url + "&params=" + JSON.stringify(options),
+        })
+      } else {
+        console.log(123)
+        if (fn){
+          console.log(456)
+          fn();
+        }
+        
+      }
+    }
+  })
 }
 
 function getUserInfoFun(obj) {

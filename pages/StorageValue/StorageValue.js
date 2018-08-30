@@ -9,7 +9,7 @@ Page({
     this.getStore();
   },
 getStore(){
-  let UserID = util.getStorage("userID", true);
+  let UserID = util.getStorage("userID");
   let openId = util.getStorage("openId");
   let _this = this;
   wx.request({

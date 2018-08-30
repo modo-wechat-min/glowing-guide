@@ -1,4 +1,4 @@
-<view wx:if="{{flag}}">
+<view wx:if="{{!(Name&&Number)}}">
   <image src='{{tempFilePaths?tempFilePaths:bgImageUrl}}' bindtap='chooseimage'>
   </image>
   <view class='tip'>点击上方图片上传身份证照片</view>
@@ -12,17 +12,17 @@
     造成的一切法律责任由本人承担。
   </view>
 </view>
-<view wx:if="{{!flag}}">
+<view wx:if="{{Name&&Number}}">
   <view class='item name'>
-    <text decode="{{true}}">姓&emsp;&emsp;名：</text><text class='content'>型号的</text>
+    <text decode="{{true}}">姓&emsp;&emsp;名：</text><text class='content'>{{Name}}</text>
   </view>
   <view class='item'>
-    <text decode="{{true}}">身份证号：</text><text class='content'>4864515648989</text>
+    <text decode="{{true}}">身份证号：</text><text class='content'>{{Number}}</text>
   </view>
-  <button class='confirm'>
+  <button class='confirm' bindtap='confirmFun'>
     确认
   </button>
   <view class='note'>
-    如果识别出现问题请重新返回进行扫描确认
+    如果识别出现问题请<view class='repeat' bindtap='repeatFun'>重新扫描</view>
   </view>
 </view>

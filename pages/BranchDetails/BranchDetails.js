@@ -20,11 +20,12 @@ Page({
     marker: [],
     latitude: "",
     longitude: "",
+    options: "",
   },
   onReady() {
     this.initAnimation();
   },
-  onLoad: function(options) {
+  onLoad: function(options) { 
     console.log(options)
     var scale;
     //获取rpx与px的比
@@ -40,6 +41,7 @@ Page({
       endTime: options.EndDate,
       days: options.days,
       scale: scale,
+      options: options,
     })
     this.getBranchInfo();
 
@@ -88,17 +90,18 @@ Page({
     })
   },
   toBook(e) {
-    console.log(util.checkRight())
-    if (!util.checkRight()){
-      return ;
-    }
+    this.setData({
+      RoomTypeID: e.currentTarget.dataset.type,
+    })
+    util.checkRight(this.bookFun, JSON.stringify(this.data.options));
+    
+  },
+  bookFun(){
     if (!util.checkIsLogin()) {
       return;
     }
-    let dataset = e.currentTarget.dataset;
-    console.log(dataset)
     wx.navigateTo({
-      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + dataset.branchid + "&RoomTypeID=" + dataset.type,
+      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + this.data.branchId + "&RoomTypeID=" + this.data.RoomTypeID,
     })
   },
   initAnimation() {

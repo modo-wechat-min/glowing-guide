@@ -4,25 +4,44 @@ Page({
   data: {
     dateActive: false,
     date: util.initMonth(),
+    detailsObj: "",
   },
   onLoad: function(options) {
-
+    this.getDetails();
   },
-  getPicker(){
+  getPicker() {
     this.setData({
       dateActive: true,
     })
   },
   bindDateChange: function(e) {
-    console.log(e)
     this.setData({
       date: e.detail.value,
       dateActive: false,
     })
+    this.getDetails();
   },
-  bindDateCancel:function(e){
+  bindDateCancel: function(e) {
     this.setData({
       dateActive: false,
+    })
+  },
+  getDetails() {
+    let _this = this;
+    let UserID = util.getStorage("userID");
+    _this.setData({
+      hidden: false,
+    })
+    console.log(ports.modoHttp + "API/WeChatMiniProgram/MyBalanceRecord?UserID=" + UserID + "&Date=" + _this.data.date)
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/MyBalanceRecord?UserID=" + UserID + "&Date=" + _this.data.date,
+      method: 'get',
+      success: function(res) {
+        _this.setData({
+          detailsObj: res.data,
+          hidden: true,
+        })
+      }
     })
   }
 })

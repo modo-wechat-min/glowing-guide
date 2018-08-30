@@ -16,6 +16,7 @@ Page({
     roomArray: [null],
     couponObj: null,
     Remark: "",
+    isUseStorage:true,//是否使用储值卡
     CanSoldNumber: 0, //可预订数量
     index: 0, //时间索引
     timeArray: [{
@@ -184,7 +185,7 @@ Page({
 
     let JsonPerson = [];
     if (_this.data.roomArray[0]) {
-      console.log("1" + _this.date.roomArray)
+      console.log("1" + _this.data.roomArray)
       _this.data.roomArray.map(function(item, key, ary) {
         let obj = {};
         obj.ID = item.ID;
@@ -219,6 +220,11 @@ Page({
           util.throwMsg(res.data.ErrorMessage);
         }
       },
+    })
+  },
+  isUseStorageFun(){
+    this.setData({
+      isUseStorage: !this.data.isUseStorage,
     })
   }
 })

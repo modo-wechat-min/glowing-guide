@@ -142,9 +142,18 @@
   <view class='rule-tile'>
     退订规则
   </view>
-  <view class='rule-item'>摩兜的退订原则是（仅限前台、微信、官网预订的订单）:</view>
-  <view class='rule-item'>仅预订未支付的客户，在入住当天16:00之前若仍未支付房费/定金，则订单取消，不再保留房间。</view>
-  <view class='rule-item'>预订并支付全款房费/定金的客户，在入住当天18:00之前致电可免费取消。入住当天18:00之后不能取消订单。</view>
+  <view class='rule-item'>1、到店支付最晚保留时间为入住日16:00前，如超过该时间请提前在订单中支付房费。</view>
+  <view class='rule-item'>2、成功支付后已消费的代金券及储值卡金额、积分将不予退还，使用代金券不找零。</view>
+  <view class='rule-item'>3、入住时间为入住当日14:00后，离店时间为离店当日12:00前，如提前到店，视房态安排。</view>
+  <view class='rule-item'>4、开具发票需另外收取6%的服务费，服务费用可加入开票金额中。</view>
+</view>
+<view class='rule-box last-box'>
+  <view class='rule-tile'>
+    注意事项
+  </view>
+  <view class='rule-item'>1、应有关部门规定，本公寓暂无法接待外宾以及持新疆、西藏身份证件客人；</view>
+  <view class='rule-item'>2、本公寓支持刷卡消费；</view>
+  <view class='rule-item'>3、如需发票，需另支付6%服务费；</view>
 </view>
 <view class='chose-room' animation="{{animation}}">
   <view class='chose-room-type'>
