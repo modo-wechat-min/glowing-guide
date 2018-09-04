@@ -71,3 +71,26 @@ color: #333;
   vertical-align: middle;
   margin-top: -8rpx;
 }
+.down-box{
+  text-align: center;
+  margin-top: 20rpx;
+  color: #333;
+}
+.icon-down,.icon-up{
+  width: 14rpx;
+  height: 14rpx;
+  border-bottom: 1rpx solid #333;
+  border-right: 1rpx solid #333;
+  transform: rotate(45deg);
+  margin: 0 auto;
+  vertical-align: middle;
+  margin-top: -12rpx;
+}
+.icon-up{
+  transform: rotate(225deg);
+  margin-top: 6rpx;
+}
+.disable-class{
+  background: #eee; 
+  color: #333;
+}

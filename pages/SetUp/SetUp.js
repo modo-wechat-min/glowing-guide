@@ -4,7 +4,8 @@ Page({
   data: {
     array: ['女', '男'], 
     index:0,
-    date: util.initTime(0),
+    date: "",
+    isHasBirthDay:false,
     openId:"",
     UserID: "",
     personObj:"",
@@ -37,11 +38,15 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/UserSet?UserID=" + _this.data.UserID + "&OpenID=" + _this.data.openId,
       method: 'get',
       success: function (res) {
+        let isHasBirthDay = new Date(res.data.BirthDay).getFullYear() > 1900;
+        let nowTime = util.initTime(0,1);
+        let BirthDay = isHasBirthDay ? res.data.BirthDay : nowTime;
         _this.setData({
           personObj: res.data,
           index:res.data.Gender,
-          date: res.data.BirthDay,
+          date: BirthDay,
           hidden: true,
+          isHasBirthDay: isHasBirthDay,
         })
       },
     })

@@ -64,17 +64,16 @@ Page({
     obj.ReviewShortName = data.orderObj.thisReviewName;
     let array=data.reviewItemListArray;
     array.push(obj);
-    jsonContent.BillId = data.billId;
-    jsonContent.Content = data.note;
-    jsonContent.ReviewItemContent = array;
-    console.log(JSON.stringify(jsonContent));
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/SendCommentBill" ,
       method: 'post',
       data:{
-        jsonStr: JSON.stringify(jsonContent),
+        BillId : data.billId,
+        Content : data.note,
+        ReviewItemContent : array,
       },
       success: function(res) {
+        console.log(res)
         if (res.data.state==1){
           wx.showToast({
             title: '操作成功',

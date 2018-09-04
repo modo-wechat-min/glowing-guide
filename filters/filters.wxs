@@ -1,3 +1,4 @@
+
 var DateFr = {
   deleteYearTime: function(time) {
     if(!time) {
@@ -47,6 +48,9 @@ var DateFr = {
     var d2 = time.substring(time.indexOf("T")+1);
     return array[1] + '月' + array[2] + '日' + " " + d2;
   },
+  formalTime4: function (time) {
+    return time.substring(0, time.indexOf(" "));
+  },
   leaseTime:function(time){
     if (!time){
       return;
@@ -72,6 +76,7 @@ module.exports = {
   formalTime1: DateFr.formalTime1,
   formalTime2: DateFr.formalTime2,
   formalTime3: DateFr.formalTime3,
+  formalTime4: DateFr.formalTime4,
   decimalTwoScore: DateFr.decimalTwoScore,
   leaseTime: DateFr.leaseTime,
   monthTime: DateFr.monthTime,

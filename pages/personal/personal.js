@@ -17,7 +17,8 @@ Page({
   },
   
   getInit() {
-    if (!util.checkIsLogin()) {
+    console.log(222222)
+    if (!util.checkIsLogin()) { 
       return;
     }
     let _this = this;
@@ -47,13 +48,14 @@ Page({
     let page = this.data.page;
     let url = '../' + page + '/' + page
     if (page == "CouponLists") {
-      url += "?isComePersonal=" + true;  
+      url += "?isComePersonal=" + true;   
     }
     wx.navigateTo({
       url: url,
     })
   },
   onShow(){
-    util.checkRight(this.getInit())
+    console.log(1111111)
+    util.checkRight(this.getInit)
   }
 })

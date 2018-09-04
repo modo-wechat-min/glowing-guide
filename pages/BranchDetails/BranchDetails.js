@@ -1,15 +1,15 @@
 let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
+var timer;
 Page({
   data: {
-    isFresh:"",
+    isFresh: "",
     hidden: false,
-    animation: "",
     branchId: 0,
     startTime: "",
     endTime: "",
     branchObj: {},
-    typeObj: null,
+    typeObj: null, 
     RoomTypeID: "",
     modoImgHttp: ports.modoImgHttp,
     modoHttp2: ports.modoHttp2,
@@ -21,11 +21,18 @@ Page({
     latitude: "",
     longitude: "",
     options: "",
+    defaultImg: ports.defaultImg,
+    animation2: "", //自定义轮播组件
+    lastX: 0, //滑动开始x轴位置
+    lastY: 0, //滑动开始y轴位置
+    subImgIndex: 0,
+    subImgLength: 0,
+    showBox:false,
   },
   onReady() {
     this.initAnimation();
   },
-  onLoad: function(options) { 
+  onLoad: function(options) {
     console.log(options)
     var scale;
     //获取rpx与px的比
@@ -94,10 +101,10 @@ Page({
       RoomTypeID: e.currentTarget.dataset.type,
     })
     util.checkRight(this.bookFun, JSON.stringify(this.data.options));
-    
+
   },
-  bookFun(){
-    if (!util.checkIsLogin()) {
+  bookFun() {
+    if (!util.checkIsLogin(JSON.stringify(this.data.options))) {
       return;
     }
     wx.navigateTo({
@@ -105,27 +112,39 @@ Page({
     })
   },
   initAnimation() {
-    this.animation = wx.createAnimation({
+    this.animation2 = wx.createAnimation({
       duration: 600,
-      transformOrigin: 'left bottom 0',
+      transformOrigin: '0 0 0',
     })
   },
   closeFun() {
-    this.animation.translateY(845 / this.data.scale).step();
     this.setData({
-      //输出动画
-      animation: this.animation.export()
+      showBox: false,
     })
   },
   openFun(e) {
-    console.log(e)
-    this.getRoomTypeInfo(e.currentTarget.dataset.roomtypeid);
-    this.animation.translateY(-845 / this.data.scale).step();
+     this.getRoomTypeInfo(e.currentTarget.dataset.roomtypeid);
     this.setData({
-      //输出动画
-      animation: this.animation.export()
+      showBox:true,
     })
 
+  },
+  animationFun(a) {
+    let index = this.data.subImgIndex;
+    let maxLength = this.data.subImgLength;
+    let newIndex = index + a;
+    if (newIndex == maxLength && a == 1) {
+      newIndex = 0;
+    } else if (newIndex == -1 && a == -1) {
+      newIndex = maxLength-1
+    }
+    console.log(a,newIndex)
+    this.animation2.translateX(-750 * (newIndex) / this.data.scale).step();
+    this.setData({
+      //输出动画
+      animation2: this.animation2.export(),
+      subImgIndex: newIndex,
+    })
   },
   getItemDetails(e) {
     this.setData({
@@ -145,10 +164,12 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/RoomTypeDetail?RoomTypeID=" + RoomTypeID,
       method: 'get',
       success: function(res) {
+        let length = res.data.Images.length;
         console.log(res)
         _this.setData({
           typeObj: res.data,
           RoomTypeID: RoomTypeID,
+          subImgLength: length,
         })
       },
     })
@@ -160,11 +181,51 @@ Page({
   },
   onShow() {
     if (this.data.isFresh) {
-      console.log(66)
       this.getBranchInfo();
     }
   },
-  noteFun(){
+  noteFun() {
     util.throwMsg("该房型已售完");
-  }
+  },
+  handletouchmove: function(event) {
+    var time = 300;
+
+    let _this = this;
+    var currentX = event.touches[0].pageX
+    var currentY = event.touches[0].pageY
+    var tx = currentX - this.data.lastX
+    var ty = currentY - this.data.lastY
+    var text = ""
+    //左右方向滑动
+    clearTimeout(timer);
+    if (Math.abs(tx) > Math.abs(ty)) {
+
+      if (tx < 0) {
+        timer = setTimeout(function() {
+          _this.animationFun(1);
+          console.log("left")
+        }, time)
+      }
+      // text = "向左滑动" 
+      else if (tx > 0) {
+        timer = setTimeout(function() {
+          _this.animationFun(-1);
+          console.log("right")
+        }, time)
+      }
+
+
+    }
+    //将当前坐标进行保存以进行下一次计算
+    this.data.lastX = currentX
+    this.data.lastY = currentY
+
+  },
+  //滑动开始事件
+  handletouchtart: function(event) {
+    this.data.lastX = event.touches[0].pageX
+    this.data.lastY = event.touches[0].pageY
+
+  },
+
 })

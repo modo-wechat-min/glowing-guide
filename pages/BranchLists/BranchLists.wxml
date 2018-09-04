@@ -61,7 +61,7 @@
       {{item.Address}}
     </view>
     <view class='flexone'>
-      <view class='note' wx:for="{{item.markingList}}" wx:key="index">{{item.MarkingName}}</view>
+      <view class='note' wx:for="{{item.TeadingList}}" wx:key="index" wx:if="{{index<=5}}">{{item.TradName}}</view>
     </view>
   </view>
 </view>

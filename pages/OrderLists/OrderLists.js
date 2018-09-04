@@ -30,7 +30,7 @@ Page({
       RentType: e.currentTarget.dataset.type,
       PageIndex:1,
     });
-    
+    this.getLists();
   },
   deleteOrder(e) {
     let _this=this;

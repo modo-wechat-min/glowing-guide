@@ -32,19 +32,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
 					"name": "分店详情页",
 					"pathName": "pages/BranchDetails/BranchDetails",
-					"query": "BranchID=6&EndDate=2018年08月26日&StartDate=2018年08月21日&days=10"
+					"query": "BranchID=6&EndDate=2018年09月21日&StartDate=2018年09月16日&days=5"
 				},
 				{
 					"id": 1,
 					"name": "订单详情页",
 					"pathName": "pages/OrderDetails/OrderDetails",
-					"query": "TypeValueID=257622"
+					"query": "TypeValueID=256686"
 				},
 				{
 					"id": 2,
@@ -111,6 +111,18 @@
 					"name": "分店列表",
 					"pathName": "pages/BranchLists/BranchLists",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设置页",
+					"pathName": "pages/setup/setup",
+					"query": "BranchID=6&EndDate=2018年09月21日&StartDate=2018年09月16日&days=5"
+				},
+				{
+					"id": -1,
+					"name": "设置页",
+					"pathName": "pages/SetUp/SetUp",
+					"query": "BranchID=6&EndDate=2018年09月21日&StartDate=2018年09月16日&days=5"
 				}
 			]
 		}

@@ -83,6 +83,7 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString(),
       method: 'get',
       success: function(res) {
+        console.log(res)
         _this.setData({
           realLists: res.data,
           branchLists: res.data, //获取当前轮播图片的下标

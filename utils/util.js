@@ -8,13 +8,18 @@ const formatTime = date => {
   const second = date.getSeconds()
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-const initTime = (day) => {
+const initTime = (day,type) => {
   let time = new Date();
   time.setDate(time.getDate() + day);
   let year = time.getFullYear();
   let month = formatNumber(time.getMonth() + 1);
   let date = formatNumber(time.getDate());
-  return year + "年" + month + "月" + date + "日";
+  if (type==1){
+    return year + "-" + month + "-" + date ;
+  }else{
+    return year + "年" + month + "月" + date + "日";
+  }
+  
 }
 const getDayString = time => {
   let timestr = time.replace('日', '').replace('月', '/').replace('年', '/');
@@ -38,16 +43,23 @@ function getOpenId() {
   var openId = getStorage("openId", false);
   return new Promise((resolve, reject) => {
     if (openId) {
+      console.log(1111)
       resolve();
     } else {
+      console.log(2222)
       wx.login({
         success: function(res) {
           if (res.code) {
+            console.log(3333) 
+            console.log(res)
             //发起网络请求,后期看需要promise化不？
             wx.request({
               url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code,
               success: function(res) {
-                setStorage('openId', JSON.parse(res.data).openid, false);
+                let data = res.data;
+                console.log(res)
+                setStorage('openId', data.OpenID, false);
+                setStorage('userID', data.UserID, false);
               }
             });
           } else {
@@ -93,7 +105,7 @@ function getStorage(key, isSync = true) {
     } catch (e) {
       wx.showToast({
         title: e,
-        duration: 2000
+        duration: 2000 
       });
     }
   } else {
@@ -190,12 +202,12 @@ function getCurrentPageUrl() {
   return url.slice(5);
 }
 
-function checkIsLogin() {
+function checkIsLogin(params) {
   let UserID = getStorage("userID");
-  if (!UserID) {
+  if (!UserID || UserID==0) {
     let url = getCurrentPageUrl();
     wx.navigateTo({
-      url: '../login/login?url=' + url,
+      url: '../login/login?url=' + url + "&params=" + params,
     })
     return false;
   } else {
@@ -207,15 +219,16 @@ function checkRight(fn, options) {
   let app = getApp();
   wx.getSetting({
     success(res) {
+      //未授权情况
+      console.log(3333333)
       if (!res.authSetting['scope.userInfo']) {
         let url = getCurrentPageUrl();
         wx.navigateTo({
           url: '../authorization/authorization?url=' + url + "&params=" + JSON.stringify(options),
         })
       } else {
-        console.log(123)
+        //已经授权
         if (fn){
-          console.log(456)
           fn();
         }
         

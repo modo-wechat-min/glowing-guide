@@ -16,50 +16,12 @@ Page({
     roomArray: [null],
     couponObj: null,
     Remark: "",
-    isUseStorage:true,//是否使用储值卡
+    useStorage: 0, //是否使用储值卡
     CanSoldNumber: 0, //可预订数量
     index: 0, //时间索引
-    timeArray: [{
-      id: 12,
-      value: "12:00",
-    }, {
-      id: 13,
-      value: "13:00",
-    }, {
-      id: 14,
-      value: "14:00",
-    }, {
-      id: 15,
-      value: "15:00",
-    }, {
-      id: 16,
-      value: "16:00",
-    }, {
-      id: 17,
-      value: "17:00",
-    }, {
-      id: 18,
-      value: "18:00",
-    }, {
-      id: 19,
-      value: "19:00",
-    }, {
-      id: 20,
-      value: "20:00",
-    }, {
-      id: 21,
-      value: "21:00",
-    }, {
-      id: 22,
-      value: "22:00",
-    }, {
-      id: 23,
-      value: "23:00",
-    }],
-
+    isChecked: false,
   },
   onLoad: function(options) {
-    console.log(options)
     this.setData({
       branchId: options.BranchID,
       typeId: options.RoomTypeID,
@@ -68,6 +30,44 @@ Page({
       days: options.days,
     });
     this.getOrder();
+  },
+  changeSwitch() {
+    let isChecked=this.data.isChecked;
+    if (isChecked){
+      this.setData({
+        isChecked: !this.data.isChecked,
+        useStorage:0,
+      })
+    }else{
+      this.setData({
+        isChecked: !this.data.isChecked,
+      })
+    }
+  },
+  useStorageFun(e) {
+    let Balance = this.data.orderObj.Balance;
+    let useValue = e.detail.value;
+    let data = this.data;
+    let number = data.number;
+    let TotalMoney = data.orderObj.TotalMoney;
+    let InitValue = data.couponObj ? data.couponObj.InitValue : 0;
+    let maxTotal = TotalMoney * number - InitValue;
+    if (maxTotal < useValue) {
+      util.throwMsg("您输入金额已超出消费金额！");
+      this.setData({
+        useStorage: this.data.useStorage
+      })
+    } else if (Balance<useValue){
+      util.throwMsg("您输入金额已超出储值金额！");
+      this.setData({
+        useStorage: this.data.useStorage
+      })
+    } else {
+      this.setData({
+        useStorage: useValue
+      })
+    }
+
   },
   getOrder() {
     this.setData({
@@ -80,7 +80,6 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
       success: function(res) {
-        console.log(res)
         let roomArray = _this.data.roomArray;
         if (res.data.CanSoldNumber < _this.data.number) {
           if (res.data.CanSoldNumber == 0) {
@@ -111,7 +110,6 @@ Page({
     })
   },
   getNumber(e) {
-    console.log(e)
     let dataset = e.currentTarget.dataset;
     let array = this.data.roomArray;
     if (dataset.number) {
@@ -182,18 +180,15 @@ Page({
       JsonVoucher[0] = {};
       JsonVoucher[0].ID = _this.data.couponObj.ID;
     }
-
     let JsonPerson = [];
     if (_this.data.roomArray[0]) {
-      console.log("1" + _this.data.roomArray)
       _this.data.roomArray.map(function(item, key, ary) {
         let obj = {};
         obj.ID = item.ID;
         JsonPerson.push(obj);
       })
     }
-    console.log(_this.data.roomArray);
-    console.log(JsonPerson);
+    console.log(_this.data.number)
     wx.request({
       url: ports.modoHttp + "api/WeChatMiniProgram/CreateBill",
       method: 'post',
@@ -208,13 +203,30 @@ Page({
         JsonPerson: JSON.stringify(JsonPerson),
         JsonVoucher: JSON.stringify(JsonVoucher),
         Remark: _this.data.Remark,
-        ArriveTime: _this.data.index, //时间索引，就是时间
+        UseBalance: _this.data.useStorage,
+        ArriveTime: _this.data.index, //时间索引，就是时间 
       },
       success: function(res) {
-        console.log(666)
+        console.log(res)
+        let PayMessage = res.data.PayMessage;
+        let BillID = res.data.BillID;
         if (res.data.Code == "SUCCESS") {
-          wx.navigateTo({
-            url: '../OrderDetails/OrderDetails?TypeValueID=' + res.data.TypeValueID,
+          wx.requestPayment({
+            timeStamp: PayMessage.timeStamp,
+            nonceStr: PayMessage.nonceStr,
+            package: PayMessage.package,
+            signType: PayMessage.signType,
+            paySign: PayMessage.paySign,
+            'success': function (res) {
+              wx.navigateTo({
+                url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
+              })
+            },
+            'fail': function (res) {
+              wx.navigateTo({
+                url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
+              })
+            }
           })
         } else {
           util.throwMsg(res.data.ErrorMessage);
@@ -222,9 +234,9 @@ Page({
       },
     })
   },
-  isUseStorageFun(){
+  isUseStorageFun() {
     this.setData({
       isUseStorage: !this.data.isUseStorage,
     })
-  }
+  },
 })

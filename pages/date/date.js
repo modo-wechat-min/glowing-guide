@@ -25,12 +25,16 @@ Page({
     isFresh:false,
   },
   //获取日历相关参数
-  dataTime: function (index) {
-    var date = new Date();
-    date.setMonth(date.getMonth() + index);
-    var year = date.getFullYear();
-    var month = date.getMonth();
-    var months = date.getMonth() + 1;
+  dataTime: function (index,time) {
+    var date = time;
+    //防止时间溢出
+    var virtualYear = date.getFullYear();
+    var virtualMonth = date.getMonth();
+    var virtualTime = new Date(virtualYear, virtualMonth, 1);
+    virtualTime.setMonth(virtualTime.getMonth() + index);
+    var year = virtualTime.getFullYear();
+    var month = virtualTime.getMonth();
+    var months = virtualTime.getMonth() + 1;
     //最后一天是几号
     var d = new Date(year, months, 0);
     var lastDay = d.getDate();
@@ -51,7 +55,7 @@ Page({
     var time = new Date();
     var dateTime = time.getDate();
     for (var k = 0; k < 6; k++) {
-      this.dataTime(k);
+      this.dataTime(k, time); 
     }
     var count = 0;
     var arrayReal=[];
@@ -67,7 +71,7 @@ Page({
       arrayReal[k] = array;
     }
     //获取父级页面传参
-    let isFresh = options.isFresh;
+    let isFresh = options.isFresh? options.isFresh:false;
     let fatherStartTime = options.startTime;
     let fatherEndTime = options.endTime;
     let fatherStartTimeStr = new Date(util.getDayString(fatherStartTime));

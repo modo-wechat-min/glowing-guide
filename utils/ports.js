@@ -8,10 +8,12 @@ let imgUrl ="https://testapp.modo-life.com/Images/WeChatMiniStatic/"
 let modoHttp="https://testapp.modo-life.com/"
 let modoHttp2 = "https://testapp.modo-life.com"
 let modoImgHttp = "https://www.52modo.com";//晨野接口
+let defaultImg ="http://pe3iijnkh.bkt.clouddn.com/default.jpg"
 module.exports = {
   // 登录模块 login
   imgUrl: imgUrl,
   modoHttp: modoHttp,
   modoImgHttp: modoImgHttp,
-  modoHttp2: modoHttp2,  
+  modoHttp2: modoHttp2,
+  defaultImg: defaultImg,
 }

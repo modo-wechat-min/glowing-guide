@@ -12,12 +12,17 @@
   height: 36rpx;
   width: 100rpx;
   line-height: 36rpx;
-  border-radius: 19rpx;
+  border-radius: 18rpx;
   border: 1rpx solid #666;
   margin-top: 23rpx;
   text-align: center;
+  box-sizing: border-box;
 }
-
+.nochose.btn-active{
+  border: none;
+  background: #ff6644!important;
+  color: #fff;
+}
 .shadow {
   margin-bottom: 40rpx;
 }
@@ -25,7 +30,10 @@
 .item {
   padding: 30rpx;
 }
-
+.item.active{
+  border: 1rpx solid #ff6644;
+  border-radius: 6rpx;
+}
 .time-limit {
   font-size: 20rpx;
   color: #999;

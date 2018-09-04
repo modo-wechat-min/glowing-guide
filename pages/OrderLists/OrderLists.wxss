@@ -70,7 +70,7 @@
   font-size: 28rpx;
   color: #999;
   box-shadow: 3rpx 0 12rpx rgba(0, 0, 0, 0.1),-3rpx 0 6rpx rgba(0, 0, 0, 0.1),0rpx 3rpx 6rpx rgba(0, 0, 0, 0.1),0rpx -3rpx 6rpx rgba(0, 0, 0, 0.1);
-  border-radius: 6rpx;
+  border-radius: 10rpx;
   padding: 30rpx 20rpx;
   position: relative;
   margin: 26rpx 30rpx;
@@ -93,13 +93,23 @@
   display: flex;
   flex-direction: row-reverse;
 }
-.btn-box>view{
-  padding: 11rpx 15rpx;
+.btn-box>navigator{
+  height: 48rpx;
+  width: 124rpx;
+line-height: 46rpx;
   font-size: 24rpx;
-  background: #ff6644;
   border-radius: 6rpx;
-  color: #fff;
+  color: #ff6644;
   margin: 16rpx 0 0 22rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #ff6644;
+  text-align: center;
+}
+.btn-box>.navigator-active{
+  background: #ff6644;
+  color: #fff;
+  border: none;
+  line-height: 48rpx;
 }
 .icon-long{
   position: absolute;

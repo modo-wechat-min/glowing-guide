@@ -27,11 +27,13 @@ Page({
   getUserInfo: function(e) {
     let _this = this;
     let url = ".." + _this.data.url;
+    util.setStorage('historyUrl', url);
     if (url.indexOf("BranchDetails") > -1) {  
       let params = JSON.parse(_this.data.params); 
       url = url + '?BranchID= ' + params.BranchID + '&StartDate=' + params.StartDate + "&EndDate=" + params.EndDate + "&days=" + params.days;
     }
     app.globalData.userInfo = e.detail.userInfo;
+    console.log(e.detail)
     //成功返回上个页面
     if (e.detail.errMsg == "getUserInfo:ok") {
       util.getOpenId();

@@ -3,17 +3,17 @@
   加载中...
 </loading>
 <view class='main-box2'>
-  <view wx:if="{{!isComePersonal}}" class='flextwo shadow head-box'>
+  <view wx:if="{{!isComePersonal}}" class='flextwo shadow head-box' bindtap='chosenFun' data-index='{{-1}}'>
     <view class='font26'>不使用代金券</view>
-    <view class='nochose' bindtap='goback'>未选择</view>
+    <view class='nochose' bindtap='goback'>不选择</view>
   </view>
-  <view class=' shadow item' wx:for="{{listsObj}}" wx-index="{{index}}" wx:key="index" bindtap='chosenFun' data-index='{{index}}'>
+  <view class=' shadow item {{chosenID==item.ID?"active":""}}' wx:for="{{listsObj}}" wx-index="{{index}}" wx:key="index" bindtap='chosenFun' data-index='{{index}}'>
     <view class='flextwo border-d1'>
       <view>
         <view class='font26'>{{item.InitValue}}元代金券</view>
         <view class='time-limit'>{{item.Status==2?"已激活":""}}</view>
       </view>
-      <view class='{{chosenIndex==index?"status":""}} {{chosenIndex!=index?"nochose":""}}' wx:if="{{!isComePersonal}}" hover-class='btn-active'>{{chosenIndex==index?"已选择":"未选择"}}</view>
+      <view class='nochose {{chosenIndex==index||chosenID==item.ID?"btn-active":""}}' wx:if="{{!isComePersonal}}" hover-class='btn-active'>{{chosenIndex==index||chosenID==item.ID?"已选择":"未选择"}}</view>
       <navigator wx:if="{{isComePersonal}}" url='../BranchLists/BranchLists?CityIndex={{0}}'>
         <view class='status touse' hover-class='btn-active'>去使用</view>
       </navigator>

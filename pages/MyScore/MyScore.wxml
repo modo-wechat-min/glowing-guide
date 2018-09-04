@@ -15,8 +15,8 @@
       本月积分
     </view>
     <view class='history-item flextwo border-b1' wx:for="{{scoreObj.ThisMonthList}}" wx:key="index">
-      <view class='history-item-left'>
-        <view class='time'>{{filters.formalTime2(item.Date)}}</view>
+      <view class='history-item-left'>{{item.TypeToString}}
+        <view class='time'>{{filters.formalTime4(item.Date)}}</view>
       </view>
       <view class='history-item-left colorff6644'>
         {{item.Status==0?"+"+item.Score:"-"+item.Score}}
@@ -29,8 +29,8 @@
       历史积分
     </view>
     <view class='history-item flextwo border-b1' wx:if="{{moreScore}}" wx:for="{{scoreObj.HistoryList}}" wx:key="index">
-      <view class='history-item-left'>
-        <view class='time'>{{filters.formalTime2(item.Date)}}</view>
+      <view class='history-item-left'>{{item.TypeToString}}
+        <view class='time'>{{filters.formalTime4(item.Date)}}</view>
       </view>
       <view class='history-item-left colorff6644'>
         {{item.Status==0?"+"+item.Score:"-"+item.Score}}

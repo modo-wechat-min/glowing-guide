@@ -9,11 +9,13 @@ Page({
     time: 0,
     user: null,
     url: "",
+    params: "",
   },
   onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user'),
       url: options.url,
+      params: options.params ? JSON.parse(options.params) : ""
     })
   },
   bindPhone(e) {
@@ -91,19 +93,23 @@ Page({
       success: function(res) {
         if (res.data.Code == "SUCCESS") {
           util.setStorage("userID", res.data.TypeValueID);
-          if (_this.data.url.indexOf("/OrderLists/OrderLists") || _this.data.url.indexOf("/personal/personal")) {
+          let url = _this.data.url ? _this.data.url : util.getStorage('historyUrl');
+          let params = _this.data.params;
+          if (url.indexOf("/OrderLists/OrderLists") > -1 || url.indexOf("/personal/personal") > -1) {
             wx.switchTab({
-              url: ".." + _this.data.url,
+              url: ".." + url,
               success: function(e) {
                 var page = getCurrentPages().pop();
-                if (page == undefined || page == null) return;
+                if (page == undefined || page == null) return; 
                 page.onLoad();
               }
             })
             return false;
+          } else if (url.indexOf("/BranchDetails/BranchDetails") > -1) {
+            url += '?BranchID= ' + params.BranchID + '&StartDate=' + params.StartDate + "&EndDate=" + params.EndDate + "&days=" + params.days;
           }
           wx.navigateTo({
-            url: ".." + _this.data.url,
+            url: ".." + url,
           })
         } else {
           util.throwMsg(res.data.ErrorMessage);

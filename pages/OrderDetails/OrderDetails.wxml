@@ -1,10 +1,12 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <loading hidden="{{hidden}}">
   加载中...
- </loading>
-<view class="main-box">
-   <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结转，5订单关闭，6客户取消 -->
-  <view class='status border-b1'>{{orderObj.StatusToString}}</view>
+</loading>
+<view class="main-box" wx:if="{{orderObj}}">
+  <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结转，5订单关闭，6客户取消 -->
+  <view class='status border-b1 flextwo'><view>{{orderObj.StatusToString}}</view>
+  <view>{{timerTime}}</view>
+  </view>
   <view class='order-header '>
     <view class='font24'>订单号：{{orderObj.BillNumber}}</view>
     <view class='font24'>{{filters.formalTime1(orderObj.StartDate)}} - {{filters.formalTime1(orderObj.EndDate)}}</view>
@@ -12,25 +14,33 @@
   <view class='img-box border-b1'>
     <image class='order-img' src='{{modoImgHttp+orderObj.RoomTypeImg}}'></image>
     <view class='branch'>{{orderObj.BranchName}}</view>
-    <view class='font24'>{{orderObj.RoomTypeName}}</view>
+    <view class='font24'>{{orderObj.RoomTypeName}}</view> 
   </view>
   <view class='box-container border-b1'>
     <view class='box-title'>入住信息</view>
-    <view class='box-item'>姓名：阎相涛</view>
-    <view class='box-item'>身份证号：311111311111111111</view>
     <view class='box-item'>预订数量：{{orderObj.RoomCount}}间</view>
+    <view wx:for="{{orderObj.MyContact}}" wx:key="index" wx:if="{{index<=persons-1}}">
+      <view class='box-item'>租客姓名：{{item.Name}}</view>
+      <view class='box-item'>身份证号：{{item.CardNumber}}</view>
+    </view>
+     <view class='down-box' bindtap='personsFun' wx:if="{{orderObj.MyContact.length>1}}">
+        {{iconActive?"查看更多入住人":"收起入住人信息"}} <icon class='icon-down {{iconActive?"icon-up":""}}'></icon>
+      </view>
   </view>
   <view class='box-container border-b1'>
     <view class='box-title'>交易信息</view>
     <view class='box-item'>订单金额：
       <view class='float_r'>¥{{orderObj.detailMoney.TotalCharge}}</view>
     </view>
-    <view class='box-item'>减免金额：
-      <view class='float_r'>-¥{{orderObj.detailMoney.FreeMoney}}</view>
+    <view class='box-item'>优惠减免：
+      <view class='float_r'>-¥{{orderObj.detailMoney.VoucherMoney}}</view>
+    </view>
+    <view class='box-item'>储值消费：
+      <view class='float_r'>-¥{{orderObj.detailMoney.VoucherMoney}}</view>
     </view>
   </view>
   <view class='box-container border-b1'>
-    <view class='box-title'>支付金额
+    <view class='box-title'>{{orderObj.Status==1?"需付金额":"实付金额"}}
       <view class='float_r'>¥{{orderObj.detailMoney.RealPayMoney}}</view>
     </view>
   </view>
@@ -39,10 +49,11 @@
     <view class='box-item'>客观上对支付账单有任何疑问，可以随时联系客服帮您解决~</view>
   </view>
   <view class='box-container  quick-box'>
-    <view class='inbock' bindtap='phone'><icon class='icon phone'></icon> 联系客服</view>
-    <view class='inbock' bindtap='delete'><icon class='icon delete'></icon> 删除订单</view>
+    <view class='inbock' bindtap='phone'>
+      <icon class='icon phone'></icon> 联系客服</view>
+    <view class='inbock' bindtap='delete'>
+      <icon class='icon delete'></icon> 删除订单</view>
   </view>
-  <button class='btn' wx:if="{{orderObj.Status==1}}">去支付</button>
-  <button class='btn' wx:if="{{orderObj.Status==2}}">再次预定</button>
-  <button class='btn' wx:if="{{orderObj.Status==3}}">查看其它房型</button>
+  <button class='btn {{timerTime?"":"disable-class"}}' wx:if="{{orderObj.Status==1}}" bindtap='payment'>去支付</button>
+  <navigator url='../BranchLists/BranchLists?CityIndex={{0}}'><button class='btn' wx:if="{{orderObj.Status!=1}}">再次预定</button></navigator>
 </view>

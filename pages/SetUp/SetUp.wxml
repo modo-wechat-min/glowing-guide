@@ -1,7 +1,7 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <loading hidden="{{hidden}}">
   加载中...
- </loading>
+</loading>
 <view class='box'>
   <view class='flextwo item'>
     <view>
@@ -42,18 +42,18 @@
       {{personObj.Mobile?personObj.Mobile:""}}
     </view>
   </view>
-  <view class='flextwo item active'>
+  <view class='flextwo item {{isHasBirthDay?"":"active"}}'>
     <view>
       <icon class='icon birthday'></icon>
       <text decode='{{true}}'>生&emsp;&emsp;日</text>
     </view>
     <view>
-      <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
-    <view class="picker">
-       {{filters.formalTime2(date)}}
-    </view>
-  </picker>
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange" disabled='{{isHasBirthDay}}'>
+        <view class="picker">
+          {{filters.formalTime2(date)}}
+        </view>
+      </picker>
     </view>
   </view>
-<view class='login-out item' bindtap='loginOut'>退出登录</view>
+  <view class='login-out item' bindtap='loginOut'>退出登录</view>
 </view>

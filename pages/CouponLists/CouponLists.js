@@ -7,10 +7,12 @@ Page({
     chosenIndex:-1,
     hidden: false,
     nodata:false,
+    chosenID:"",
   },
   onLoad(options) {
     this.setData({
-      isComePersonal: options.isComePersonal,
+      isComePersonal: options.isComePersonal ? options.isComePersonal:false,
+      chosenID: options.chosenID,
     })
     this.getLists();
   },
@@ -37,16 +39,12 @@ Page({
         var pages = getCurrentPages();
         var prevPage = pages[pages.length - 2]; // 上一级页面
         prevPage.setData({
-          couponObj: this.data.listsObj[index],
+          couponObj: index==-1?null:this.data.listsObj[index],
         });
       }
       console.log(this.data.listsObj[index])
       wx.navigateBack({ changed: true });
-    }else{
-
     }
   },
-  goback(){
-    wx.navigateBack({ changed: true });
-  }
+  
 })
