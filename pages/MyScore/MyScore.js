@@ -16,12 +16,10 @@ Page({
   },
   getScore() {
     let _this = this;
-    console.log(_this.data.UserID + "123")
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetMyScoreRecord?UserID=" + _this.data.UserID,
       method: 'get',
       success: function(res) {
-        console.log(res)
         _this.setData({
           scoreObj: res.data,
           hidden: true,

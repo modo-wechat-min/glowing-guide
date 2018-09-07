@@ -23,6 +23,7 @@ Page({
     tradeArray: [],
     orderIndex: 0,
     openOrder: false,
+    nodata:false,
     order: [{
       name: "默认排序",
       id: 0
@@ -67,7 +68,7 @@ Page({
   },
   openOrderFun() {
     this.setData({
-      openOrder: !this.data.openOrder,
+      openOrder: !this.data.openOrder, 
     })
   },
   getBranchLists() {
@@ -83,11 +84,11 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString(),
       method: 'get',
       success: function(res) {
-        console.log(res)
         _this.setData({
           realLists: res.data,
           branchLists: res.data, //获取当前轮播图片的下标
           hidden: true,
+          nodata: true,
         })
         _this.getDistance();
       },
@@ -147,7 +148,7 @@ Page({
         } else if (val1 > val2) {
           return -1;
         } else {
-          return 0;
+          return 0;  
         }
       })
     } else if (index == 3) {
@@ -169,7 +170,7 @@ Page({
     this.setData({
       orderIndex: e.currentTarget.dataset.index,
       openOrder: false,
-      branchLists: array,
+      branchLists: array, 
     })
 
     function compare(obj1, obj2) {
@@ -186,7 +187,7 @@ Page({
   },
   closeFun() {
     this.setData({
-      openOrder: false,
+      openOrder: false, 
     })
   },
   defaultSet() {

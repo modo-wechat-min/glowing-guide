@@ -17,7 +17,6 @@ Page({
   },
   
   getInit() {
-    console.log(222222)
     if (!util.checkIsLogin()) { 
       return;
     }
@@ -28,7 +27,6 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/UserCenter?UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
       success: function (res) {
-        console.log(res.data);
         _this.setData({
           result: res.data, //获取当前轮播图片的下标
         })
@@ -55,7 +53,6 @@ Page({
     })
   },
   onShow(){
-    console.log(1111111)
     util.checkRight(this.getInit)
   }
 })

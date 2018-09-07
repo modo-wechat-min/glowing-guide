@@ -49,12 +49,10 @@ Page({
     let _this = this;
     let openId = util.getStorage("openId");
     let UserID = util.getStorage("userID");
-    console.log(ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID + "&OpenID=" + openId + "&UserID=" + UserID)
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID + "&OpenID=" + openId + "&UserID=" + UserID,
       method: 'get',
       success: function(res) {
-        console.log(res)
         _this.setData({
           orderObj: res.data,
           hidden: true,
@@ -78,6 +76,11 @@ Page({
       package: obj.package,
       signType: obj.signType,
       paySign: obj.paySign,
+      "success":function(){
+        wx.switchTab({
+          url: '../OrderLists/OrderLists',
+        })
+      },
     })
   },
   getTimer(time) {
@@ -87,7 +90,6 @@ Page({
     if (times<=0){
       return false;
     }
-
     timer = setInterval(function() { 
       var day = 0,
         hour = 0, 
@@ -105,17 +107,19 @@ Page({
       _this.setData({
         timerTime: realTime,
       })
-      console.log(day + "天:" + hour + "小时：" + minute + "分钟：" + second + "秒");
       times--;
     }, 1000);
     if (times <= 0) {
       clearInterval(timer);
-      _this.setData({
+      _this.setData({ 
         timerTime: "",
       })
     }
   },
   onUnload(){
     clearInterval(timer);
+    wx.switchTab({
+      url: '../OrderLists/OrderLists',
+    })
   }
 })

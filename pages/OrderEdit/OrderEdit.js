@@ -16,10 +16,11 @@ Page({
     roomArray: [null],
     couponObj: null,
     Remark: "",
-    useStorage: 0, //是否使用储值卡
+    useStorage: "", //是否使用储值卡
     CanSoldNumber: 0, //可预订数量
     index: 0, //时间索引
     isChecked: false,
+    defaultImg: ports.imgUrl + "default.jpg",
   },
   onLoad: function(options) {
     this.setData({
@@ -35,12 +36,12 @@ Page({
     let isChecked=this.data.isChecked;
     if (isChecked){
       this.setData({
-        isChecked: !this.data.isChecked,
-        useStorage:0,
+        isChecked: !this.data.isChecked, 
+        useStorage:"",
       })
     }else{
       this.setData({
-        isChecked: !this.data.isChecked,
+        isChecked: !this.data.isChecked, 
       })
     }
   },
@@ -80,17 +81,21 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
       success: function(res) {
+        let couponObj={};
+        couponObj.ID = res.data.VoucherID;
+        couponObj.InitValue = res.data.VoucherMoney;
         let roomArray = _this.data.roomArray;
         if (res.data.CanSoldNumber < _this.data.number) {
           if (res.data.CanSoldNumber == 0) {
             util.throwMsg("没有可预订房间了，亲！");
           }
-          roomArray.length = res.data.CanSoldNumber;
+          roomArray.length = res.data.CanSoldNumber > 0?res.data.CanSoldNumber:0;
           _this.setData({
             orderObj: res.data,
-            number: res.data.CanSoldNumber,
+            number: res.data.CanSoldNumber > 0 ? res.data.CanSoldNumber : 0,
             roomArray: roomArray,
             CanSoldNumber: res.data.CanSoldNumber,
+            couponObj: couponObj, 
             hidden: true,
           })
         } else {
@@ -98,6 +103,7 @@ Page({
             orderObj: res.data,
             CanSoldNumber: res.data.CanSoldNumber,
             hidden: true,
+            couponObj: couponObj,
           })
         }
       },
@@ -113,7 +119,7 @@ Page({
     let dataset = e.currentTarget.dataset;
     let array = this.data.roomArray;
     if (dataset.number) {
-      if (this.data.number == this.data.CanSoldNumber) {
+      if (this.data.number == this.data.CanSoldNumber) { 
         util.throwMsg("没有更多房间了，亲！");
         return false;
       }
@@ -175,20 +181,18 @@ Page({
     let _this = this;
     let UserID = util.getStorage("userID");
     let OpenID = util.getStorage("openId");
-    let JsonVoucher = []
+    let JsonVoucher = [{}]
     if (_this.data.couponObj) {
-      JsonVoucher[0] = {};
-      JsonVoucher[0].ID = _this.data.couponObj.ID;
+      JsonVoucher[0].ID = _this.data.couponObj.ID; 
     }
     let JsonPerson = [];
     if (_this.data.roomArray[0]) {
       _this.data.roomArray.map(function(item, key, ary) {
-        let obj = {};
+        let obj = {}; 
         obj.ID = item.ID;
         JsonPerson.push(obj);
       })
     }
-    console.log(_this.data.number)
     wx.request({
       url: ports.modoHttp + "api/WeChatMiniProgram/CreateBill",
       method: 'post',
@@ -200,15 +204,14 @@ Page({
         RoomCount: _this.data.number,
         StartDate: _this.data.startTime,
         EndDate: _this.data.endTime,
-        JsonPerson: JSON.stringify(JsonPerson),
-        JsonVoucher: JSON.stringify(JsonVoucher),
+        JsonPerson: JsonPerson[0] != null ? JSON.stringify(JsonPerson) : null,
+        JsonVoucher: JsonVoucher[0].ID && JsonVoucher[0].ID > 0 ? JSON.stringify(JsonVoucher) : null,
         Remark: _this.data.Remark,
         UseBalance: _this.data.useStorage,
-        ArriveTime: _this.data.index, //时间索引，就是时间 
+        ArriveTime: _this.data.index, //时间索引，就是时间  
       },
       success: function(res) {
-        console.log(res)
-        let PayMessage = res.data.PayMessage;
+        let PayMessage = res.data.PayMessage; 
         let BillID = res.data.BillID;
         if (res.data.Code == "SUCCESS") {
           wx.requestPayment({

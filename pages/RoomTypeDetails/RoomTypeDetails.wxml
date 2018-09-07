@@ -1,0 +1,40 @@
+<view class="main-box">
+  <view class='room-type flextwo'>
+    <view>{{typeObj.Name}}</view>
+    <view class='colorff6644' bindtap='toDailyPrice'>每日价格</view>
+  </view>
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" indicator-active-color="rgba(255, 102, 89, 1)" bindchange="swiperPageSwith" wx:if="{{typeObj.Images.length>0}}">
+    <block wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index" wx:for-item="item">
+      <swiper-item>
+        <image src="{{modoImgHttp+item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <image class='defaultImg' wx:else src='{{defaultImg}}'></image>
+  <view class='flextwo item-box'>
+    <view class='item'>
+      <text>面积</text>{{typeObj.Area}}
+    </view>
+    <view class='item'>
+      <text>楼层</text>{{typeObj.FloorArea?typeObj.FloorArea:"暂无楼层信息"}}
+    </view>
+    <view class='item'>
+      <text>床型</text>{{typeObj.BedType?typeObj.BedType:"暂无床型信息"}}
+    </view>
+    <view class='item'>
+      <text>无烟</text>不可吸烟
+    </view>
+    <view class='item'>
+      <text>加床</text>不可加床
+    </view>
+    <view class='item'>
+      <text>窗户</text>有窗
+    </view>
+    <view class='item'>
+      <text>宽带</text>有WIFI且免费
+    </view>
+  </view>
+</view>
+<view class='btn-class {{options.booknumber<=0?"disable":""}}'  bindtap='toBook' disabled="{{}}">
+立即预定
+</view>

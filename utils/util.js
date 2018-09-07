@@ -23,7 +23,6 @@ const initTime = (day,type) => {
 }
 const getDayString = time => {
   let timestr = time.replace('日', '').replace('月', '/').replace('年', '/');
-  console.log(timestr)
   return timestr;
 }
 const formatNumber = n => {
@@ -33,47 +32,42 @@ const formatNumber = n => {
 
 function initMonth() {
   let date = new Date();
-  console.log(666)
-  console.log(date.getFullYear() + "-" + date.getMonth() + 1)
   return date.getFullYear() + "-" + formatNumber((date.getMonth() + 1));
 }
 var Promise = require('./es6-promise.min.js');
 // 获取用户信息
-function getOpenId() {
-  var openId = getStorage("openId", false);
-  return new Promise((resolve, reject) => {
-    if (openId) {
-      console.log(1111)
-      resolve();
-    } else {
-      console.log(2222)
-      wx.login({
-        success: function(res) {
-          if (res.code) {
-            console.log(3333) 
-            console.log(res)
-            //发起网络请求,后期看需要promise化不？
-            wx.request({
-              url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code,
-              success: function(res) {
-                let data = res.data;
-                console.log(res)
-                setStorage('openId', data.OpenID, false);
-                setStorage('userID', data.UserID, false);
-              }
-            });
-          } else {
-            wx.showToast({
-              title: '获取用户登录态失败！' + res.errMsg, 
-              duration: 2000 
-            });
-          }
-        }
-      });
-
-
+function getOpenId(fn) {
+  var openId = getStorage("openId");
+  if (openId){
+    if (fn){
+      fn()
     }
-  });
+    return;
+  }else{
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //发起网络请求,后期看需要promise化不？
+          wx.request({
+            url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code,
+            success: function (res) {
+              let data = res.data;
+              setStorage('openId', data.OpenID);
+              setStorage('userID', data.UserID);
+              if (fn) {
+                fn()
+              }
+            }
+          });
+        } else {
+          wx.showToast({
+            title: '获取用户登录态失败！' + res.errMsg,
+            duration: 2000
+          });
+        }
+      }
+    });
+  }
 }
 
 /* store封装 */
@@ -135,7 +129,6 @@ function removeStorage(key, isSync = true) {
     wx.removeStorage({
       key: key,
       success: function(res) {
-        console.log(res.data)
       }
     });
   }
@@ -158,7 +151,6 @@ function deleteOrder(TypeValueID) {
           url: ports.modoHttp + "API/WeChatMiniProgram/DeleteBill?billId=" + TypeValueID,
           method: 'get',
           success: function(res) {
-            console.log(res)
             if (res.data.state == 1) {
               wx.showToast({
                 title: '操作成功',
@@ -185,7 +177,6 @@ function getContractsLists(obj) {
     url: ports.modoHttp + "API/WeChatMiniProgram/GetContact?UserID=" + UserID,
     method: 'get',
     success: function(res) {
-      console.log(res)
       _this.setData({
         listsObj: res.data,
         hidden: true,
@@ -215,23 +206,21 @@ function checkIsLogin(params) {
   }
 }
 //是否授权
-function checkRight(fn, options) {
+function checkRight(fn) {
   let app = getApp();
   wx.getSetting({
     success(res) {
       //未授权情况
-      console.log(3333333)
       if (!res.authSetting['scope.userInfo']) {
         let url = getCurrentPageUrl();
         wx.navigateTo({
-          url: '../authorization/authorization?url=' + url + "&params=" + JSON.stringify(options),
+          url: '../authorization/authorization?url=' + url,
         })
       } else {
         //已经授权
         if (fn){
           fn();
         }
-        
       }
     }
   })
@@ -253,7 +242,24 @@ function getUserInfoFun(obj) {
     }
   }
 }
-
+function openContract(url){
+  wx.showModal({
+    title: '正在加载该文件',
+    content: '文件较大，请耐心等待',
+    showCancel: false,
+  })
+  wx.downloadFile({
+    url: url,
+    success: function (res) {
+      let tempFilePath = res.tempFilePath;
+      wx.openDocument({
+        filePath: tempFilePath,
+        success: function (res) {
+        }
+      })
+    }
+  })
+}
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
@@ -271,4 +277,5 @@ module.exports = {
   checkIsLogin: checkIsLogin,
   checkRight: checkRight,
   getUserInfoFun: getUserInfoFun,
+  openContract: openContract,
 }

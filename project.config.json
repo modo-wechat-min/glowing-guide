@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -123,6 +123,24 @@
 					"name": "设置页",
 					"pathName": "pages/SetUp/SetUp",
 					"query": "BranchID=6&EndDate=2018年09月21日&StartDate=2018年09月16日&days=5"
+				},
+				{
+					"id": 16,
+					"name": "充值",
+					"pathName": "pages/Charge/Charge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "具体房型",
+					"pathName": "pages/RoomTypeDetails/RoomTypeDetails",
+					"query": ""
 				}
 			]
 		}

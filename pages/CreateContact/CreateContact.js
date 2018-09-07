@@ -19,13 +19,10 @@ Page({
       sourceType: [ 'camera'],
       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片   
       success: function(res) {
-        console.log(res.tempFilePaths)
         _this.setData({
           tempFilePaths: res.tempFilePaths
         })
         var path = res.tempFilePaths;
-        console.log(ports.modoHttp + 'API/WeChatMiniProgram/ValidIDCard');
-        console.log(UserID, openId)
         wx.uploadFile({
           url: ports.modoHttp + 'API/WeChatMiniProgram/ValidIDCard', //仅为示例，非真实的接口地址
           filePath: path[0],
@@ -35,7 +32,6 @@ Page({
             'OpenID': openId
           },
           success: function(res) {
-            console.log(res)
             var data = JSON.parse(res.data);
             if (data.Code == "SUCCESS") {
               _this.setData({

@@ -21,9 +21,9 @@
     每晚价格
   </view>
   <view class='flexone'>
-    <input class='price' placeholder='最低价' bindinput="minPriceFun" value='{{minPrice}}'></input>
+    <input class='price' placeholder='最低价' type="number" bindinput="minPriceFun" value='{{minPrice}}'></input>
     <view class='line'></view>
-    <input class='price' placeholder='最高价' bindinput="maxPriceFun" value='{{maxPrice}}'></input>
+    <input class='price' placeholder='最高价' type="number" bindinput="maxPriceFun" value='{{maxPrice}}'></input>
   </view>
 </view>
 <view class='btn-box flextwo'>

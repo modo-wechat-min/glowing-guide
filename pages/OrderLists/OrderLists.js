@@ -25,7 +25,6 @@ Page({
     });
   },
   getRentType(e) {
-    console.log(e)
     this.setData({
       RentType: e.currentTarget.dataset.type,
       PageIndex:1,
@@ -43,7 +42,6 @@ Page({
             url: ports.modoHttp + "API/WeChatMiniProgram/DeleteBill?billId=" + e.currentTarget.dataset.id,
             method: 'get',
             success: function(res) {
-              console.log(res)
               if (res.data.state == 1) {
                 wx.showToast({
                   title: '操作成功',
@@ -73,7 +71,7 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetMyBill?UserID=" + UserID + "&RentType=" + _this.data.RentType + "&PageIndex=" + _this.data.PageIndex + "&Status=" + _this.data.Status,
       method: 'get',
       success: function(res) {
-        console.log(res.data);
+        console.log(res)
         let array;
         if (isMore){//判断是否追加数据
           array = _this.data.orderLists.concat(res.data);
@@ -117,5 +115,9 @@ Page({
       PageIndex: 1,
     });
     this.getLists();
+  },
+  openContract(e){
+    let url = e.currentTarget.dataset.url;
+    util.openContract(url);
   }
 })

@@ -26,10 +26,7 @@
       {{filters.decimalTwoScore(branchObj.ScoreAvg)}}分</view>
   </view>
   <view class='flexone note-box'>
-    <view>交通便利</view>
-    <view>管家式服务</view>
-    <view>独立卫浴</view>
-    <view>设备全</view>
+    <view wx:for="{{branchObj.markingList}}" wx:key="index">{{item.MarkingName}}</view>
   </view>
   <view class='position-box'>
     <icon class='icon icon-position'></icon>
@@ -53,7 +50,7 @@
       <view class='scale'>
         <icon class='icon icon-scale'></icon>
       </view>
-      <image class='room-img' src='{{modoImgHttp+item.Img}}' binderror='imgErrorFun' bindtap='openFun' data-RoomTypeID='{{item.ID}}'></image>
+      <image class='room-img' src='{{item.Img?modoImgHttp+item.Img:defaultImg}}' binderror='imgErrorFun' bindtap='goTypePage' data-RoomTypeID='{{item.ID}}' data-booknumber='{{item.CanSoldNumber}}'></image>
       <view class='flextwo right-info {{index==itemIndex?"active":""}}'>
         <view>
           <view class='room-type'>{{item.Name}}</view>
@@ -96,11 +93,13 @@
   <view class='map-title'>
     周边及交通
   </view>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" bindcontroltap="controltap" markers="{{marker}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 386rpx;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" bindcontroltap="controltap" markers="{{marker}}" bindmarkertap="markertap" bindtap='openLocation' bindregionchange="regionchange" show-location style="width: 100%; height: 386rpx;">
+  </map>
   <view class='map-more'>
     <icon class='icon icon-map'></icon>
-    <view class='color666 font28 aside ellipsis'>
-      <text class='color333'>| 周边商圈：</text> <text wx:for="{{branchObj.tradList}}" wx:key="index">{{item.TradName+"、"}}</text>
+    <view class='color666 font28 aside ellipsis' bindtap='openLocation'>
+      <text class='color333'>| 周边商圈：</text>
+      <text wx:for="{{branchObj.tradList}}" wx:key="index">{{item.TradName+"、"}}</text>
     </view>
   </view>
 </view>
@@ -110,7 +109,7 @@
     <navigator url='../service/service'>
       <view class='font26 color999 getall-service relative'>查看全部</view>
     </navigator>
-  </view> 
+  </view>
   <view class='service-lists'>
     <view>
       <icon class='icon icont wifi'></icon>
@@ -151,51 +150,51 @@
   <view class='rule-item'>2、本公寓支持刷卡消费；</view>
   <view class='rule-item'>3、如需发票，需另支付6%服务费；</view>
 </view>
-<view >
-<cover-view  class='chose-room  {{showBox?"open-class":"close-class"}} ' >
-  <cover-view class='border-top'></cover-view>
-  <cover-view class='chose-room-type flextwo'>
-    <cover-view class='chose-room-type-name'>{{typeObj.Name}}</cover-view>
-    <cover-view class='close' bindtap='closeFun'>X</cover-view>
+<!-- <view>
+  <cover-view class='chose-room  {{showBox?"open-class":"close-class"}} '>
+
+    <cover-view class='chose-room-type flextwo'>
+      <cover-view class='chose-room-type-name'>{{typeObj.Name}}</cover-view>
+      <cover-view class='close' bindtap='closeFun'>X</cover-view>
+    </cover-view>
+    <cover-view class='img-box' bindtouchstart="handletouchtart" bindtouchmove="handletouchmove">
+      <cover-view class='img-lists' animation="{{animation2}}" style='width: {{ subImgLength*750}}rpx;'>
+        <cover-image src="{{modoImgHttp+item}}" wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-image>
+      </cover-view>
+      <cover-view class='dot'> 
+        <cover-view class='dot-item {{index==subImgIndex?"active":""}}' wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class='room-tip-box'>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>面积</cover-view>
+        <cover-view class='cover-view-second'>{{typeObj.Area}}㎡</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>楼层</cover-view>
+        <cover-view class='cover-view-second'>{{typeObj.FloorArea?typeObj.FloorArea:""}}层</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>床型</cover-view>
+        <cover-view class='cover-view-second'>{{typeObj.BedType?typeObj.BedType:""}}</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>屋檐</cover-view>
+        <cover-view class='cover-view-second'>不可吸烟</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>加床</cover-view>
+        <cover-view class='cover-view-second'>不可加床</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>窗户</cover-view>
+        <cover-view class='cover-view-second'>有窗</cover-view>
+      </cover-view>
+      <cover-view class='chose-room-tip flexone'>
+        <cover-view class='chose-room-title'>宽带</cover-view>
+        <cover-view class='cover-view-second'>有WIFI且免费</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class='get-price' hover-class='btn-active' bindtap='toDailyPrice'>查看所有价格</cover-view>
   </cover-view>
-  <cover-view class='img-box' bindtouchstart="handletouchtart" bindtouchmove="handletouchmove">
-    <cover-view class='img-lists' animation="{{animation2}}" style='width: {{ subImgLength*750}}rpx;'>
-      <cover-image src="{{modoImgHttp+item}}" wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-image>
-    </cover-view>
-    <cover-view class='dot'>
-      <cover-view class='dot-item {{index==subImgIndex?"active":""}}' wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-view>
-    </cover-view>
-  </cover-view>
-  <cover-view class='room-tip-box'>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>面积</cover-view>
-      <cover-view class='cover-view-second'>{{typeObj.Area}}㎡</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>楼层</cover-view>
-      <cover-view class='cover-view-second'>{{typeObj.FloorArea?typeObj.FloorArea:""}}层</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>床型</cover-view>
-      <cover-view class='cover-view-second'>{{typeObj.BedType?typeObj.BedType:""}}</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>屋檐</cover-view>
-      <cover-view class='cover-view-second'>不可吸烟</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>加床</cover-view>
-      <cover-view class='cover-view-second'>不可加床</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>窗户</cover-view>
-      <cover-view class='cover-view-second'>有窗</cover-view>
-    </cover-view>
-    <cover-view class='chose-room-tip flexone'>
-      <cover-view class='chose-room-title'>宽带</cover-view>
-      <cover-view class='cover-view-second'>有WIFI且免费</cover-view>
-    </cover-view>
-  </cover-view>
-  <cover-view class='get-price' hover-class='btn-active' bindtap='toDailyPrice'>查看所有价格</cover-view>
-</cover-view>
-</view>
+</view> -->

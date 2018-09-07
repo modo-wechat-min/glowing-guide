@@ -27,14 +27,14 @@
       <view class='font26 color333 room-type'>豪华大床房</view>
       <view class='time'>开始时间:{{filters.formalTime(item.Orders[0].StartDate)}}</view>
       <view class='time'>开始时间:{{filters.formalTime(item.Orders[0].EndDate)}}</view>
-      <view class='money font26 color333 border-b1'>
+      <view class='money font26 color333 border-b1' wx:if="{{RentType==0}}">
         支付金额：¥{{item.TotalRecevice}}
       </view>
       <view class='btn-box'>
         <navigator hover-class='navigator-active' bindtap='deleteOrder' data-id='{{item.BillID}}' wx:if="{{RentType==0}}">删除订单</navigator>
-        <navigator hover-class='navigator-active' url='../OrderDetails/OrderDetails?TypeValueID={{item.BillID}}'>订单详情</navigator>
+        <navigator hover-class='navigator-active' url='../OrderDetails/OrderDetails?TypeValueID={{item.BillID}}' wx:if="{{RentType==0}}">订单详情</navigator>
         <navigator hover-class='navigator-active' wx:if="{{item.Status==4&&RentType==0}}" url='../evaluate/evaluate?TypeValueID={{item.BillID}}'>订单评价</navigator>
-        <!-- <navigator hover-class='navigator-active' bindtap='goContract' data-id='{{item.BillID}}' wx:if="{{RentType==1}}">查看合同</navigator> -->
+        <navigator hover-class='navigator-active' bindtap='openContract' data-url='{{item.LoadUrl}}' wx:if="{{RentType==1&&item.LoadUrl}}">查看合同</navigator>
         <navigator hover-class='navigator-active' bindtap='planPayment' data-id='{{item.BillID}}' wx:if="{{RentType==1}}" url='../planPayment/planPayment?ContractID={{item.ContractID}}'>付款计划</navigator>
       </view>
     </view>

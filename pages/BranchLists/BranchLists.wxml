@@ -64,4 +64,8 @@
       <view class='note' wx:for="{{item.TeadingList}}" wx:key="index" wx:if="{{index<=5}}">{{item.TradName}}</view>
     </view>
   </view>
+  <view id='nodata' wx:if="{{branchLists.length==0&&nodata}}">
+    <icon class='nodata'></icon>
+    <view>没有匹配房源</view>
+  </view>
 </view>

@@ -71,7 +71,7 @@ Page({
         BirthDay: _this.data.date,
       },
       success: function (res) {
-        console.log(123)
+        console.log("提交成功")
       },
     })
   }

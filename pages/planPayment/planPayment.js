@@ -23,7 +23,6 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetOrderContractByid?contractid=" + contractId,
       method: 'get',
       success: function (res) {
-        console.log(res)
         _this.setData({
           contractObj: res.data,
           hidden: true,

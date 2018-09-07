@@ -1,7 +1,6 @@
 let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
-
   data: {
     array: [0, 0, 0, 0, 0],
     isHideName: true,
@@ -26,7 +25,6 @@ Page({
   },
   bindReviewNameScore(e) {
     let dataset = e.currentTarget.dataset;
-    console.log(e.currentTarget.dataset)
     this.setData({
       thisReviewNameScore: dataset.index+1,
     })
@@ -37,7 +35,6 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetCommentBill?billId=" + _this.data.billId,
       method: 'get',
       success: function(res) {
-        console.log(res.data);
         let reviewItemListArray = res.data.reviewItemList.map(function(item, key, ary) {
           let obj = {};
           obj.ReviewItemValue = 5;
@@ -45,7 +42,6 @@ Page({
           obj.ReviewShortName = item.ShortName;
           return obj;
         })
-        console.log(reviewItemListArray)
         _this.setData({
           orderObj: res.data,
           reviewItemListArray: reviewItemListArray,
@@ -73,7 +69,6 @@ Page({
         ReviewItemContent : array,
       },
       success: function(res) {
-        console.log(res)
         if (res.data.state==1){
           wx.showToast({
             title: '操作成功',
@@ -88,12 +83,10 @@ Page({
   },
   evaluateFun(e) {
     let dataset = e.currentTarget.dataset;
-    console.log(e.currentTarget.dataset)
     let array = this.data.reviewItemListArray;
     array[dataset.groupindex].ReviewItemValue = dataset.cellindex + 1;
     this.setData({
       reviewItemListArray: array,
     })
-    console.log(this.data.reviewItemListArray)
   }
 })

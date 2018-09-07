@@ -27,7 +27,6 @@ Page({
     var prevPage = pages[pages.length - 2]; // 上一级页面
     var array= prevPage.data.roomArray;
     array[this.data.index] = this.data.listsObj[this.data.choseID];
-    console.log(array)
     prevPage.setData({
       roomArray: array,
     });

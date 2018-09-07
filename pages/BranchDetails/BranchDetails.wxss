@@ -516,7 +516,7 @@ cover-image {
   height: 46rpx;
   line-height: 46rpx;
 }
-
+ 
 .cover-view-second {
   max-width: 200rpx;
   overflow: hidden;
@@ -533,4 +533,16 @@ cover-image {
 .close-class{
       transform: translateY(848rpx);
       transition: all 600ms ease-in-out;
+}
+#map{
+  position: relative;
+}
+.nav-box{
+  position: absolute;
+  width: 90rpx;
+  height: 90rpx;
+  background: #3C69EF;
+  border-radius: 45rpx;
+  right: 10rpx;
+  bottom: 10rpx;
 }

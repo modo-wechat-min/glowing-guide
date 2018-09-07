@@ -20,12 +20,12 @@
     "pages/OrderDetails/OrderDetails",
     "pages/service/service",
     "pages/condition/condition",
-    "pages/Destination/Destination",
     "pages/OrderEdit/OrderEdit",
     "pages/OrderPayment/OrderPayment",
     "pages/EveryDayPrice/EveryDayPrice",
     "pages/BranchDetails/BranchDetails",
-    "pages/date/date"
+    "pages/date/date" ,
+    "pages/RoomTypeDetails/RoomTypeDetails" 
   ],
   "window": {
     "backgroundTextStyle": "light",

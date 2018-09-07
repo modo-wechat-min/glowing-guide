@@ -32,7 +32,6 @@ Page({
     _this.setData({
       hidden: false,
     })
-    console.log(ports.modoHttp + "API/WeChatMiniProgram/MyBalanceRecord?UserID=" + UserID + "&Date=" + _this.data.date)
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/MyBalanceRecord?UserID=" + UserID + "&Date=" + _this.data.date,
       method: 'get',

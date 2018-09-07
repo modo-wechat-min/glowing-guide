@@ -16,7 +16,6 @@ getStore(){
     url: ports.modoHttp + "API/WeChatMiniProgram/GetUserBalance?UserID=" + UserID + "&OpenID=" + openId,
     method: 'get',
     success: function (res) {
-      console.log(res)
       _this.setData({
         scoreObj: res.data,
         hidden: true,

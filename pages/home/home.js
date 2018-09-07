@@ -37,7 +37,6 @@ Page({
     })
   },
   getLocation() {
-    console.log("in")
     //地图授权
     let _this = this
     wx.getLocation({
@@ -47,7 +46,6 @@ Page({
         console.log("success")
           _this.loadCity(res.longitude, res.latitude)
       },
-      
     })
   },
   loadCity: function (longitude, latitude) {
@@ -59,11 +57,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        // success  
-        console.log(111)
-        console.log(res);
         var city = res.data.result.addressComponent.city;
-        console.log(city)
         var index=0;
         if (city.indexOf("北京")>-1){
           index=1;
