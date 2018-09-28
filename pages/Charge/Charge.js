@@ -35,15 +35,27 @@ Page({
   },
   getDate() {
     let _this = this;
+    let openId = util.getStorage("openId");
+    console.log(openId)
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/RechargeCardList",
       method: 'get',
+      header: {
+        "Authorization": openId,
+      },
       success: function(res) {
         _this.setData({
           chargeObj: res.data,
           hidden: true,
         })
       },
+      complete: function (res) {
+        if (res.statusCode === 401) {
+          util.throwMsg("非法请求");
+          util.setStorage('userID', "", false);
+          return;
+        }
+      }
     })
   },
   buyCard() {
@@ -53,8 +65,11 @@ Page({
     let UserID = util.getStorage("userID");
     let cardId = data.chargeObj[data.choseIndex].ID;
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/BuyRechargeCard/" + cardId + "?Count=" + data.cradNumber + "&UserID=" + UserID + "&OpenID=" + openId,
+      url: ports.modoHttp + "API/WeChatMiniProgram/BuyRechargeCard?CardID=" + cardId + "&Count=" + data.cradNumber + "&UserID=" + UserID + "&OpenID=" + openId,
       method: 'get',
+      header:{
+        "Authorization": openId,
+      },
       success: function(res) {
         let PayMessage = res.data;
         wx.requestPayment({
@@ -63,15 +78,26 @@ Page({
           package: PayMessage.package,
           signType: PayMessage.signType,
           paySign: PayMessage.paySign,
-          'success': function(res) {
-            wx.redirectTo({
-              url: '../OrderLists/OrderLists',
+          'success': function (res) {
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 2000
             })
           },
-          'fail': function(res) {
-            wx.redirectTo({
-              url: '../OrderLists/OrderLists',
+          'fail': function (res) {
+            wx.showToast({
+              title: '支付失败',
+              icon: 'none',
+              duration: 2000
             })
+          },
+           complete: function (res) {
+            if (res.statusCode === 401) {
+              util.throwMsg("非法请求");
+              util.setStorage('userID', "", false);
+              return;
+            }
           }
         })
       },

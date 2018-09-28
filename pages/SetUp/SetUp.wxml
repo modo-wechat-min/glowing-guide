@@ -50,10 +50,10 @@
     <view>
       <picker mode="date" value="{{date}}" bindchange="bindDateChange" disabled='{{isHasBirthDay}}'>
         <view class="picker">
-          {{filters.formalTime2(date)}}
+          {{date?filters.formalTime2(date):"设置生日"}}
         </view>
       </picker>
     </view>
   </view>
-  <view class='login-out item' bindtap='loginOut'>退出登录</view>
+  <!-- <view class='login-out item' bindtap='loginOut'>退出登录</view> -->
 </view>

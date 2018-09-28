@@ -108,7 +108,7 @@
     </view>
     <view class='list-item'>
       <icon class='icon chu'></icon>
-      <view>出具租赁</view>
+      <view>厨具租赁</view>
     </view>
   </view>
   <view class="icon-title">服务</view>

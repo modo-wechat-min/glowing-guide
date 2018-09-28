@@ -15,12 +15,22 @@ getStore(){
   wx.request({
     url: ports.modoHttp + "API/WeChatMiniProgram/GetUserBalance?UserID=" + UserID + "&OpenID=" + openId,
     method: 'get',
+    header: {
+      "Authorization": openId,
+    }, 
     success: function (res) {
       _this.setData({
         scoreObj: res.data,
         hidden: true,
       })
     },
+    complete: function (res) {
+      if (res.statusCode === 401) {
+        util.throwMsg("非法请求");
+        util.setStorage('userID', "", false);
+        return;
+      }
+    }
   })
 }
 })

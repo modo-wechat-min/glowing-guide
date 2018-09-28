@@ -1,0 +1,21 @@
+<view class='box'>
+  <view class='bg-img'>
+    <view class='vip-type'>
+    {{isVip?"VIP会员":"E会员"}} 
+    </view>
+    <view class='vip-number' wx:if='{{!(options.CardNumber=="null"||options.CardNumber==undefined)}}' >NO：{{options.CardNumber}}</view>
+    <image class='bgimg' src='{{ImageUrl}}'></image>
+  </view>
+  <view>
+    <view class='font30 color999'>会员政策</view>
+    <view class='font28'>E会员：</view>
+    <view class='font24'>获得方式：- 微信、官网免费注册</view>
+    <view class='font24'>享受权限：- 全网最低会员价</view>
+    <view class='font28'>VIP会员：</view>
+    <view class='font24'>获得方式：- 购买储值卡或88元会员卡直接获得</view>
+    <view class='font24'>享受权限：- 全网最低会员价基础上再打95折</view>
+    <view class='delay'>- 离店延迟至14点</view>
+  </view>
+</view>
+<navigator wx:if="{{!isVip}}"  class='btn-exchage ' url='../BuyVipPayment/BuyVipPayment'>立即购买</navigator>
+<navigator wx:else class='btn-exchage ' url='../BranchLists/BranchLists?CityIndex={{0}}'>立即使用</navigator>

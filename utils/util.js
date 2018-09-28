@@ -37,7 +37,7 @@ function initMonth() {
 var Promise = require('./es6-promise.min.js');
 // 获取用户信息
 function getOpenId(fn) {
-  var openId = getStorage("openId");
+  var openId = getStorage("openId"); 
   if (openId){
     if (fn){
       fn()
@@ -47,13 +47,20 @@ function getOpenId(fn) {
     wx.login({
       success: function (res) {
         if (res.code) {
-          //发起网络请求,后期看需要promise化不？
           wx.request({
-            url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code,
+            url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code, 
             success: function (res) {
               let data = res.data;
               setStorage('openId', data.OpenID);
               setStorage('userID', data.UserID);
+              if (!data.OpenID){
+                wx.showToast({
+                  title: '发生错误！',
+                  duration: 2000,
+                  icon: "none",
+                });
+                return;
+              }
               if (fn) {
                 fn()
               }
@@ -141,7 +148,7 @@ function throwMsg(msg) {
   })
 }
 //删除订单
-function deleteOrder(TypeValueID) {
+function deleteOrder(TypeValueID,back) {
   wx.showModal({
     title: '提示',
     content: '确定删除订单吗',
@@ -157,6 +164,13 @@ function deleteOrder(TypeValueID) {
                 icon: 'success',
                 duration: 2000
               })
+              if (back){
+                setTimeout(function () {
+                  wx.navigateBack({
+                    changed: true
+                  });
+                }, 2000)
+              }
             } else {
               throwMsg(res.data.ErrorMessage);
             }
@@ -212,6 +226,8 @@ function checkRight(fn) {
     success(res) {
       //未授权情况
       if (!res.authSetting['scope.userInfo']) {
+
+        
         let url = getCurrentPageUrl();
         wx.navigateTo({
           url: '../authorization/authorization?url=' + url,

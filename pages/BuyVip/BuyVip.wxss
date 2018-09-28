@@ -1,0 +1,73 @@
+.box {
+  padding: 0 30rpx;
+  color: #333;
+}
+
+.bg-img {
+  width: 690rpx;
+  height: 400rpx;
+  margin: 54rpx 0rpx;
+  position: relative;
+}
+.bgimg{
+  width: 690rpx;
+  height: 396rpx;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.vip-type,.vip-number,.bgimg{
+position: absolute; 
+}
+.vip-number{
+    left: 36rpx;
+  top: 80rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+.vip-type{
+  left: 90rpx;
+  top: 36rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+.font24 {
+  margin-top: 10rpx;
+  text-indent: 70rpx;
+  position: relative;
+}
+
+.font24::before {
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  background: #333;
+  border-radius: 6rpx;
+  position: absolute;
+  content: "";
+  left: 50rpx;
+  top: 12rpx;
+}
+
+.font28 {
+  margin-top: 20rpx;
+}
+
+.delay {
+  font-size: 24rpx;
+  text-indent: 191rpx;
+  margin-top: 10rpx;
+}
+.btn-exchage{
+  width: 680rpx;
+  height: 86rpx;
+  background: #ff6644;
+  border-radius: 8rpx;
+  position: fixed;
+  left: 35rpx;
+  bottom: 20rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 86rpx;
+text-align: center;
+}

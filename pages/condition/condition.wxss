@@ -1,3 +1,6 @@
+.main-box2{
+  padding-bottom:140rpx; 
+}
 .time {
   width: 50%;
   text-align: center;
@@ -40,14 +43,14 @@
 
 .lists {
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .item {
   position: relative;
   padding-left: 48rpx;
-  width: 26%;
-  margin-top: 42rpx;
+  /* width: 26%; */
+  margin: 42rpx 40rpx 0 0rpx;
   font-size: 28rpx;
 }
 
@@ -71,6 +74,7 @@
   height: 34rpx;
   background-size: cover;
   left: -0rpx;
+  top: 0;
 }
 
 .price-box {
@@ -94,7 +98,7 @@
   width: 118rpx;
   margin: 0 20rpx;
   background: #666;
-  margin-top: 28rpx;
+  margin-top: 28rpx; 
 }
 
 .btn-box {
@@ -107,6 +111,8 @@
   padding: 0 30rpx;
   box-sizing: border-box;
   border-top: 1rpx solid #ddd;
+  z-index: 999;
+  background: #fff;
 }
 
 .reset, .serch {

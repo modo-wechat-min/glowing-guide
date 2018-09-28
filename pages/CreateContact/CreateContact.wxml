@@ -3,7 +3,7 @@
   </image>
   <view class='tip'>点击上方图片上传身份证照片</view>
   <button class='confirm' bindtap='chooseimage'>
-    证件扫描
+    证件拍照
   </button>
   <view class='note'>
     请确保上传的身份信息与实际入住人一致，因两者不符而
@@ -23,6 +23,6 @@
     确认
   </button>
   <view class='note'>
-    如果识别出现问题请<view class='repeat' bindtap='repeatFun'>重新扫描</view>
+    如果识别出现问题请<view class='repeat' bindtap='repeatFun'>重新拍照</view>
   </view>
 </view>

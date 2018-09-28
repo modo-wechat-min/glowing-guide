@@ -10,7 +10,7 @@
     <view wx:if="{{days>0}}" class="total-day">共{{days}}晚</view>
   </view>
   <view class='tilte trading-area font34'>
-    商圈
+    {{array[index]}}商圈
   </view>
   <view class='flexone lists'>
     <view class='item {{ item.isChosen?"active":""}}' wx:for="{{tradeArray}}" wx:key="{{index}}" bindtap='getTradingArea' data-index='{{index}}'>

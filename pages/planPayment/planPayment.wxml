@@ -5,7 +5,7 @@
 <view class='box'>
   <view class='header'>
     <view class='branch-name'>
-      {{contractObj.BranchName}}
+      {{contractObj.RoomName}}
     </view>
     <view class='type'>
       {{contractObj.RoomType}}
@@ -17,16 +17,21 @@
   <view class='payment-item' wx:for="{{contractObj.BudgetList}}" wx:key="index">
     <view class='flextwo item-title'>
       <view class='item-index'>
-        <text wx:if="{{item.ExpenseType==1}}">第{{index+1}}期-</text>{{item.PayName}}</view>
-      <view wx:if="{{item.IsPay==0}}" class='colorff6644'>
+        <text wx:if="{{item.ExpenseType==1}}">{{item.Count}}-</text>{{item.PayName}}</view>
+      <view wx:if="{{item.IsPay==0}}">
         <icon class='wait-icon icon'></icon>待支付</view>
       <view wx:else class='payed'>
         <icon class='payed-icon icon'></icon>已支付</view>
     </view>
     <view class=' item-content'>
-      <view>租约周期：{{filters.leaseTime(item.Lease)}}</view>
-      <view class='item-time'>付款日期：{{filters.formalTime(item.PayDate)}} </view>
-      <view>房租费用：¥3000 <navigator class='payment-btn'>立即支付</navigator></view>
+      <view wx:if="{{item.Lease}}">租约周期：{{filters.leaseTime(item.Lease)}}</view>
+      <view class='item-time'>付款日期：{{filters.formalTime(item.PayDate)}}
+        <text wx:if="{{0<=item.Days&&item.Days<=7&&item.IsPay==0&&item.PayPrice>0}}" class='wait-days'>剩余{{item.Days}}天</text>
+        <text wx:if="{{item.Days<0&&item.IsPay==0&&item.PayPrice>0}}" class='wait-days'>逾期{{-item.Days}}天</text>
+      </view>
+      <view>{{item.PayName}}费用：¥{{item.PayPrice}}
+        <navigator class='payment-btn' wx:if="{{item.IsPay==0&&item.PayPrice>0}}" data-id="{{item.ID}}" data-money='{{item.PayPrice}}' bindtap='paymentFun'>立即支付</navigator>
+      </view>
     </view>
   </view>
 </view>

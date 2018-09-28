@@ -40,8 +40,16 @@ Page({
         useStorage:"",
       })
     }else{
+      let Balance = this.data.orderObj.Balance;
+      let data = this.data;
+      let number = data.number;
+      let PayMoney = data.orderObj.PayMoney;
+      let InitValue = data.couponObj ? data.couponObj.InitValue : 0;
+      let maxTotal = PayMoney * number - InitValue;
+      let useStorage=Math.min(Balance, maxTotal);
       this.setData({
         isChecked: !this.data.isChecked, 
+        useStorage: useStorage
       })
     }
   },
@@ -50,9 +58,9 @@ Page({
     let useValue = e.detail.value;
     let data = this.data;
     let number = data.number;
-    let TotalMoney = data.orderObj.TotalMoney;
+    let PayMoney = data.orderObj.PayMoney;
     let InitValue = data.couponObj ? data.couponObj.InitValue : 0;
-    let maxTotal = TotalMoney * number - InitValue;
+    let maxTotal = PayMoney * number - InitValue;
     if (maxTotal < useValue) {
       util.throwMsg("您输入金额已超出消费金额！");
       this.setData({
@@ -81,6 +89,7 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID,
       method: 'get',
       success: function(res) {
+        console.log(res)
         let couponObj={};
         couponObj.ID = res.data.VoucherID;
         couponObj.InitValue = res.data.VoucherMoney;
@@ -124,9 +133,12 @@ Page({
         return false;
       }
       array.push(null)
+      
       this.setData({
         number: this.data.number + 1,
         roomArray: array,
+        isChecked: false,
+        useStorage: "",
       })
     } else {
       if (this.data.number <= 1) {
@@ -135,8 +147,10 @@ Page({
       }
       array.length = array.length - 1
       this.setData({
-        number: this.data.number - 1,
+        number: this.data.number - 1, 
         roomArray: array,
+        isChecked: false,
+        useStorage: "",
       })
     }
   },
@@ -178,6 +192,9 @@ Page({
     if (this.data.CanSoldNumber <= 0) {
       return false;
     }
+    this.setData({
+      hidden: false,
+    });
     let _this = this;
     let UserID = util.getStorage("userID");
     let OpenID = util.getStorage("openId");
@@ -213,6 +230,9 @@ Page({
       success: function(res) {
         let PayMessage = res.data.PayMessage; 
         let BillID = res.data.BillID;
+        _this.setData({
+          hidden: true,
+        });
         if (res.data.Code == "SUCCESS") {
           wx.requestPayment({
             timeStamp: PayMessage.timeStamp,
@@ -220,12 +240,12 @@ Page({
             package: PayMessage.package,
             signType: PayMessage.signType,
             paySign: PayMessage.paySign,
-            'success': function (res) {
+            success: function (res) {
               wx.navigateTo({
                 url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
               })
             },
-            'fail': function (res) {
+            fail: function (res) {
               wx.navigateTo({
                 url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
               })

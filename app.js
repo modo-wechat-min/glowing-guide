@@ -2,8 +2,6 @@ let ports = require('./utils/ports.js');
 let util = require('./utils/util.js');
 App({
   globalData: {
-    appid: 'wx5f0f5f54e432a52a',
-    secret: '05fb3c0bbb0e631ec8ef61574a414488',
   },
   onLaunch(){
     // 获取用户信息
@@ -27,6 +25,31 @@ App({
       }
     })
     util.getOpenId();
+    this.checkUpdate();
   },
-  
+  //检查更新
+  checkUpdate(){
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res.hasUpdate)
+    })
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '发现新版本，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+
+    updateManager.onUpdateFailed(function () {
+      // 新版本下载失败
+      util.throwMsg("更新失败");
+    })
+  }
 })

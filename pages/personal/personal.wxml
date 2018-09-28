@@ -1,12 +1,15 @@
 <view class='person-header border-bottom15 width100'>
   <image class='bg-img' src='{{bgImg}}'></image>
   <image class='head-img' src='{{userInfo.avatarUrl}}'></image>
-  <view class='person-note font24'>{{!hasUserInfo?"未授权":userInfo.nickName}}</view>
+  <view class='person-note font24 '>
+    {{!hasUserInfo?"未授权":userInfo.nickName}}
+    <text class='vip' wx:if="{{result.Type==1}}">VIP会员</text>
+  </view>
 </view>
 <view class='person-main-box '>
   <view class='main-box-item' bindtap='toPage' data-page='{{"CouponLists"}}'>
     <icon class='icon icon-dai'></icon>
-    <view class='item-title'>代金券</view>
+    <view class='item-title'>优惠券</view>
     <view class='item-content'>{{result===""?"0":result.VoucherCount}}张</view>
   </view>
   <view class='main-box-item' bindtap='toPage' data-page='{{"MyScore"}}'>
@@ -17,14 +20,18 @@
   <view class='main-box-item' bindtap='toPage' data-page='{{"StorageValue"}}'>
     <icon class='icon icon-storage'></icon>
     <view class='item-title'>储值</view>
-    <view class='item-content'>余额{{result===""?"0":result.Balance}}</view>
+    <view class='item-content'>{{result===""?"0":result.Balance}}元</view>
   </view>
 </view>
+
 <view class='img-box'>
+  <navigator class='more-vip1' url='../BuyVip/BuyVip?Type={{result.Type}}&CardNumber={{result.CardNumber}}'>
+  </navigator>
   <image class='img-box-img' src='{{bgImg2}}'></image>
   <view class='open-vip'>开通会员（享渠道特价基础上再折扣）</view>
-  <view class='more-vip'>了解更多会员权益></view>
+  <view class='more-vip' url=''>了解更多会员权益></view>
 </view>
+
 <view class='one-item flextwo border-b1' bindtap='toPage' data-page='{{"PersonalContacts"}}'>
   <view>常用入住人</view>
   <view class='one-item-right'>入住人信息</view>

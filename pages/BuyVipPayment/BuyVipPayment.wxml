@@ -1,0 +1,14 @@
+<view class='main-box'>
+  <view class='flextwo' wx:if="{{Mobile}}">
+    <view>登录手机号</view>
+    <view>{{Mobile}}</view>
+  </view>
+  <view class='flextwo border-b1'>
+    <view>购买VIP会员</view>
+    <view class='colorff6644'>¥{{cardObj.Price}}</view>
+  </view>
+</view>
+<view class='btn-box flextwo'>
+  <view class='colorff6644'>¥<text class='font40'>{{cardObj.Price}}</text></view>
+  <button class='buy-btn' bindtap='buyFn'>立即购买</button>
+</view>

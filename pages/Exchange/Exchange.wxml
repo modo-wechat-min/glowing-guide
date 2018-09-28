@@ -1,0 +1,31 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
+<view class='main-box2'>
+  <view class=' shadow item {{chosenID==index?"active":""}}' wx:for="{{listsObj.voucherNames}}" wx-index="{{index}}" wx:key="index" bindtap='chosenFun' data-index='{{index}}'>
+    <view class='flextwo border-d1'>
+      <view>
+        <view class='font26'>{{item.Name}}</view>
+        <view class='time-limit'>不可叠加使用</view>
+      </view>
+      <view class='nochose {{chosenID==index?"btn-active":""}}'>{{chosenID==index?"已选择":"未选择"}}</view>
+    </view>
+    <view class='flextwo item-note'>
+      <view class='colorff6644'>任意金额可用</view>
+      <view>有效期一年</view>
+    </view>
+  </view>
+  <view class='exchage-box'>
+    <view>当前积分：{{listsObj.Score}}</view>
+    <view class='number-box' class='flexone'>兑换数量：
+      <view class='flexone' id='number'>
+        <view class='{{exchangeNumber<=1?"disable":""}}'  bindtap='numberFun' data-id='{{-1}}'>-</view>
+        <view id='exchangeNumber'>{{exchangeNumber}}</view>
+        <view  bindtap='numberFun' data-id='{{1}}'>+</view>
+      </view>
+    </view>
+    <view>消耗积分：{{listsObj.voucherNames[chosenID].InitValue*100*exchangeNumber}}</view>
+  </view>
+</view>
+<button bindtap='exchangeFun' class='btn-exchage {{listsObj.voucherNames[chosenID].InitValue*100*exchangeNumber>listsObj.Score?"disable":""}}' >立即兑换</button>

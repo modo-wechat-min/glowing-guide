@@ -18,7 +18,7 @@ var DateFr = {
     return number.toFixed(2);
   },
   formalTime: function(time) {
-    if (!time) return false;
+    if (!time) return ;
     var d=time.substring(0, time.indexOf("T"));
     var array = d.split("-");
     return array[0] + '年' + array[1] + '月'+array[2] + '日';
@@ -66,7 +66,7 @@ var DateFr = {
     }
     var array = time.split("-");
     return array[0] + '年' + array[1] + '月';
-  }
+  },
 }
 module.exports = {
   deleteYearTime: DateFr.deleteYearTime,
@@ -80,4 +80,5 @@ module.exports = {
   decimalTwoScore: DateFr.decimalTwoScore,
   leaseTime: DateFr.leaseTime,
   monthTime: DateFr.monthTime,
+
 }

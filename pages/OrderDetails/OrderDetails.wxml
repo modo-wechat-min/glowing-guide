@@ -12,7 +12,7 @@
     <view class='font24'>{{filters.formalTime1(orderObj.StartDate)}} - {{filters.formalTime1(orderObj.EndDate)}}</view>
   </view>
   <view class='img-box border-b1'>
-    <image class='order-img' src='{{modoImgHttp+orderObj.RoomTypeImg}}'></image>
+    <image class='order-img' src='{{orderObj.RoomTypeImg?modoImgHttp+orderObj.RoomTypeImg:defaultImg}}'></image>
     <view class='branch'>{{orderObj.BranchName}}</view>
     <view class='font24'>{{orderObj.RoomTypeName}}</view> 
   </view>
@@ -32,11 +32,11 @@
     <view class='box-item'>订单金额：
       <view class='float_r'>¥{{orderObj.detailMoney.TotalCharge}}</view>
     </view>
-    <view class='box-item'>优惠减免：
+    <view class='box-item' wx:if="{{orderObj.detailMoney.VoucherMoney>0}}">优惠减免：
       <view class='float_r'>-¥{{orderObj.detailMoney.VoucherMoney}}</view>
     </view>
-    <view class='box-item'>储值消费：
-      <view class='float_r'>-¥{{orderObj.detailMoney.VoucherMoney}}</view>
+    <view class='box-item' wx:if="{{orderObj.detailMoney.BalanceMoney>0}}">储值消费：
+      <view class='float_r'>-¥{{orderObj.detailMoney.BalanceMoney}}</view> 
     </view>
   </view>
   <view class='box-container border-b1'>

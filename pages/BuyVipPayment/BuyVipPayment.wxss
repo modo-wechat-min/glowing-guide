@@ -1,0 +1,28 @@
+.flextwo{
+  height: 90rpx;
+  line-height: 90rpx;
+  border-top: 1rpx solid #ddd;
+  font-size: 28rpx;
+}
+.main-box{
+  padding-top: 52rpx;
+}
+.btn-box{
+  position: fixed;
+  bottom: 0;
+  padding: 0 30rpx;
+  height: 116rpx;
+  box-shadow: 0 -4rpx 8rpx rgba(0, 0, 0, 0.1);
+  width: 100%;
+  line-height: 116rpx;
+  box-sizing: border-box;
+}
+.buy-btn{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 18rpx 0;
+  font-size: 32rpx;
+  color: #fff;
+  background: linear-gradient(to right,#ff4d4d,#ff6644);
+  border: none;
+}

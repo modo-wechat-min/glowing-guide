@@ -39,13 +39,17 @@
     <view class='date-title'>日期</view>
     <view class='date flexone' bindtap='toGetDate'>
       <icon class='icon icon-date'></icon>|
-      <view class='chose-time'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}</view>
+      <view class='chose-time'>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
+        <text class='days' wx-if="{{days>0}}">共{{days}}天</text>
+      </view>
     </view>
   </view>
 </view>
 <view class='room-lists'>
   <view class='room-title marginl30'>房型信息</view>
   <view wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap='getItemDetails' data-index='{{index}}' class='room-item flexone  marginl30 {{index!=itemIndex?"border-abs":""}} '>
+    <view class='full-room' wx:if="{{item.CanSoldNumber<=0}}"></view>
+    <view class='full-room-font' wx:if="{{item.CanSoldNumber<=0}}">满房</view>
     <view class='room-head flextwo'>
       <view class='scale'>
         <icon class='icon icon-scale'></icon>
@@ -54,38 +58,74 @@
       <view class='flextwo right-info {{index==itemIndex?"active":""}}'>
         <view>
           <view class='room-type'>{{item.Name}}</view>
-          <view class='room-note ellipsis'>{{item.Area}}㎡ 床型{{item.BedTypeDescribe?item.BedTypeDescribe:""}} </view>
+          <view class='room-note ellipsis'>{{item.Area}}㎡
+            <text wx:if="{{item.BedTypeDescribe}}">床型{{item.BedTypeDescribe}}</text> </view>
         </view>
         <view class='right-price'>
           ¥
-          <text class='font40'>{{item.MartketPrice}}</text>起
+          <text class='font40'>{{isVip?item.GoldVIPPrice:item.VIPPrice}}</text>起
         </view>
       </view>
     </view>
     <view class='room-detail' wx:if="{{index==itemIndex}}">
-      <view class='detail-box'>
-        <view class='detail-title border-b1'>微信专享</view>
-        <view class='flextwo'>
-          <view class='left-note'>
-            <view>12:00退房</view>
-            <view>微信粉丝</view>
+
+      <!-- <view class='detail-box border-b1'>
+        <view class='flextwo paddingt26'>
+          <view class='detail-box-left'>
+            <view class='font30'>门市价</view>
+            <view class='detail-box-tips flexone'>
+              <view class='tip-item'>12:00退房</view>
+             <view class='tip-item'>微信粉丝</view>
+            </view>
           </view>
-          <view class='righr-note flexone'>
-            <view class='money-show'>
-              ¥
-              <text class='font40'>{{item.VIPPrice}}</text>
+          <view class='detail-box-right flextwo'>
+            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.MartketPrice}}</text>
+            <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定</view>
+            <view class='book-btn disable' wx:else bindtap='noteFun' >满房</view>
+          </view>
+        </view>
+      </view>  -->
+
+
+      <view class='detail-box border-b1'>
+        <view class='flextwo paddingt26'>
+          <view class='detail-box-left'>
+            <view class='font30'>微信专享价</view>
+            <view class='detail-box-tips flexone'>
+              <view class='tip-item'>12:00退房</view>
+              <view class='tip-item'>微信粉丝</view>
             </view>
-            <view class='book-box' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">
-              预定
-              <view class='online'>在线付</view>
+          </view>
+          <view class='detail-box-right flextwo'>
+
+            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.VIPPrice}}</text>
+            <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定
+              <view>在线付</view>
             </view>
-            <view class='book-box noroom-box' wx:else bindtap='noteFun'>
-              预定
-              <view class='online noroom'>满房</view>
+            <view class='book-btn disable' wx:else bindtap='noteFun'>满房
+              <view>在线付</view>
             </view>
           </view>
         </view>
       </view>
+
+      <view class='detail-box ' wx:if="{{isVip}}">
+        <view class='flextwo paddingt26'>
+          <view class='detail-box-left'>
+            <view class='font30'>会员价</view>
+            <view class='detail-box-tips flexone'>
+              <view class='tip-item'>14:00退房</view>
+              <view class='tip-item'>95折</view>
+            </view>
+          </view>
+          <view class='detail-box-right flextwo'>
+            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.GoldVIPPrice}}</text>
+            <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定<view>在线付</view></view>
+            <view class='book-btn disable' wx:else bindtap='noteFun'>满房<view>在线付</view></view>
+          </view>
+        </view>
+      </view>
+
     </view>
   </view>
 </view>
@@ -99,7 +139,7 @@
     <icon class='icon icon-map'></icon>
     <view class='color666 font28 aside ellipsis' bindtap='openLocation'>
       <text class='color333'>| 周边商圈：</text>
-      <text wx:for="{{branchObj.tradList}}" wx:key="index">{{item.TradName+"、"}}</text>
+      <text wx:for="{{branchObj.tradList}}" wx:key="index">{{item.TradName}}<text wx:if="{{index<branchObj.tradList.length-1}}">、</text></text>
     </view>
   </view>
 </view>
@@ -135,66 +175,9 @@
 </view>
 <view class='rule-box'>
   <view class='rule-tile'>
-    退订规则
+    入住须知：
   </view>
-  <view class='rule-item'>1、到店支付最晚保留时间为入住日16:00前，如超过该时间请提前在订单中支付房费。</view>
-  <view class='rule-item'>2、成功支付后已消费的代金券及储值卡金额、积分将不予退还，使用代金券不找零。</view>
-  <view class='rule-item'>3、入住时间为入住当日14:00后，离店时间为离店当日12:00前，如提前到店，视房态安排。</view>
-  <view class='rule-item'>4、开具发票需另外收取6%的服务费，服务费用可加入开票金额中。</view>
+  <view class='rule-item'>入住时间：14点以后可办理入住，提早到店视房态而定；</view>
+  <view class='rule-item'>离店时间：12点之前须办理退房，会员客户视等级而定。</view>
+  <view class='rule-item'>注意事项：应有关部门规定，本公寓暂无法接待外宾以及持新疆、西藏身份证件客人。</view>
 </view>
-<view class='rule-box last-box'>
-  <view class='rule-tile'>
-    注意事项
-  </view>
-  <view class='rule-item'>1、应有关部门规定，本公寓暂无法接待外宾以及持新疆、西藏身份证件客人；</view>
-  <view class='rule-item'>2、本公寓支持刷卡消费；</view>
-  <view class='rule-item'>3、如需发票，需另支付6%服务费；</view>
-</view>
-<!-- <view>
-  <cover-view class='chose-room  {{showBox?"open-class":"close-class"}} '>
-
-    <cover-view class='chose-room-type flextwo'>
-      <cover-view class='chose-room-type-name'>{{typeObj.Name}}</cover-view>
-      <cover-view class='close' bindtap='closeFun'>X</cover-view>
-    </cover-view>
-    <cover-view class='img-box' bindtouchstart="handletouchtart" bindtouchmove="handletouchmove">
-      <cover-view class='img-lists' animation="{{animation2}}" style='width: {{ subImgLength*750}}rpx;'>
-        <cover-image src="{{modoImgHttp+item}}" wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-image>
-      </cover-view>
-      <cover-view class='dot'> 
-        <cover-view class='dot-item {{index==subImgIndex?"active":""}}' wx:for="{{typeObj.Images}}" wx:for-index="index" wx:key="index"></cover-view>
-      </cover-view>
-    </cover-view>
-    <cover-view class='room-tip-box'>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>面积</cover-view>
-        <cover-view class='cover-view-second'>{{typeObj.Area}}㎡</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>楼层</cover-view>
-        <cover-view class='cover-view-second'>{{typeObj.FloorArea?typeObj.FloorArea:""}}层</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>床型</cover-view>
-        <cover-view class='cover-view-second'>{{typeObj.BedType?typeObj.BedType:""}}</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>屋檐</cover-view>
-        <cover-view class='cover-view-second'>不可吸烟</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>加床</cover-view>
-        <cover-view class='cover-view-second'>不可加床</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>窗户</cover-view>
-        <cover-view class='cover-view-second'>有窗</cover-view>
-      </cover-view>
-      <cover-view class='chose-room-tip flexone'>
-        <cover-view class='chose-room-title'>宽带</cover-view>
-        <cover-view class='cover-view-second'>有WIFI且免费</cover-view>
-      </cover-view>
-    </cover-view>
-    <cover-view class='get-price' hover-class='btn-active' bindtap='toDailyPrice'>查看所有价格</cover-view>
-  </cover-view>
-</view> -->

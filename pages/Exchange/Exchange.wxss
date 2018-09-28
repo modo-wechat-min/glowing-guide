@@ -1,0 +1,111 @@
+.main-box2 {
+  font-size: 22rpx;
+  padding-bottom: 140rpx;
+}
+
+.head-box {
+  height: 86rpx;
+  line-height: 86rpx;
+  padding: 0 30rpx;
+}
+
+.nochose {
+  height: 36rpx;
+  width: 100rpx;
+  line-height: 36rpx;
+  border-radius: 18rpx;
+  border: 1rpx solid #666;
+  margin-top: 23rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.nochose.btn-active{
+  border: none;
+  background: #ff6644!important;
+  color: #fff;
+}
+.shadow {
+  margin-bottom: 40rpx;
+}
+
+.item {
+  padding: 30rpx;
+  
+}
+.item.active{
+  border: 1rpx solid #ff6644;
+  border-radius: 6rpx;
+  padding: 29rpx;
+}
+.time-limit {
+  font-size: 20rpx;
+  color: #999;
+  margin: 12rpx 0 20rpx;
+}
+
+.border-d1 {
+  border-bottom: 1rpx dotted #f64;
+}
+
+.item-note {
+  margin-top: 20rpx;
+  color: #999;
+}
+
+.status {
+  height: 38rpx;
+  width: 100rpx;
+  background: #f64;
+  border-radius: 19rpx;
+  line-height: 38rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 18rpx;
+}
+
+.touse {
+  background: transparent;
+  border: 1rpx solid #f64;
+  color: #f64;
+  border-radius: 20rpx;
+}
+.exchage-box{
+  font-size: 26rpx;
+  color: #666;
+}
+.exchage-box>.flexone{
+  margin: 20rpx 0;
+  height: 48rpx;
+  line-height:48rpx; 
+}
+#number>view{
+  width: 48rpx;
+  height: 48rpx;
+  border: 1rpx solid #666;
+  line-height: 48rpx;
+  text-align: center;
+  margin-right: 14rpx;
+}
+#number>.disable{
+  border-color: #ddd;
+}
+#exchangeNumber{
+  width: 74rpx!important;
+}
+.btn-exchage{
+  width: 680rpx;
+  height: 86rpx;
+  background: #ff6644;
+  border-radius: 8rpx;
+  position: fixed;
+  left: 35rpx;
+  bottom: 20rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 86rpx;
+
+}
+.btn-exchage.disable{
+  background: #ddd;
+  color: #333;
+}

@@ -2,11 +2,11 @@
   <image class='bg-img' src="{{loginImageUrl}}"></image>
   <view id="phone">
     <view class='input-title'>手机号</view>
-    <input placeholder='请输入您的手机号' class='phone' value='{{phone}}' bindinput="bindPhone"></input>
+    <input placeholder='请输入您的手机号' type='number' class='phone' value='{{phone}}' bindinput="bindPhone"></input>
   </view>
   <view id="code">
     <view class='input-title'>验证码</view>
-    <input placeholder='请输入验证码' class='code' value='{{code}}' bindinput="bindCode"></input>
+    <input placeholder='请输入验证码' class='code' type='number' value='{{code}}' bindinput="bindCode"></input>
     <view class='send' bindtap='sendFun'>{{time==0?"发送验证码":time+"s"}}</view>
   </view>
   <button class='login' bindtap='loginFun' hover-class='btn-active'>登录</button>

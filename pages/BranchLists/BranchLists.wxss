@@ -171,3 +171,13 @@ picker {
   vertical-align: middle;
   margin-top: -6rpx;
 }
+.has-rent{
+  display: inline-block;
+  font-size: 20rpx;
+  color: #333;
+  padding: 2rpx 10rpx;
+  border: 1rpx solid #333;
+  border-radius: 6rpx;
+  margin-left: 40rpx;
+  vertical-align: middle;
+}

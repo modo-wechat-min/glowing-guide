@@ -92,6 +92,7 @@
 .btn-box{
   display: flex;
   flex-direction: row-reverse;
+  border-top: 1rpx solid #ddd;
 }
 .btn-box>navigator{
   height: 48rpx;

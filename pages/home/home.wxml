@@ -20,16 +20,23 @@
     </picker>
   </view>
   <view class='flextwo' bindtap='toGetDate'>
-    <view >
+    <view>
       <view class='font24'>入离店日期</view>
       <view>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
-        <text class='total'>共{{days}}天</text>
+        <text class='total'>共{{days}}天</text>  
       </view>
     </view>
     <view>
     </view>
   </view>
   <view class='ser-btn' bindtap='goBranchLists' hover-class='btn-active'>预定公寓</view>
+  
 </view>
+<view class='color999 font22'>
+    <span class="save icon"></span>官方渠道预订享低价保证
+  </view>
+<navigator class='activity' url='../Activity/Activity' wx:if="{{IsActiveMember==1}}">
+  <image class='activity-img' src='{{IsActiveMemberUrl}}'></image>
+</navigator>
 <image src='{{homeImageUrl2}}' class='second-img'>
 </image>

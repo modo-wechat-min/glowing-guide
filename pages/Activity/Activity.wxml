@@ -1,0 +1,39 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+<view>
+  <view class='header-box'>
+    <view class='main-cir'></view>
+    <canvas class="cir" style=' width:266rpx; height:266rpx;' canvas-id="canvasArc"></canvas>
+    <view class='number'>仅剩
+      <text id='number'>{{activityObj.ResidualQuantity}}</text>张</view>
+  </view>
+  <image src='{{imgUrl+"activity_1.png"}}' class='header-img'></image>
+  <view class='footer' style='height:{{height}}rpx'>
+    <image src='{{imgUrl+"activity_2.png"}}' class='img-more'></image>
+    <view class='title'>摩兜会员卡礼遇</view> 
+    <view class='content'>
+      <view class='sub-title'>
+        活动时间
+      </view>
+      <view class='sub-content'>
+        {{filters.formalTime(activityObj.StartDate)}}-{{filters.formalTime(activityObj.EndDate)}}
+      </view>
+      <view class='sub-title'>
+        活动内容
+      </view>
+      <view class='sub-content'>
+        <view>
+          微信号小程序上原售卖88元的会员卡，活动期间18元特 价，限量99张。
+        </view>
+        <view>
+          该卡购买后，顾客可享受：
+          <view>①全网最低价会员基础上再打95折；</view>
+          <view>②离店延迟至14点。</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <navigator wx:if="{{!isVip}}" class='btn-exchage ' url='../BuyVipPayment/BuyVipPayment'>
+    <button class='btn-exchage'>立即购买</button>
+  </navigator>
+  <navigator wx:else class='btn-exchage ' url='../BranchLists/BranchLists?CityIndex={{0}}'>立即使用</navigator>
+</view>

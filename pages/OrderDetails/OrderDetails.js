@@ -9,6 +9,7 @@ Page({
     persons: 1, //展示入住如数
     iconActive: false,
     timerTime:"",
+    defaultImg: ports.imgUrl + "default.jpg",
   },
 
   onLoad: function(options) {
@@ -34,16 +35,12 @@ Page({
       }
       this.setData({
         persons: persons,
-        iconActive: !this.data.iconActive,
+        iconActive: !this.data.iconActive, 
       })
     }
-
   },
   delete() {
-    util.deleteOrder(this.data.orderObj.BillID);
-    wx.navigateBack({
-      changed: true
-    });
+    util.deleteOrder(this.data.orderObj.BillID,true);  
   },
   getOrderInfo(TypeValueID) {
     let _this = this;
@@ -53,6 +50,8 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetBillDetail?BillID=" + TypeValueID + "&OpenID=" + openId + "&UserID=" + UserID,
       method: 'get',
       success: function(res) {
+        console.log(res)
+        console.log(res.data.WeChatPay)
         _this.setData({
           orderObj: res.data,
           hidden: true,
@@ -70,17 +69,22 @@ Page({
       return false;
     }
     let obj = this.data.orderObj.WeChatPay;
+    console.log(obj);
     wx.requestPayment({
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
       package: obj.package,
       signType: obj.signType,
-      paySign: obj.paySign,
+      paySign: obj.paySign, 
       "success":function(){
         wx.switchTab({
           url: '../OrderLists/OrderLists',
         })
       },
+      "fail":function(res){
+        console.log("支付失败")
+console.log(res)
+      }
     })
   },
   getTimer(time) {

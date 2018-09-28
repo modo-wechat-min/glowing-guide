@@ -11,6 +11,8 @@ Page({
     KeyWord: "",
     options: "",
     hidden: false,
+    index: 0,//城市默认
+    array: ['不限', '北京', '南京'],
   },
   onLoad: function(options) {
     this.setData({
@@ -21,6 +23,7 @@ Page({
       maxPrice: options.maxPrice == 0 ? "" : options.maxPrice,
       KeyWord: options.KeyWord,
       options: options,
+      index: options.index == 0 ? 1 : options.index,
       tradeArray: options.tradeArray,
     })
     this.getTradings();
@@ -60,7 +63,6 @@ Page({
     let index = e.currentTarget.dataset.index;
     let array = this.data.tradeArray;
     array[index].isChosen = !array[index].isChosen
-
     this.setData({
       tradeArray: array,
     })
@@ -82,6 +84,7 @@ Page({
       "minPrice": this.data.minPrice == "" ? 0 : this.data.minPrice,
       "maxPrice": this.data.maxPrice == "" ? 0 : this.data.maxPrice,
       "days": days,
+      "index": this.data.index,
       "tradeArray": array,
     });
     prevPage.getBranchLists();
@@ -92,9 +95,10 @@ Page({
   getTradings() {
     let _this = this;
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchTrad",
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchTrad?CityID=" + _this.data.index,
       method: 'get',
       success: function(res) {
+        console.log(res);
         let array = res.data;
         let tradeArray = _this.data.tradeArray ? JSON.parse(_this.data.tradeArray) : "";
         array = array.map(function(item, key, arr) {

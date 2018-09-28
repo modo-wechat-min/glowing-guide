@@ -1,6 +1,10 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/Activity/Activity",
+    "pages/BuyVip/BuyVip",
+    "pages/BuyVipPayment/BuyVipPayment",
+    "pages/Exchange/Exchange",
     "pages/Charge/Charge",
     "pages/BillDetails/BillDetails",
     "pages/OrderLists/OrderLists",

@@ -1,5 +1,5 @@
 .common-margin {
-  margin: 50rpx 30rpx;
+  margin: 50rpx 30rpx 150rpx 30rpx;
 }
 
 .common-box {
@@ -79,4 +79,17 @@
 .icon-up{
   transform: rotate(-135deg);
   margin: 0rpx 0 0 6rpx;
+}
+.btn-exchage{
+  width: 680rpx;
+  height: 86rpx;
+  background: #ff6644;
+  border-radius: 8rpx;
+  position: fixed;
+  left: 35rpx;
+  bottom: 20rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 86rpx;
+text-align: center;
 }

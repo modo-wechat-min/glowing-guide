@@ -17,24 +17,18 @@
   </view>
 </view>
 <view class='lists'>
-  <view class='item border-b1' wx:for="{{detailsObj.Record}}">
+  <view class='item border-b1' wx:for="{{detailsObj.Record}}" wx:key="index" wx:if="{{detailsObj.Record.length>0}}">
     <icon class='icon {{item.ChangeType==1?"icont1":""}} {{item.ChangeType==0?"icont2":""}}'></icon>
     <view class='right-info'>
       <view class='flextwo'>
         <view>{{item.ChangeTypeToString}}</view>
-        <view class='number'>{{item.ChangeType==1?"+":"-"}}{{item.Price}}</view>
+        <view class='number'>{{item.ChangeType==1?"+":"-"}}{{item.Price}}</view> 
       </view>
       <view class='time'>{{filters.formalTime3(item.CreateDate)}}</view>
     </view>
   </view>
-  <!-- <view class='item border-b1'>
-    <icon class='icon icont2'></icon>
-    <view class='right-info'>
-      <view class='flextwo'>
-        <view>储值充值-中国银行(0100)</view>
-        <view class='number'>-200</view>
-      </view>
-      <view class='time'>8月27日 13:01</view>
-    </view>
-  </view> -->
+<view id='nodata' wx:if="{{detailsObj.Record.length<=0&&nodata}}">
+    <icon class='nodata'></icon>
+    <view>没有查到记录</view>
+  </view>
 </view>

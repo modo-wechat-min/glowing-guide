@@ -2,7 +2,7 @@ let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
-    homeImageUrl: ports.imgUrl + 'home_1.jpg',
+    homeImageUrl: ports.imgUrl + 'home_1.png',
     homeImageUrl2: ports.imgUrl + 'home_2.jpg',
     startTime: util.initTime(0),
     endTime: util.initTime(1),
@@ -10,10 +10,13 @@ Page({
     index: 0,
     array: ['不限','北京', '南京'],
     currentCity:"",
+    IsActiveMember:"",//活动
+    IsActiveMemberUrl: ports.imgUrl + 'activity.jpg',
   },
   onLoad: function() {
     this.getMapRight(); 
     this.getLocation();
+    this.GetIsActiveMember();
   },
   toGetDate: function() { // 获取日期
     var _this = this;
@@ -69,7 +72,6 @@ Page({
       fail: function () {
         _this.setData({ currentCity: "获取定位失败" });
       },
-
     })
   },
   //地图授权提醒
@@ -83,4 +85,18 @@ Page({
       }
     })
   },
+  GetIsActiveMember(){
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetIsActiveMember",
+      method: 'get',
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          IsActiveMember: res.data, //获取当前轮播图片的下标
+        })
+
+      },
+    })
+  }
 })

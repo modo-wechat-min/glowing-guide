@@ -12,7 +12,7 @@
       </picker>
       <icon class='icon icon-down'></icon>
     </view>
-    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==0}}">商圈/日期/价格 
+    <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==0}}">商圈/日期/价格
       <icon class='icon icon-ser'></icon>
     </view>
     <view class='serch-box' bindtap='toOption' wx:if="{{tradeArray.length==1}}">{{tradeArray[0].TradName}}
@@ -47,7 +47,9 @@
         <icon class='icon icon-position'></icon> 距您{{filters.decimalTwo(item.distance?item.distance:0)}}km</view>
     </view>
     <view class='flextwo'>
-      <view class='branch-name'>{{item.BranchName}}</view>
+      <view class='branch-name'>{{item.BranchName}}
+        <text wx:if="{{item.BillCount>0}}" class='has-rent'>入住过</text>
+      </view>
       <view class='score' wx:if="{{item.ScoreAvg>4}}">
         <icon class='icon icon-start'></icon>
         <icon class='icon icon-start'></icon>
@@ -61,7 +63,8 @@
       {{item.Address}}
     </view>
     <view class='flexone'>
-      <view class='note' wx:for="{{item.TeadingList}}" wx:key="index" wx:if="{{index<=5}}">{{item.TradName}}</view>
+      <view class='note' wx:for="{{item.markingList}}" wx:key="index" wx:if="{{index<=4}}">{{item.MarkingName}}</view>
+      <view class='note' wx:for="{{item.TeadingList}}" wx:key="index" wx:if="{{index<=4}}">{{item.TradName}}</view>
     </view>
   </view>
   <view id='nodata' wx:if="{{branchLists.length==0&&nodata}}">

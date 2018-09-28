@@ -21,6 +21,7 @@ Page({
     longitude: "",
     options: "",
     defaultImg: ports.imgUrl +"default.jpg",
+    isVip: false,
   },
   onLoad: function(options) {
     this.setData({
@@ -31,6 +32,7 @@ Page({
       options: options,
     })
     this.getBranchInfo();
+    this.checkUserIsMember();
   },
   getBranchInfo() {
     let _this = this;
@@ -41,13 +43,18 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/BranchDetail?BranchID=" + parseInt(_this.data.branchId) + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime,
       method: 'get',
       success: function(res) {
+        console.log(res);
         let latitude = res.data.Dimension;
         let longitude = res.data.Longitude;
+        var array=[];
+        var array = _this.swithFun(longitude, latitude);
+        longitude = array[0];
+        latitude = array[1]; 
         let marker = [];
         marker[0] = {
           iconPath: "../../image/location.png",
           id: 0,
-          latitude: latitude,
+          latitude: latitude, 
           longitude: longitude,
           width: 50,
           height: 50
@@ -124,6 +131,44 @@ Page({
       scale: 16,
       name: data.branchObj.Name,
       address: data.branchObj.Address, 
+    })
+  },
+  swithFun(bd_lon, bd_lat){
+      var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+      var x = bd_lon - 0.0065;
+      var y = bd_lat - 0.006;
+      var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+      var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+      var gg_lng = z * Math.cos(theta);
+      var gg_lat = z * Math.sin(theta);
+      return [gg_lng, gg_lat];
+  },
+  checkUserIsMember() {
+    let _this = this;
+    let UserID = util.getStorage("userID");
+    if (!UserID){
+      return ;
+    }
+    let OpenID = util.getStorage("openId");
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/CheckUserIsMember?UserID=" + UserID,
+      method: 'get',
+      header: {
+        "Authorization": OpenID,
+      },
+      success: function (res) {
+        _this.setData({
+          isVip: res.data,
+        });
+        
+      },
+      complete: function (res) {
+        if (res.statusCode === 401) {
+          util.throwMsg("非法请求");
+          util.setStorage('userID', "", false);
+          return;
+        }
+      }
     })
   },
 })

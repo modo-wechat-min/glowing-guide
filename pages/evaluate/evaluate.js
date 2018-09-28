@@ -73,8 +73,11 @@ Page({
           wx.showToast({
             title: '操作成功',
             icon: 'success',
-            duration: 2000
+            duration: 3000
           })
+          setTimeout(function(){
+            wx.navigateBack({ changed: true });
+          },3000)
         }else{
           util.throwMsg(res.data.ErrorMessage);
         }

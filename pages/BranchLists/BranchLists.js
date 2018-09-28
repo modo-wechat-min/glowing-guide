@@ -39,8 +39,10 @@ Page({
     }, {
       name: "高价优先",
       id: 4
-    }]
-
+      },{
+        name: "房数优先",
+        id: 4
+      }]
   },
   onLoad: function(options) {
     if (options.StartDate) {
@@ -63,7 +65,7 @@ Page({
   },
   toOption() {
     wx.navigateTo({
-      url: '../condition/condition?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&minPrice=" + this.data.minPrice + "&maxPrice=" + this.data.maxPrice + "&KeyWord=" + this.data.KeyWord + "&tradeArray=" + JSON.stringify(this.data.tradeArray) + "&days=" + this.data.days,
+      url: '../condition/condition?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&minPrice=" + this.data.minPrice + "&maxPrice=" + this.data.maxPrice + "&KeyWord=" + this.data.KeyWord + "&tradeArray=" + JSON.stringify(this.data.tradeArray) + "&days=" + this.data.days + "&index=" + this.data.index,
     })
   },
   openOrderFun() {
@@ -76,14 +78,17 @@ Page({
       hidden: false,
     })
     let _this = this;
+    let UserID = util.getStorage("userID") ? util.getStorage("userID"):0;
     let array = _this.data.tradeArray;
-    array = array.map(function(item, key) {
+    array = array.map(function(item, key) { 
       return item.ID
     })
+    console.log(ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString() + "&UserID=" + UserID)
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString(),
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString() + "&UserID="+UserID,
       method: 'get',
       success: function(res) {
+        console.log(res)
         _this.setData({
           realLists: res.data,
           branchLists: res.data, //获取当前轮播图片的下标
@@ -133,39 +138,30 @@ Page({
     let realLists = this.data.realLists;
     let branchLists = this.data.branchLists;
     let array;
-    let name = "distance";
+    let name = "";//按什么排序
+    let type=true; //true是升序
     if (index == 0) {
       array = realLists;
     } else if (index == 1) {
+      type = true;
+      name = "distance";
       array = branchLists.sort(compare)
     } else if (index == 2) {
+      type = false;
       name = "ScoreAvg"
-      array = branchLists.sort(function(obj1, obj2) {
-        var val1 = obj1["ScoreAvg"];
-        var val2 = obj2["ScoreAvg"];
-        if (val1 < val2) {
-          return 1;
-        } else if (val1 > val2) {
-          return -1;
-        } else {
-          return 0;  
-        }
-      })
+      array = branchLists.sort(compare)
     } else if (index == 3) {
+      type = true;
       name = "Adjustmentprice"
       array = branchLists.sort(compare)
     } else if (index == 4) {
-      array = branchLists.sort(function(obj1, obj2) {
-        var val1 = obj1["Adjustmentprice"];
-        var val2 = obj2["Adjustmentprice"];
-        if (val1 < val2) {
-          return 1;
-        } else if (val1 > val2) {
-          return -1;
-        } else {
-          return 0;
-        }
-      })
+      type = false;
+      name = "Adjustmentprice"
+      array = branchLists.sort(compare)
+    } else if (index == 5){
+      type = false;
+      name = "RoomNumber"
+      array = branchLists.sort(compare)
     }
     this.setData({
       orderIndex: e.currentTarget.dataset.index,
@@ -177,9 +173,9 @@ Page({
       var val1 = obj1[name];
       var val2 = obj2[name];
       if (val1 < val2) {
-        return -1;
+        return type?-1:1;
       } else if (val1 > val2) {
-        return 1;
+        return type ? 1 : -1;;
       } else {
         return 0;
       }

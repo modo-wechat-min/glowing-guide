@@ -2,7 +2,7 @@
 <loading hidden="{{hidden}}">
   加载中...
 </loading>
-<view class='container'> 
+<view class='container'>
   <view class='fixed-box'>
     <view class='rent-type'>
       <view class='{{RentType==0?"rent-type-active":""}}' bindtap='getRentType' data-type='{{0}}'>短租订单</view>
@@ -16,24 +16,27 @@
   </view>
   <view wx:if="{{orderLists.length>0}}" class='main-box {{RentType==1?"long-box":""}}'>
     <view class='order-item' wx:for="{{orderLists}}" wx:key="index" wx-item="item">
-      <view class='icon-long' wx:if="{{RentType==1}}">长</view>
       <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结帐，5订单关闭，6客户取消 -->
-      <!-- {{item.Status==4||item.Status==6?"icon-cancel":""}} {{item.Status==0?"icon-wait":""}} {{item.Status==1?"icon-waitpay":""}} {{item.Status==2?"icon-success":""}}  {{item.Status==3?"icon-ing":""}} {{item.Status==5?"icon-close":""}} -->
       <view class='icon-cancel '>{{item.StatusToString}}</view>
       <view class='order-number'>
         订单号：{{item.Number}}
       </view>
       <view class='branch'>{{item.BranchName}}</view>
-      <view class='font26 color333 room-type'>豪华大床房</view>
+      <view class='font26 color333 room-type' wx:if="{{RentType==0}}">{{item.Orders[0].RoomTypeName}}</view>
+      <view class='font26 color333 room-type' wx:else>{{item.Orders[0].RoomName}}</view>
       <view class='time'>开始时间:{{filters.formalTime(item.Orders[0].StartDate)}}</view>
       <view class='time'>开始时间:{{filters.formalTime(item.Orders[0].EndDate)}}</view>
-      <view class='money font26 color333 border-b1' wx:if="{{RentType==0}}">
-        支付金额：¥{{item.TotalRecevice}}
+      <view class='money font26 color333' wx:if="{{RentType==0}}">
+        订单金额：¥{{item.TotalRecevice}}
+      </view>
+      <view class='money font26 color333' wx:if="{{RentType==1}}">
+        月租金：¥{{item.Orders[0].MonthRent}}
       </view>
       <view class='btn-box'>
-        <navigator hover-class='navigator-active' bindtap='deleteOrder' data-id='{{item.BillID}}' wx:if="{{RentType==0}}">删除订单</navigator>
+        <!-- <navigator hover-class='navigator-active' bindtap='deleteOrder' data-id='{{item.BillID}}' wx:if="{{RentType==0}}">删除订单</navigator> -->
+        <navigator hover-class='navigator-active' bindtap='closeOrderFun' data-id='{{item.BillID}}' url='' wx:if="{{item.IsCancel==1}}">订单取消</navigator>
         <navigator hover-class='navigator-active' url='../OrderDetails/OrderDetails?TypeValueID={{item.BillID}}' wx:if="{{RentType==0}}">订单详情</navigator>
-        <navigator hover-class='navigator-active' wx:if="{{item.Status==4&&RentType==0}}" url='../evaluate/evaluate?TypeValueID={{item.BillID}}'>订单评价</navigator>
+        <navigator hover-class='navigator-active' wx:if="{{item.Status==4&&RentType==0&&item.IsReview===0}}" url='../evaluate/evaluate?TypeValueID={{item.BillID}}'>订单评价</navigator>
         <navigator hover-class='navigator-active' bindtap='openContract' data-url='{{item.LoadUrl}}' wx:if="{{RentType==1&&item.LoadUrl}}">查看合同</navigator>
         <navigator hover-class='navigator-active' bindtap='planPayment' data-id='{{item.BillID}}' wx:if="{{RentType==1}}" url='../planPayment/planPayment?ContractID={{item.ContractID}}'>付款计划</navigator>
       </view>

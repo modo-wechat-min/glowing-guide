@@ -34,21 +34,32 @@ Page({
   },
   getSettingInfo(){
     let _this=this;
+    let OpenID = util.getStorage("openId"); 
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/UserSet?UserID=" + _this.data.UserID + "&OpenID=" + _this.data.openId,
       method: 'get',
+      header: {
+        "Authorization": OpenID,
+      },
       success: function (res) {
         let isHasBirthDay = new Date(res.data.BirthDay).getFullYear() > 1900;
-        let nowTime = util.initTime(0,1);
-        let BirthDay = isHasBirthDay ? res.data.BirthDay : nowTime;
+        console.log(isHasBirthDay)
+        let BirthDay =  res.data.BirthDay;
         _this.setData({
           personObj: res.data,
           index:res.data.Gender,
-          date: BirthDay,
+          date: isHasBirthDay?BirthDay:"",
           hidden: true,
-          isHasBirthDay: isHasBirthDay,
+          isHasBirthDay:isHasBirthDay,
         })
       },
+      complete: function (res) {
+        if (res.statusCode === 401) {
+          util.throwMsg("非法请求");
+          util.setStorage('userID', "", false);
+          return;
+        }
+      }
     })
   },
   loginOut(){
@@ -60,19 +71,39 @@ Page({
   onUnload (){
     //提交修改
     let _this = this;
+    let data=this.data;
+    let personObj = data.personObj;
+    let OpenID = util.getStorage("openId"); 
+    let url;
+    let obj={
+      UserID: _this.data.UserID,
+      OpenID: _this.data.openId,
+      NickName: _this.data.userInfo.nickName,
+      Gender: _this.data.index,
+    };
+    if (data.index == personObj.Gender && (data.date == personObj.BirthDay || data.date =="")){
+      return ;
+    }
+    if (data.date){
+      obj.BirthDay = _this.data.date;
+    }
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/UpdateUserSet",
       method: 'post',
-      data:{
-        UserID: _this.data.UserID,
-        OpenID: _this.data.openId,
-        NickName: _this.data.userInfo.nickName,
-        Gender:_this.data.index,
-        BirthDay: _this.data.date,
+      header: {
+        "Authorization": OpenID,
       },
+      data: obj,
       success: function (res) {
         console.log("提交成功")
       },
+      complete: function (res) {
+        if (res.statusCode === 401) {
+          util.throwMsg("非法请求");
+          util.setStorage('userID', "", false);
+          return;
+        }
+      }
     })
   }
 })

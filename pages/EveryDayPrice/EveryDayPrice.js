@@ -1,4 +1,5 @@
 let ports = require('../../utils/ports.js');
+let util = require('../../utils/util.js');
 Page({
   data: {
     priceLists: [],
@@ -7,8 +8,10 @@ Page({
   onLoad: function(options) {
     //获取价格列表
     let _this = this;
+    let UserID = util.getStorage("userID") ? util.getStorage("userID"):0;
+    let OpenID = util.getStorage("openId"); 
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/RoomPriceList?startDate=" + options.startTime + "&endDate=" + options.endTime + "&RoomTypeID=" + options.RoomTypeID,
+      url: ports.modoHttp + "API/WeChatMiniProgram/RoomPriceList?startDate=" + options.startTime + "&endDate=" + options.endTime + "&RoomTypeID=" + options.RoomTypeID + "&OpenID=" + OpenID + "&UserID=" + UserID,
       method: 'get',
       success: function(res) {
         _this.setData({

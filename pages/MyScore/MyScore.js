@@ -7,13 +7,6 @@ Page({
     hidden: false,
     moreScore: false,
   },
-  onLoad: function(options) {
-    let UserID = util.getStorage("userID", true);
-    this.setData({
-      UserID: UserID
-    })
-    this.getScore();
-  },
   getScore() {
     let _this = this;
     wx.request({
@@ -31,5 +24,12 @@ Page({
     this.setData({
       moreScore: !this.data.moreScore,
     })
+  },
+  onShow(){
+    let UserID = util.getStorage("userID", true);
+    this.setData({
+      UserID: UserID
+    })
+    this.getScore();
   }
 })
