@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -147,6 +147,12 @@
 					"name": "积分兑换",
 					"pathName": "pages/Exchange/Exchange",
 					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "会员购买",
+					"pathName": "pages/BuyVip/BuyVip",
+					"query": "BranchID=6&EndDate=2018年09月28日&StartDate=2018年09月22日&days=5"
 				}
 			]
 		}

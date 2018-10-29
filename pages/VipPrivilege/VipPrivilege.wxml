@@ -1,0 +1,12 @@
+<view class='main-box2'>
+  <view class='privilege-list'>
+    <view  wx:for="{{rightObj}}" class="right-item ">
+      <view class="right-item-title {{item.typeId==0?'right_item_type0':''}} {{item.typeId==1?'right_item_type1':''}}  {{item.typeId==2?'right_item_type2':''}}" >
+        {{item.vipType}}{{item.typeId}}
+      </view>
+      <view class='right-item-content'>
+        {{item.rightContent}}
+      </view>
+    </view>
+  </view>
+</view>

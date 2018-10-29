@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/home/home",
+    "pages/VipPrivilege/VipPrivilege",
     "pages/Activity/Activity",
     "pages/BuyVip/BuyVip",
     "pages/BuyVipPayment/BuyVipPayment",

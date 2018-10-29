@@ -276,6 +276,12 @@ function openContract(url){
     }
   })
 }
+function illegalFn() {
+  util.throwMsg("非法请求");
+  util.setStorage('userID', "", false);
+  return;
+}
+
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,

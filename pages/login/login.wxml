@@ -1,7 +1,7 @@
 <view class='box'>
   <image class='bg-img' src="{{loginImageUrl}}"></image>
   <view id="phone">
-    <view class='input-title'>手机号</view>
+    <view class='input-title' bindtap='comeIn'>手机号</view>
     <input placeholder='请输入您的手机号' type='number' class='phone' value='{{phone}}' bindinput="bindPhone"></input>
   </view>
   <view id="code">
@@ -11,4 +11,32 @@
   </view>
   <button class='login' bindtap='loginFun' hover-class='btn-active'>登录</button>
   <text class='note'>未注册过的手机号将自动注册成为\n摩兜公寓用户</text>
+</view>
+<!-- 信息补充 -->
+<view class='fix-info' animation="{{animationData}}">
+  <view class='font28'>告诉我们你的信息，让我们的服务更完美！</view>
+  <view class='sex-box flextwo'>
+    <view class='man {{sex==1?"active":""}}' bindtap='sexChose' data-sex='{{1}}'>
+      <view class='chose chose-man ' wx-if="{{sex==1}}"></view>
+      <icon class='icont sex-icon man-icon'></icon>
+      <view>男神</view>
+    </view>
+    <view class='femail {{sex==0?"active":""}}' bindtap='sexChose' data-sex='{{0}}'>
+      <view class='chose chose-fe ' wx-if="{{sex==0}}"></view>
+      <icon class='icont sex-icon femail-icon'></icon>
+      <view>女神</view>
+    </view>
+  </view>
+  <view class='info-box'>
+    <input placeholder='输入真实姓名' value='{{realName}}' bindinput="bindName" class='info-name'></input>
+    <picker mode="date" value="{{birth}}" bindchange="bindDateChange">
+      <view class="picker">
+        <view class='info-birthday'>{{birth?birth:"选择出生日期"}}</view>
+      </view>
+    </picker>
+  </view>
+  <view class='btn-type0 ' hover-class='btn-active' bindtap='subInfo'>
+    提交
+  </view>
+  <view class='skip' hover-class='skip-active' bindtap='redirectFun'>跳过>></view>
 </view>

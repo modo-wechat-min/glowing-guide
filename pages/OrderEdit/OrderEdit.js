@@ -233,26 +233,36 @@ Page({
         _this.setData({
           hidden: true,
         });
-        if (res.data.Code == "SUCCESS") {
-          wx.requestPayment({
-            timeStamp: PayMessage.timeStamp,
-            nonceStr: PayMessage.nonceStr,
-            package: PayMessage.package,
-            signType: PayMessage.signType,
-            paySign: PayMessage.paySign,
-            success: function (res) {
-              wx.navigateTo({
-                url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
-              })
-            },
-            fail: function (res) {
-              wx.navigateTo({
-                url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
-              })
-            }
+        if (res.data.PayMoney>0){
+
+
+          if (res.data.Code == "SUCCESS") {
+            wx.requestPayment({
+              timeStamp: PayMessage.timeStamp,
+              nonceStr: PayMessage.nonceStr,
+              package: PayMessage.package,
+              signType: PayMessage.signType,
+              paySign: PayMessage.paySign,
+              success: function (res) {
+                wx.navigateTo({
+                  url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
+                })
+              },
+              fail: function (res) {
+                wx.navigateTo({
+                  url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
+                })
+              }
+            })
+          } else {
+            util.throwMsg(res.data.ErrorMessage);
+          }
+
+
+        }else{
+          wx.navigateTo({
+            url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
           })
-        } else {
-          util.throwMsg(res.data.ErrorMessage);
         }
       },
     })

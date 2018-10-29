@@ -38,7 +38,7 @@
 }
 
 .icon {
-  background: url("http://pe3iijnkh.bkt.clouddn.com/icon.png");
+  background: url("https://www.modo-life.com/Images/WeChatMiniStatic/icon.png");
   width: 74rpx;
   height: 74rpx;
   background-size: 544rpx 487rpx;

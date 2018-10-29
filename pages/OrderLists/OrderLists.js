@@ -63,7 +63,6 @@ Page({
   },
   closeOrderFun(e) {
     let _this = this;
-
     wx.showModal({
       title: '提示',
       content: '确定取消订单吗',

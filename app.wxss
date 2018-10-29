@@ -32,6 +32,9 @@
 .font30{
   font-size: 30rpx!important;
 }
+.font32{
+  font-size: 30rpx!important;
+}
 .font34{
   font-size: 30rpx!important;
 }
@@ -126,20 +129,25 @@
 .relative{
   position: relative;
 }
-.btn-class{
-  position: fixed;
+.btn-type0,.btn-class{
   width: 100%;
   height: 94rpx;
   line-height: 94rpx;
   font-size: 34rpx;
   color: #fff;
   text-align: center;
-  bottom: 0;
   background: linear-gradient(to right,#ff4d4d,#ff6644);
+}
+.btn-class{
+  position: fixed;
+  bottom: 0;
 }
 .btn-active{
 background: #bd362f!important;
 color: #fff!important;
+}
+.btn-type0{
+
 }
 #nodata{
   text-align: center;

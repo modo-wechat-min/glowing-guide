@@ -51,8 +51,8 @@
   <view class='box-container  quick-box'>
     <view class='inbock' bindtap='phone'>
       <icon class='icon phone'></icon> 联系客服</view>
-    <view class='inbock' bindtap='delete'>
-      <icon class='icon delete'></icon> 删除订单</view>
+    <view class='inbock' bindtap='orderCancel' wx:if="{{orderObj.IsCancel==1}}">
+      <icon class='icon delete'></icon> 取消订单</view>
   </view>
   <button class='btn {{timerTime?"":"disable-class"}}' wx:if="{{orderObj.Status==1}}" bindtap='payment'>去支付</button>
   <navigator url='../BranchLists/BranchLists?CityIndex={{0}}'><button class='btn' wx:if="{{orderObj.Status!=1}}">再次预定</button></navigator>

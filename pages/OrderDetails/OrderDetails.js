@@ -39,8 +39,34 @@ Page({
       })
     }
   },
-  delete() {
-    util.deleteOrder(this.data.orderObj.BillID,true);  
+  orderCancel() {
+    let _this = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定取消订单吗',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: ports.modoHttp + "API/WeChatMiniProgram/CloseBill?billId=" + _this.data.orderObj.BillID,
+            method: 'get',
+            success: function (res) {
+              if (res.data.state == 1) {
+                wx.showToast({
+                  title: '操作成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+                _this.getOrderInfo();
+              } else {
+                util.throwMsg(res.data.ErrorMessage);
+              }
+            },
+          })
+        } else {
+          return;
+        }
+      }
+    })
   },
   getOrderInfo(TypeValueID) {
     let _this = this;
@@ -54,11 +80,11 @@ Page({
         console.log(res.data.WeChatPay)
         _this.setData({
           orderObj: res.data,
-          hidden: true,
+          hidden: true, 
         })
         //待支付倒计时
         if (res.data.Status == 1) {
-          _this.getTimer(res.data.PayEndDate);
+          _this.getTimer(res.data.PayEndDate); 
         }
       },
     })

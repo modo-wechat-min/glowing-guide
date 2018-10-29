@@ -58,7 +58,7 @@ Page({
     let page = this.data.page;
     let url = '../' + page + '/' + page
     if (page == "CouponLists") {
-      url += "?isComePersonal=" + true;   
+      url += "?isComePersonal=" + true;    
     }
     wx.navigateTo({
       url: url,
