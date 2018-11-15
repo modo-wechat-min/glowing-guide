@@ -44,6 +44,25 @@
       <view class='float_r'>¥{{orderObj.detailMoney.RealPayMoney}}</view>
     </view>
   </view>
+
+<!-- <view class='unsubscribe-box border-b1'>
+  <view class='box-title'>
+    退订规则：
+  </view>
+  <scroll-view scroll-x="true" style="white-space: nowrap; display: block" class="showmian">
+    <view wx:for="{{unsubscribe}}" class='one-item' wx:key="{{index}}">
+    <view class='icon rule-icon {{index==ruleIndex?"active":""}}'></view>
+      <view class='unsubscribe-title'>{{item.title}}</view>
+      <view class='unsubscribe-rule' wx:if="{{index<3}}">
+      <view>{{item.rule}}</view>
+      <view>{{item.subRule}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view> -->
+
+
   <view class='box-container border-b1'>
     <view class='box-title'>温馨提示</view>
     <view class='box-item'>客观上对支付账单有任何疑问，可以随时联系客服帮您解决~</view>

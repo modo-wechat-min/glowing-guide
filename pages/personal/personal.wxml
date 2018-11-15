@@ -3,7 +3,7 @@
   <image class='head-img' src='{{userInfo.avatarUrl}}'></image>
   <view class='person-note font24 '>
     {{!hasUserInfo?"未授权":userInfo.nickName}}
-    <text class='vip' wx:if="{{result.Type==1}}">VIP会员</text>
+    <text class='vip_huang {{result.Type==1?"vip_huang":""}} {{result.Type==4?"vip_bo":""}} {{result.Type==5?"vip_zuan":""}}' wx:if="{{result.Type==1||result.Type==4||result.Type==5}}">{{result.TypeToString}}</text>
   </view>
 </view>
 <view class='person-main-box '>

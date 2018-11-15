@@ -9,8 +9,8 @@ Page({
     time: 0,
     user: null,
     url: "",
-    sex:0,
-    nameInfo:"",
+    sex: 0,
+    nameInfo: "",
     birth: "",
     animationData: {},
   },
@@ -23,12 +23,12 @@ Page({
 
     var animation = wx.createAnimation({
       duration: 600,
-      timingFunction: 'ease-in-out', 
+      timingFunction: 'ease-in-out',
     })
-    this.animation = animation 
+    this.animation = animation
   },
 
-  comeIn(){
+  comeIn() {
     var systemInfo = wx.getSystemInfoSync();
     this.animation.translateX(-750 / 750 * systemInfo.windowWidth).step()
     this.setData({
@@ -85,7 +85,7 @@ Page({
                 icon: "none",
               })
               _this.setData({
-                time:0,
+                time: 0,
               })
             }
           },
@@ -98,14 +98,14 @@ Page({
   //登录
   loginFun() {
     let openId = util.getStorage("openId");
-    if (openId){
+    if (openId) {
       this.login();
-    }else{
+    } else {
       util.getOpenId(this.login);
     }
   },
   testAccount(phone) {
-    var myreg = /^[1][3,4,5,6,7,8][0-9]{9}$/;
+    var myreg = /^[1][1,2,3,4,5,6,7,8,9][0-9]{9}$/;
     if (!myreg.test(phone)) {
       util.throwMsg("请输入正确手机号！");
       return false;
@@ -113,7 +113,7 @@ Page({
       return true;
     }
   },
-  login(){
+  login() {
     let _this = this;
     let openId = util.getStorage("openId");
     if (!this.testAccount(this.data.phone)) {
@@ -131,29 +131,45 @@ Page({
         Code: _this.data.code,
         OpenID: openId,
       },
-      success: function (res) {
-        if (res.data.Code == "SUCCESS") {
+      success: function(res) {
+        console.log(res);
+        if (res.data.Code == "SUCCESS_UpdateName") {
           util.setStorage("userID", res.data.TypeValueID);
           _this.comeIn();
           wx.setNavigationBarTitle({
-            title: "个人信息"//页面标题为路由参数
+            title: "个人信息" //页面标题为路由参数
           })
+        } else if (res.data.Code == "SUCCESS"){
+          util.setStorage("userID", res.data.TypeValueID);
+          _this.redirectFun(res);
         } else {
-          util.throwMsg(res.data.ErrorMessage); 
+          util.throwMsg(res.data.ErrorMessage);
         }
       },
     })
   },
 
   //重定向
-  redirectFun(res){
-    let _this=this;
+  redirectFun(res) {
+    let _this = this;
     let url = _this.data.url ? _this.data.url : util.getStorage('historyUrl');
+    //没有URL调转到个人中心
+    if (!url) {
+      wx.switchTab({
+        url: "../personal/personal",
+        success: function(e) {
+          var page = getCurrentPages().pop();
+          if (page == undefined || page == null) return;
+          page.onLoad();
+        }
+      })
+      return;
+    }
     let options = util.getStorage('options');
     if (url.indexOf("/OrderLists/OrderLists") > -1 || url.indexOf("/personal/personal") > -1) {
       wx.switchTab({
         url: ".." + url,
-        success: function (e) {
+        success: function(e) {
           var page = getCurrentPages().pop();
           if (page == undefined || page == null) return;
           page.onLoad();
@@ -162,18 +178,21 @@ Page({
       return false;
     } else if (url.indexOf("/BranchDetails/BranchDetails") > -1 || url.indexOf("RoomTypeDetails") > -1) {
       url += '?BranchID= ' + options.BranchID + '&StartDate=' + options.StartDate + "&EndDate=" + options.EndDate + "&days=" + options.days + "&RoomTypeID=" + options.RoomTypeID;
+    } else if (url.indexOf("VipPrivilege") > -1) {
+      let vipOption = util.getStorage('vipOption');
+      url += '?type= ' + vipOption.type + '&IsExChange=' + vipOption.IsExChange + "&IsOnlineSale=" + vipOption.IsOnlineSale + "&TypeToString=" + vipOption.TypeToString;
     }
     wx.navigateTo({
       url: ".." + url,
     })
   },
-  sexChose(e){
-    let sex=e.currentTarget.dataset.sex;
+  sexChose(e) {
+    let sex = e.currentTarget.dataset.sex;
     this.setData({
       sex: sex,
     })
   },
-  bindName(e){
+  bindName(e) {
     this.setData({
       nameInfo: e.detail.value
     })
@@ -185,21 +204,21 @@ Page({
   },
 
   //提交信息
-  subInfo(){
-    let _this=this;
-    if (!this.data.nameInfo){
-      util.throwMsg("请输入姓名"); 
-      return ;
+  subInfo() {
+    let _this = this;
+    if (!this.data.nameInfo) {
+      util.throwMsg("请输入姓名");
+      return;
     }
     if (!this.data.birth) {
       util.throwMsg("请选择生日");
       return;
     }
     let UserID = util.getStorage("userID");
-    let OpenID = util.getStorage("openId"); 
+    let OpenID = util.getStorage("openId");
     console.log(UserID, _this.data.sex, _this.data.nameInfo, _this.data.birth)
     wx.request({
-      url: ports.modoHttp + "api/WeChatMiniProgram/SaveName", 
+      url: ports.modoHttp + "api/WeChatMiniProgram/SaveName",
       method: 'post',
       header: {
         "Authorization": OpenID,
@@ -210,16 +229,16 @@ Page({
         Name: _this.data.nameInfo,
         BirthDay: _this.data.birth,
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.Code == "SUCCESS") {
           wx.showToast({
             title: '保存成功',
             icon: 'success',
             duration: 2000
           })
-          setTimeout(function(){
+          setTimeout(function() {
             _this.redirectFun(res);
-          },2000)
+          }, 2000)
         } else {
           util.throwMsg(res.data.ErrorMessage);
         }
@@ -228,9 +247,9 @@ Page({
   },
 
   //日期选择
-  bindDateChange: function (e) { 
+  bindDateChange: function(e) {
     this.setData({
-      birth: e.detail.value  
+      birth: e.detail.value
     })
   },
 })

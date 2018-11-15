@@ -1,12 +1,72 @@
 <view class='main-box2'>
-  <view class='privilege-list'>
-    <view  wx:for="{{rightObj}}" class="right-item ">
-      <view class="right-item-title {{item.typeId==0?'right_item_type0':''}} {{item.typeId==1?'right_item_type1':''}}  {{item.typeId==2?'right_item_type2':''}}" >
-        {{item.vipType}}{{item.typeId}}
+  <view class='bg-img' wx:if="{{TypeToString}}">
+
+    <!-- 黄金会员 -->
+    <view wx:if="{{vipId==1}}">
+      <image class='bgimg' src='{{ImageUrl[1]}}'></image>
+      <icon class='icon icon-logo logo-huang'></icon>
+      <view class='font32 color666 department color-huang'>
+        摩兜公寓
       </view>
-      <view class='right-item-content'>
-        {{item.rightContent}}
+      <view class='vip-type huang-type'>
+        {{TypeToString}}
+      </view>
+    </view>
+
+    <!-- 铂金会员 -->
+    <view wx:if="{{vipId==4}}">
+      <image class='bgimg' src='{{ImageUrl[2]}}'></image>
+      <icon class='icon icon-logo logo-bo'></icon>
+      <view class='font32 color666 department color-bo'>
+        摩兜公寓
+      </view>
+      <view class='vip-type bo-type'>
+        {{TypeToString}}
+      </view>
+
+    </view>
+
+    <!-- 钻石会员 -->
+    <view wx:if="{{vipId==5}}">
+      <image class='bgimg' src='{{ImageUrl[3]}}'></image>
+      <icon class='icon icon-logo logo-zuan'></icon>
+      <view class='font32 color666 department color-zuan'>
+        摩兜公寓
+      </view>
+      <view class='vip-type zuan-type'>
+        {{TypeToString}}
       </view>
     </view>
   </view>
+
+
+  <view class='privilege-list'>
+    <view class="right-item ">
+      <view class="right-item-title right_item_type0">
+        {{rightObj[0].vipType}}
+      </view>
+      <view class='right-item-content'>
+        成为钻石会员后，所有房间单价均在原来的基础上享
+        <text class='font26'>{{rightObj[0].rightContent}}</text>折优惠
+      </view>
+    </view>
+    <view class="right-item ">
+      <view class="right-item-title right_item_type1">
+        {{rightObj[1].vipType}}
+      </view>
+      <view class='right-item-content'>
+        可享受整日订单延迟退房到<text class='font26'>{{rightObj[1].rightContent}}</text>
+      </view>
+    </view>
+    <view class="right-item " wx:if="{{rightObj[2].vipType}}">
+      <view class="right-item-title right_item_type2">
+        {{rightObj[2].vipType}}
+      </view>
+      <view class='right-item-content'>
+        {{rightObj[2].rightContent}}
+      </view>
+    </view>
+  </view>
+  <navigator wx:if="{{IsExChange==0&&IsOnlineSale==0}}" class='btn-exchage ' url='../BranchLists/BranchLists?CityIndex={{0}}'>立即订房</navigator>
+  <view wx:else class='btn-exchage ' bindtap="checkRightAndUpdate">购买会员</view>
 </view>

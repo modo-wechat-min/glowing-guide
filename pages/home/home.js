@@ -12,11 +12,14 @@ Page({
     currentCity:"",
     IsActiveMember:"",//活动
     IsActiveMemberUrl: ports.imgUrl + 'activity.jpg',
+    buyMemberUrl: ports.imgUrl + 'activity_member.jpg',
+    bannerShow: false,
   },
   onLoad: function() {
     this.getMapRight(); 
     this.getLocation();
     this.GetIsActiveMember();
+    this.bannerCheck();
   },
   toGetDate: function() { // 获取日期
     var _this = this;
@@ -94,6 +97,20 @@ Page({
         console.log(res)
         _this.setData({
           IsActiveMember: res.data, //获取当前轮播图片的下标
+        })
+
+      },
+    })
+  },
+  //判断横幅是否展示
+  bannerCheck(){
+    let _this = this;
+    wx.request({
+      url: ports.modoHttp + "api/WeChatMiniProgram/CheckIsShowGoBuyMember",
+      method: 'get',
+      success: function (res) {
+        _this.setData({
+          bannerShow: res.data, //获取当前轮播图片的下标
         })
 
       },

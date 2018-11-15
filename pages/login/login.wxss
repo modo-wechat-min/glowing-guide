@@ -122,7 +122,7 @@ background-size: cover;
 
 .icont{
   display: inline-block;
-  background: url(http://pcv7z5u47.bkt.clouddn.com/sex_icon.png);
+  background: url("https://www.modo-life.com/Images/WeChatMiniStatic/sex_icon.png");
   overflow: hidden;
   margin: auto;
   

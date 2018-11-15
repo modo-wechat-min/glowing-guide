@@ -14,24 +14,36 @@
       合同号：{{contractObj.Code}}
     </view>
   </view>
-  <view class='payment-item' wx:for="{{contractObj.BudgetList}}" wx:key="index">
+  <view class='payment-item' wx:for="{{contractObj.BudgetList}}" wx:key="index" data-ispay="{{item.IsPay}}" data-id="{{item.ID}}" data-money='{{item.PayPrice}}' data-index='{{index}}' bindtap='paymentAddFun'>
     <view class='flextwo item-title'>
       <view class='item-index'>
         <text wx:if="{{item.ExpenseType==1}}">{{item.Count}}-</text>{{item.PayName}}</view>
-      <view wx:if="{{item.IsPay==0}}">
+      <view wx:if="{{item.IsPay==0&&!item.isChecked}}">
         <icon class='wait-icon icon'></icon>待支付</view>
-      <view wx:else class='payed'>
+      <view wx:if="{{item.isChecked}}" class='colorff6644'>
+        <icon class='paying-icon icon'></icon>支付中</view>
+      <view wx:if="{{item.IsPay==1&&!item.isChecked}}" class='payed'>
         <icon class='payed-icon icon'></icon>已支付</view>
     </view>
     <view class=' item-content'>
-      <view wx:if="{{item.Lease}}">租约周期：{{filters.leaseTime(item.Lease)}}</view>
+      <view class='item-time' wx:if="{{item.Lease}}">租约周期：{{filters.leaseTime(item.Lease)}}</view>
       <view class='item-time'>付款日期：{{filters.formalTime(item.PayDate)}}
         <text wx:if="{{0<=item.Days&&item.Days<=7&&item.IsPay==0&&item.PayPrice>0}}" class='wait-days'>剩余{{item.Days}}天</text>
         <text wx:if="{{item.Days<0&&item.IsPay==0&&item.PayPrice>0}}" class='wait-days'>逾期{{-item.Days}}天</text>
       </view>
-      <view>{{item.PayName}}费用：¥{{item.PayPrice}}
-        <navigator class='payment-btn' wx:if="{{item.IsPay==0&&item.PayPrice>0}}" data-id="{{item.ID}}" data-money='{{item.PayPrice}}' bindtap='paymentFun'>立即支付</navigator>
+      <view class='flextwo'>
+        <view>{{item.PayName}}：¥{{item.PayPrice}}</view>
+        <view class='blue' catchtap='lookDetails' data-index='{{index}}'>{{item.isWrap?"收起":"详情"}}</view>
+        <!-- <navigator class='payment-btn' wx:if="{{item.IsPay==0&&item.PayPrice>0}}" data-id="{{item.ID}}" data-money='{{item.PayPrice}}' bindtap='paymentFun'>立即支付</navigator> -->
+      </view>
+      <view class='item-time' wx:for="{{item.otherBudgetLists}}" wx:for-item="cell" wx:for-index="cellindex" wx:if="{{item.isWrap}}">
+      {{cell.ExpenseTypeName}}费用：¥{{cell.Money}}
       </view>
     </view>
   </view>
+</view>
+<view class='btn flexone' hover-class='btn-active' bindtap='paymentFun'>
+  <view class=" total-money">总计：
+    <text class=''>¥</text>{{payMoney}}</view>
+  <view class='{{payMoney<=0?"disable":""}}'>立即支付</view>
 </view>

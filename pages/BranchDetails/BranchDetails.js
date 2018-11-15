@@ -21,7 +21,26 @@ Page({
     longitude: "",
     options: "",
     defaultImg: ports.imgUrl +"default.jpg",
-    isVip: false,
+    UserID: "",
+    unsubscribe:[{
+      "step":0,
+      "title": "预定成功",
+      "rule":"可自行取消",
+    }, {
+        "step": 1,
+        "title": "入住日16点之前",
+        "rule": "收取首晚房费的",
+        "subRule":"50%作为违约金"
+      }, {
+        "step": 2,
+        "title": "入住日16点-20点之前",
+        "rule": "收取首晚房费的",
+        "subRule": "100% 作为违约金"
+      }, {
+        "step": 3,
+        "title": "入住日20点以后",
+        "rule": "",
+      }],
   },
   onLoad: function(options) {
     this.setData({
@@ -30,26 +49,39 @@ Page({
       endTime: options.EndDate,
       days: options.days,
       options: options,
+      UserID : util.getStorage("userID"),
     })
     this.getBranchInfo();
-    this.checkUserIsMember();
+    
   },
   getBranchInfo() {
     let _this = this;
     _this.setData({
-      hidden: false,
+      hidden: false, 
     })
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/BranchDetail?BranchID=" + parseInt(_this.data.branchId) + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime,
+      url: ports.modoHttp + "API/WeChatMiniProgram/BranchDetail?BranchID=" + parseInt(_this.data.branchId) + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&UserID=" + _this.data.UserID,
       method: 'get',
       success: function(res) {
-        console.log(res);
-        let latitude = res.data.Dimension;
-        let longitude = res.data.Longitude;
-        var array=[];
-        var array = _this.swithFun(longitude, latitude);
-        longitude = array[0];
-        latitude = array[1]; 
+        let resObj = res.data;
+        let RoomTypes = resObj.RoomTypes;
+        //重新排序房型
+        //筛选特惠房
+        let RoomType1 = RoomTypes.filter(function(item){
+            return item.Type == 1;
+        })
+        //筛选非特惠房
+        let RoomType2 = RoomTypes.filter(function (item) {
+          return item.Type != 1;
+        })
+        RoomTypes = RoomType1.concat(RoomType2); 
+        resObj.RoomTypes = RoomTypes;
+        let latitude = resObj.Dimension;
+        let longitude = resObj.Longitude;
+        let array=[];
+        array = _this.swithFun(longitude, latitude);
+        longitude = array[0]; 
+        latitude = array[1];  
         let marker = [];
         marker[0] = {
           iconPath: "../../image/location.png",
@@ -60,7 +92,7 @@ Page({
           height: 50
         }
         _this.setData({
-          branchObj: res.data,
+          branchObj: resObj,
           marker: marker,
           latitude: latitude,
           longitude: longitude,
@@ -104,8 +136,12 @@ Page({
     })
   },
   getItemDetails(e) {
+    let newIndex = e.currentTarget.dataset.index;
+    if (newIndex == this.data.itemIndex){
+      newIndex=-1;
+    }
     this.setData({
-      itemIndex: e.currentTarget.dataset.index
+      itemIndex: newIndex
     })
   },
   swiperPageSwith(e) {
@@ -143,32 +179,5 @@ Page({
       var gg_lat = z * Math.sin(theta);
       return [gg_lng, gg_lat];
   },
-  checkUserIsMember() {
-    let _this = this;
-    let UserID = util.getStorage("userID");
-    if (!UserID){
-      return ;
-    }
-    let OpenID = util.getStorage("openId");
-    wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/CheckUserIsMember?UserID=" + UserID,
-      method: 'get',
-      header: {
-        "Authorization": OpenID,
-      },
-      success: function (res) {
-        _this.setData({
-          isVip: res.data,
-        });
-        
-      },
-      complete: function (res) {
-        if (res.statusCode === 401) {
-          util.throwMsg("非法请求");
-          util.setStorage('userID', "", false);
-          return;
-        }
-      }
-    })
-  },
+  
 })

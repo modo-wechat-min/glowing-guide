@@ -127,7 +127,7 @@ display: inline-block;
   top: 55rpx;
   content: "";
 }
-.vip{
+.vip_huang,.vip_bo,.vip_zuan{
   display: inline-block;
   width: 106rpx;
   height: 34rpx;

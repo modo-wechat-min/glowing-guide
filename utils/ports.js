@@ -1,10 +1,10 @@
 //测试站点
 // let imgUrl ="https://testapp.modo-life.com/Images/WeChatMiniStatic/"
-// let modoHttp = "https://testapp.modo-life.com/"
-// let modoHttp2 = "https://testapp.modo-life.com"
+let modoHttp = "https://testapp.modo-life.com/"
+let modoHttp2 = "https://testapp.modo-life.com"
 //晨野站点
-let modoHttp ="http://192.168.1.180:8008/";
-let modoHttp2 = "http://192.168.1.180:8008"; 
+// let modoHttp ="http://192.168.1.180:8008/";
+// let modoHttp2 = "http://192.168.1.180:8008"; 
 //线上站点
 let imgUrl ="https://www.modo-life.com/Images/WeChatMiniStatic/" 
 // let modoHttp = "https://www.modo-life.com/"
@@ -17,6 +17,11 @@ let imgUrl ="https://www.modo-life.com/Images/WeChatMiniStatic/"
 // let modoHttp = "http://app.modo37.com/"
 // let modoHttp2 = "http://app.modo37.com"
 
+
+// 张泽宇
+// let modoHttp = "http://192.168.1.187:8082/"
+// let modoHttp2 = "http://192.168.1.187:8082"
+ 
 let modoImgHttp = "https://www.52modo.com";//线上图片接口
 module.exports = {
   // 登录模块 login

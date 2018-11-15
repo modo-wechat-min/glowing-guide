@@ -35,8 +35,11 @@
 <view class='color999 font22'>
     <span class="save icon"></span>官方渠道预订享低价保证
   </view>
-<navigator class='activity' url='../Activity/Activity' wx:if="{{IsActiveMember==1}}">
+<!-- <navigator class='activity' url='../Activity/Activity' wx:if="{{IsActiveMember==1}}">
   <image class='activity-img' src='{{IsActiveMemberUrl}}'></image>
+</navigator> -->
+<navigator class='activity' url='../BuyVip/BuyVip' wx:if="{{bannerShow}}">
+  <image class='activity-img' src='{{buyMemberUrl}}'></image>
 </navigator>
 <image src='{{homeImageUrl2}}' class='second-img'>
 </image>

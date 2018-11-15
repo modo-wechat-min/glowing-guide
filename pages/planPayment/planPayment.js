@@ -6,13 +6,15 @@ Page({
     hidden: false,
     height:"",
     ContractID:0,
+    payArray:[],//需要支付的账单
+    payMoney:0,
   },
   onLoad: function (options) {
    let _this=this;
     wx.getSystemInfo({
       success: function (res) {
         _this.setData({
-          height: res.windowHeight,
+          height: res.windowHeight, 
         })
       }
     })
@@ -27,9 +29,8 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetOrderContractByid?contractid=" + contractId,
       method: 'get',
       success: function (res) {
-        console.log(res)
         let contractObj=res.data;
-        let array = res.data.BudgetList;
+        let array = res.data.BudgetList; 
         contractObj.BudgetList = array;
         _this.setData({
           contractObj: contractObj,
@@ -38,17 +39,57 @@ Page({
       }
     })
   },
+  paymentAddFun(e){
+    let dataset = e.currentTarget.dataset;
+    let payArray = this.data.payArray;
+    let payMoney = this.data.payMoney;
+    let contractObj = this.data.contractObj;
+    if (dataset.ispay==1){
+      return;
+    }
+    contractObj.BudgetList[dataset.index].isChecked = !contractObj.BudgetList[dataset.index].isChecked;
+    if (payArray.indexOf(dataset.id)>-1) {
+      payArray = payArray.filter(function(item){
+        if (item == dataset.id){
+          payMoney = payMoney - dataset.money;
+          return false;
+        }else{
+          return true;
+        }
+      })
+    }else{
+      payArray.push(dataset.id);
+      payMoney = payMoney + dataset.money;
+    }
+    this.setData({
+      payMoney : payMoney,
+      contractObj: contractObj,
+      payArray: payArray,
+    })
+
+  },
+  lookDetails(e){
+    let dataset = e.currentTarget.dataset;
+    let contractObj = this.data.contractObj;
+    contractObj.BudgetList[dataset.index].isWrap = !contractObj.BudgetList[dataset.index].isWrap;
+    this.setData({
+      contractObj: contractObj, 
+    })
+  },
+
+
   paymentFun(e){
     let _this = this;
-    let dataset=e.currentTarget.dataset;
-    console.log(dataset)
     let data = _this.data.contractObj;
     let OpenID = util.getStorage("openId"); 
+    let payMoney = this.data.payMoney;
+    if (payMoney<=0){
+      return;
+    }
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/PayContractBudget?openid=" + OpenID + "&branchid=" + data.BranchId + "&billid=" + data.BillId + "&budgetId=" + dataset.id+ "&money=" + dataset.money,
+      url: ports.modoHttp + "API/WeChatMiniProgram/PayContractBudget?openid=" + OpenID + "&branchid=" + data.BranchId + "&billid=" + data.BillId + "&budgetId=" + this.data.payArray.toString() + "&money=" + payMoney,
       method: 'get',
       success: function (res) {
-        console.log(res)
         let PayMessage = res.data;
         wx.requestPayment({
           timeStamp: PayMessage.timeStamp,

@@ -32,13 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
 					"name": "分店详情页",
 					"pathName": "pages/BranchDetails/BranchDetails",
-					"query": "BranchID=6&EndDate=2018年09月28日&StartDate=2018年09月22日&days=5"
+					"query": "BranchID=3&EndDate=2018年11月28日&StartDate=2018年11月29日&days=1"
 				},
 				{
 					"id": 1,
@@ -152,6 +152,12 @@
 					"id": 19,
 					"name": "会员购买",
 					"pathName": "pages/BuyVip/BuyVip",
+					"query": "BranchID=6&EndDate=2018年09月28日&StartDate=2018年09月22日&days=5"
+				},
+				{
+					"id": -1,
+					"name": "付款计划",
+					"pathName": "pages/planPayment/planPayment",
 					"query": "BranchID=6&EndDate=2018年09月28日&StartDate=2018年09月22日&days=5"
 				}
 			]

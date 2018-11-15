@@ -1,70 +1,51 @@
 let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
+
 Page({
   data: {
-    UserID:"",
-    OpenID:"",
-    options:"",
-    ImageUrl: ports.imgUrl + 'buy-vip.jpg',
-    Images:[1,2,3],
-    swiperCurrent:0,
-    upgradeArray:[{
-      
-      title:"VIP黄金卡",
-      discrible:"购买89元会员卡或者累计消费3000元",
-      right: "9.8折丨延迟退房",
-      isCanUp:true,
-      imgsrc:"http://ph5rc3ls2.bkt.clouddn.com/bg_huang.png"
-    }, {
-        title: "VIP铂金卡",
-        discrible: "购买289元会员卡或者累计消费10000元",
-        right: "9.5折丨延迟退房丨免押金",
-        isCanUp: true,
-        imgsrc: "http://ph5rc3ls2.bkt.clouddn.com/bg_bo.png"
-      }, {
-        title: "VIP钻石卡",
-        discrible: "累计消费20000元",
-        right: "8.8折丨延迟退房丨免押金",
-        isCanUp: true,
-        imgsrc: "http://ph5rc3ls2.bkt.clouddn.com/vip_zuan.png"
-      }]
+    resData: {},
+    UserID: "",
+    OpenID: "",
+    ImageUrl: [
+      ports.imgUrl + 'vip_bai.png',
+      ports.imgUrl + 'vip_huang.png',
+      ports.imgUrl + 'vip_bo.png',
+      ports.imgUrl + 'vip_zuan.png',
+    ],
+    swiperCurrent: 0,
+    upgradeArray: []
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      options: options ? options:{},
-      UserID : util.getStorage("userID"),
-      OpenID : util.getStorage("openId"), 
+      UserID: util.getStorage("userID"),
+      OpenID: util.getStorage("openId"),
     })
-    this.getMemberShipCardForUpgrade(); 
+    this.getMemberShipCardForUpgrade();
   },
-  
-  swiperChange: function (e) {
+
+  swiperChange: function(e) {
     this.setData({
       swiperCurrent: e.detail.current
     })
   },
   //获取可升级会员
-  getMemberShipCardForUpgrade(){
+  getMemberShipCardForUpgrade() { 
     let _this = this;
-    let UserID = util.getStorage("userID");  
     wx.request({
       url: ports.modoHttp + "api/WeChatMiniProgram/getMemberShipCardForUpgrade?UserID=" + _this.data.UserID,
       method: 'get',
       header: {
         "Authorization": _this.data.OpenID,
       },
-      success: function (res) {
-        console.log(res);
+      success: function(res) {
+        console.log(res)
+        _this.setData({
+          resData: res.data,
+          upgradeArray: res.data.MemberShipCardTypes,
+        })
       },
-      complete: function (res) {
-        // if (res.statusCode === 401) {
-        //   util.throwMsg("非法请求");
-        //   util.setStorage('userID', "", false);
-        //   return;
-        // }
-      }
+
     })
-  }
-
-
+  },
+  
 })

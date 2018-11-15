@@ -1,67 +1,84 @@
 <view class='box'>
   <view class='bg-img'>
     <!-- e会员 -->
-    <view wx:if="{{options.Type==0}}">
-      <image class='bgimg' src='http://ph5rc3ls2.bkt.clouddn.com/vip_bai.png'>白</image>
+    <view wx:if="{{resData.Type==3}}">
+      <image class='bgimg' src='{{ImageUrl[0]}}'></image>
       <icon class='icon icon-logo logo-bai'></icon>
       <view class='font32 color666 department'>
         摩兜公寓
       </view>
       <view class='vip-type e-type'>
-        E会员
+        {{resData.TypeToString}}
       </view>
-      <view class='vip-number'>NO：748456</view>
-      <view class='vip-number' wx:if='{{!(options.CardNumber=="null"||options.CardNumber==undefined)}}'>NO：{{options.CardNumber}}</view>
+      <view class='vip-number' wx:if='{{resData.UserNumber}}'>NO：{{resData.UserNumber}}</view>
     </view>
     <!-- 黄金会员 -->
-    <view wx:if="{{options.Type==1}}">
-      <image class='bgimg' src='http://ph5rc3ls2.bkt.clouddn.com/vip_huang.png'>白</image>
+    <view wx:if="{{resData.Type==1}}">
+      <image class='bgimg' src='{{ImageUrl[1]}}'></image>
       <icon class='icon icon-logo logo-huang'></icon>
       <view class='font32 color666 department color-huang'>
         摩兜公寓
       </view>
       <view class='vip-type huang-type'>
-        VIP黄金卡
+        {{resData.TypeToString}}
       </view>
-      <view class='vip-number color-huang'>NO：748456</view>
-      <view class='vip-number color-huang' wx:if='{{!(options.CardNumber=="null"||options.CardNumber==undefined)}}'>NO：{{options.CardNumber}}</view>
+      <view class='vip-number' wx:if='{{resData.UserNumber}}'>NO：{{resData.UserNumber}}</view>
     </view>
 
     <!-- 铂金会员 -->
-    <view wx:if="{{options.Type==4}}">
-      <image class='bgimg' src='http://ph5rc3ls2.bkt.clouddn.com/vip_bo.png'>铂</image>
+    <view wx:if="{{resData.Type==4}}">
+      <image class='bgimg' src='{{ImageUrl[2]}}'></image>
       <icon class='icon icon-logo logo-bo'></icon>
       <view class='font32 color666 department color-bo'>
         摩兜公寓
       </view>
       <view class='vip-type bo-type'>
-        VIP铂金卡
+        {{resData.TypeToString}}
       </view>
-      <view class='vip-number color-bo'>NO：748456</view>
-      <view class='vip-number color-bo' wx:if='{{!(options.CardNumber=="null"||options.CardNumber==undefined)}}'>NO：{{options.CardNumber}}</view>
+      <view class='vip-number' wx:if='{{resData.UserNumber}}'>NO：{{resData.UserNumber}}</view>
     </view>
 
     <!-- 钻石会员 -->
-    <view wx:if="{{options.Type==5}}">
-      <image class='bgimg' src='http://ph5rc3ls2.bkt.clouddn.com/vip_zuan.png'>钻</image>
+    <view wx:if="{{resData.Type==5}}">
+      <image class='bgimg' src='{{ImageUrl[3]}}'></image>
       <icon class='icon icon-logo logo-zuan'></icon>
       <view class='font32 color666 department color-zuan'>
         摩兜公寓
       </view>
       <view class='vip-type zuan-type'>
-        VIP钻石卡
+        {{resData.TypeToString}}
       </view>
-      <view class='vip-number color-zuan'>NO：748456</view>
-      <view class='vip-number color-zuan' wx:if='{{!(options.CardNumber=="null"||options.CardNumber==undefined)}}'>NO：{{options.CardNumber}}</view>
+      <view class='vip-number' wx:if='{{resData.UserNumber}}'>NO：{{resData.UserNumber}}</view>
     </view>
   </view>
+
   <view>
-    <view class='vip-name'>E会员特权</view>
-    <view class='right-item'>
-      <view class='right-item-title'>订房专属折扣</view>
-      <view class='right-item-content'>成为E会员后，所有房间单价在均在原来的基础上 享9.8折优惠
+
+    <!-- 特权 -->
+    <view class='flextwo'>
+      <view class='vip-name'>{{resData.TypeToString}}特权</view>
+      <view class='more-right' wx:if="{{resData.Type!=3}}">
+        <navigator url='../VipPrivilege/VipPrivilege?type={{resData.Type}}'>更多特权</navigator>
       </view>
     </view>
+    <view class='right-item'>
+      <view class='right-item-title'>订房专属折扣</view>
+
+      <view class='right-item-content' wx:if="{{resData.Type==3}}">成为E会员后，所有房间单价均在原来的基础上享
+        <text class='font26'>9.8</text>折优惠
+      </view>
+      <view class='right-item-content' wx:if="{{resData.Type==1}}">成为黄金会员后，所有房间单价均在原来的基础上享
+        <text class='font26'>9.5</text>折优惠
+      </view>
+      <view class='right-item-content' wx:if="{{resData.Type==4}}">成为铂金会员后，所有房间单价均在原来的基础上享
+        <text class='font26'>9.2</text>折优惠
+      </view>
+      <view class='right-item-content' wx:if="{{resData.Type==5}}">成为钻石会员后，所有房间单价均在原来的基础上享
+        <text class='font26'>8.8</text>折优惠
+      </view>
+    </view>
+
+    <!-- 滑块 -->
     <view class='img-slider'>
       <view class="dots">
         <block wx:for="{{upgradeArray}}" wx:key="unique">
@@ -70,14 +87,23 @@
       </view>
       <swiper class='swiper-box' indicator-dots="{{false}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" indicator-active-color="rgba(255, 102, 89, 1)" bindchange="swiperChange" current="{{swiperCurrent}}">
         <block wx:for="{{upgradeArray}}" wx:for-index="index" wx:key="index" wx:for-item="item">
-          <swiper-item class="swiper-item">
-            <image src='{{item.imgsrc}}' class='swiper-img'></image>
-            <view class='item-title'>{{item.title}}</view>
-            <view class='item-discrible'>{{item.discrible}}</view>
-            <view class='item-right'>{{item.right}}</view>
-            <view class='update-btn'>
-              <view>会员升级</view>
-            </view>
+          <swiper-item class="swiper-item relative">
+            <navigator url='../VipPrivilege/VipPrivilege?type={{item.CardID}}&IsExChange={{item.IsExChange}}&IsOnlineSale={{item.IsOnlineSale}}&TypeToString={{item.Name}}' >
+              <image wx:if="item.CardID==1" src='{{item.CardID==1?"https://www.modo-life.com/Images/WeChatMiniStatic/bg_huang.png":""}}' class='swiper-img'></image>
+              <image wx:if="item.CardID==4" src='{{item.CardID==4?"https://www.modo-life.com/Images/WeChatMiniStatic/bg_bo.png":""}}' class='swiper-img'></image>
+              <image wx:if="item.CardID==5" src='{{item.CardID==5?"https://www.modo-life.com/Images/WeChatMiniStatic/bg_zuan.png":""}}' class='swiper-img'></image>
+              <navigator url='' class='item-more-right'>更多特权</navigator>
+              <view class='item-title'>{{item.Name}}</view>
+              <view class='item-discrible'>
+                <text wx:if="{{item.CardID<5}}">购买<text class='weight700'>{{item.Price}}</text>元会员卡或者</text>累计消费
+                <text class='weight700'>{{item.ChargeExchange}}</text>元</view>
+              <view class='item-right'>{{item.Discount/10}}折丨延迟退房
+                <text wx:if="{{item.CardID>1}}">丨免押金</text>
+              </view>
+              <view class='update-btn'>
+                <view>会员升级</view>
+              </view>
+            </navigator>
           </swiper-item>
         </block>
       </swiper>
