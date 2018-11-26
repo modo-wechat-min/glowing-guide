@@ -2,6 +2,7 @@
   "pages": [
     
     "pages/home/home",
+    "pages/Thanksgiving/Thanksgiving",
     "pages/VipPrivilege/VipPrivilege",
     "pages/Activity/Activity",
     "pages/BuyVip/BuyVip",

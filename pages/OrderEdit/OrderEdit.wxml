@@ -60,13 +60,16 @@
     <view>
       优惠券
     </view>
-    <navigator url='../CouponLists/CouponLists?chosenID={{couponObj.ID}}' wx:if="{{orderObj.VoucherCount>0}}">
+    <navigator url='../CouponLists/CouponLists?chosenID={{couponObj.ID}}' wx:if="{{orderObj.VoucherCount>0&&orderObj.IsVoucher==1}}">
       <view class='trangle'>
         <text wx:if="{{couponObj.InitValue}}">-¥</text>{{couponObj.InitValue?couponObj.InitValue:"有"+orderObj.VoucherCount+"张可用优惠券"}}
       </view>
     </navigator>
-    <view wx:if="{{orderObj.VoucherCount<=0}}">
+    <view wx:if="{{orderObj.VoucherCount<=0&&orderObj.IsVoucher==1}}">
       无可用优惠券
+    </view>
+    <view wx:if="{{orderObj.IsVoucher!=1}}">
+      该房型不可用优惠券
     </view>
   </view>
   <view class='flextwo storage-box border-b1'>

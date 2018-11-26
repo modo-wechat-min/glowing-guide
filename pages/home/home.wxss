@@ -9,6 +9,15 @@
   width: 100%;
   height: 100%;
 }
+.Thanksgiving01{
+  position: absolute;
+  width: 529rpx;
+  height: 311rpx;
+  left: 50%;
+  top: 30rpx;
+  margin-left: -264.5rpx;
+  z-index: 999;
+}
 .floor2{
   margin:  360rpx 30rpx 0;
   background: #fff;

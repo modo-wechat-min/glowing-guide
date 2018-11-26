@@ -210,6 +210,11 @@ Page({
         JsonPerson.push(obj);
       })
     }
+    //优惠券只有IsVoucher==1时才可以使用
+    let voucher="";
+    if (_this.data.orderObj.IsVoucher==1){
+      voucher=JsonVoucher[0].ID && JsonVoucher[0].ID > 0 ? JSON.stringify(JsonVoucher) : null
+    }
     wx.request({
       url: ports.modoHttp + "api/WeChatMiniProgram/CreateBill",
       method: 'post',
@@ -222,7 +227,7 @@ Page({
         StartDate: _this.data.startTime,
         EndDate: _this.data.endTime,
         JsonPerson: JsonPerson[0] != null ? JSON.stringify(JsonPerson) : null,
-        JsonVoucher: JsonVoucher[0].ID && JsonVoucher[0].ID > 0 ? JSON.stringify(JsonVoucher) : null,
+        JsonVoucher: voucher,
         Remark: _this.data.Remark,
         UseBalance: _this.data.useStorage,
         ArriveTime: _this.data.index, //时间索引，就是时间  

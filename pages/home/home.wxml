@@ -1,6 +1,9 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class="floor1">
   <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
+  <navigator url='../Thanksgiving/Thanksgiving'>
+    <image class='Thanksgiving01' src='../../image/Thanksgiving_01.png'></image>
+  </navigator> 
 </view>
 <view class="floor2">
   <view class='flextwo border'>
@@ -23,23 +26,23 @@
     <view>
       <view class='font24'>入离店日期</view>
       <view>{{filters.deleteYearTime(startTime)}}-{{filters.deleteYearTime(endTime)}}
-        <text class='total'>共{{days}}天</text>  
+        <text class='total'>共{{days}}天</text>
       </view>
     </view>
     <view>
     </view>
   </view>
   <view class='ser-btn' bindtap='goBranchLists' hover-class='btn-active'>预定公寓</view>
-  
+
 </view>
 <view class='color999 font22'>
-    <span class="save icon"></span>官方渠道预订享低价保证
-  </view>
+  <span class="save icon"></span>官方渠道预订享低价保证
+</view>
 <!-- <navigator class='activity' url='../Activity/Activity' wx:if="{{IsActiveMember==1}}">
   <image class='activity-img' src='{{IsActiveMemberUrl}}'></image>
 </navigator> -->
-<navigator class='activity' url='../BuyVip/BuyVip' wx:if="{{bannerShow}}">
+<!-- <navigator class='activity' url='../BuyVip/BuyVip' wx:if="{{bannerShow}}">
   <image class='activity-img' src='{{buyMemberUrl}}'></image>
-</navigator>
+</navigator> -->
 <image src='{{homeImageUrl2}}' class='second-img'>
 </image>

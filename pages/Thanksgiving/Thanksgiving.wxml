@@ -1,0 +1,10 @@
+<view class=''>
+  <view>
+    <image src='../../image/Thanksgiving_02.jpg'></image>
+  </view>
+
+  <navigator class='activity' url='../BuyVip/BuyVip'>
+    <button class='btn'>立即购买</button>
+  </navigator>
+
+</view>
