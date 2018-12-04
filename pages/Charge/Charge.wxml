@@ -20,17 +20,21 @@
       {{chargeObj[choseIndex].Price*cradNumber}}元 ({{chargeObj[choseIndex].Name}}x{{cradNumber}}张)
     </view>
   </view>
+  <view wx:if="{{chargeObj[choseIndex].Explain}}" class='money-details'>({{chargeObj[choseIndex].Explain}})</view>
   <navigator class='payment' hover-class='btn-active' bindtap='buyCard'>立即支付</navigator>
   <view class='rule'>
     <view>支付金额：</view>
     <view class='rule-item'>
       1、首次购买赠送vip会员（仅限本人使用）
     </view>
-    <view class='rule-item'>
-      2、最终解释权归本公司所有 
+     <view class='rule-item'>
+      2、储值金额将转化成专享入住金，充值后不可退改，敬请谅解
     </view>
     <view class='rule-item'>
-      3、更多详情致电：
+      3、最终解释权归本公司所有 
+    </view>
+    <view class='rule-item'>
+      4、更多详情致电：
       <view class='phone' bindtap='phone'>4000-777-365</view>
     </view>
   </view>

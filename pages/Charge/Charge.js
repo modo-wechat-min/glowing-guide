@@ -44,6 +44,7 @@ Page({
         "Authorization": openId,
       },
       success: function(res) {
+        console.log(res);
         _this.setData({
           chargeObj: res.data,
           hidden: true,

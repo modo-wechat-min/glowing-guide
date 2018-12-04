@@ -43,7 +43,7 @@ App({
 
   //提交用户信息
   postUserInfo(code,user){
-    console.log(code,user);
+    // console.log(code,user);
     wx.request({
       url: ports.modoHttp + "API/WeChatMiniProgram/GetUnionID", 
       method: 'post',
@@ -55,7 +55,7 @@ App({
         code: code,
       },
       success: res=>{
-        
+
       }
     })
   },
