@@ -4,6 +4,11 @@ App({
   globalData: {
   },
   onLaunch(){
+    util.getOpenId(this.getUserInfoFn);
+    this.checkUpdate(); 
+  },
+
+  getUserInfoFn(){
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -12,8 +17,8 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
+              this.globalData.userInfo = res.userInfo;
+              this.getUserCodeFn(res);
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -24,9 +29,39 @@ App({
         }
       }
     })
-    util.getOpenId();
-    this.checkUpdate();
   },
+
+  // 获取code
+  getUserCodeFn(user) {
+    wx.login({
+      success: res=>{
+        this.postUserInfo(res.code, user)
+      }
+    });
+  },
+
+
+  //提交用户信息
+  postUserInfo(code,user){
+    console.log(code,user);
+    wx.request({
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetUnionID", 
+      method: 'post',
+      data:{
+        rawData: user.rawData,
+        signature: user.signature,
+        encryptedData: user.encryptedData,
+        iv: user.iv,
+        code: code,
+      },
+      success: res=>{
+        
+      }
+    })
+  },
+
+  
+
   //检查更新
   checkUpdate(){
     const updateManager = wx.getUpdateManager()

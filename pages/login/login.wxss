@@ -32,10 +32,11 @@
 .send {
   position: absolute;
   right: 0;
-  top: 52rpx;
+  top: 22rpx;
   font-size: 26rpx;
   color: #333;
   z-index: 99;
+  padding: 30rpx 0 0 40rpx; 
 }
 .login{
   width: 566rpx;

@@ -15,13 +15,19 @@ Page({
     swiperCurrent: 0,
     upgradeArray: []
   },
-  onLoad: function(options) {
+
+  onShow() {
+    if (!util.checkIsLogin()) {
+      return;
+    }
+
     this.setData({
       UserID: util.getStorage("userID"),
       OpenID: util.getStorage("openId"),
     })
     this.getMemberShipCardForUpgrade();
   },
+
 
   swiperChange: function(e) {
     this.setData({

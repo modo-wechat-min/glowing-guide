@@ -84,6 +84,9 @@ Page({
               icon: 'success',
               duration: 2000
             })
+            setTimeout(function () {
+              wx.navigateBack();
+            }, 2000)
           },
           'fail': function (res) {
             wx.showToast({

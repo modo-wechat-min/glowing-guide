@@ -5,7 +5,7 @@ Page({
     hidden: false,
     scoreObj:"",
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     this.getStore();
   },
 getStore(){

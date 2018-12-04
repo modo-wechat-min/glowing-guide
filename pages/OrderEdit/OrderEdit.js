@@ -106,6 +106,7 @@ Page({
             CanSoldNumber: res.data.CanSoldNumber,
             couponObj: couponObj, 
             hidden: true,
+            isFresh:"",
           })
         } else {
           _this.setData({
@@ -113,6 +114,7 @@ Page({
             CanSoldNumber: res.data.CanSoldNumber,
             hidden: true,
             couponObj: couponObj,
+            isFresh: "",
           })
         }
       },

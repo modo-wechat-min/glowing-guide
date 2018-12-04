@@ -45,7 +45,7 @@ function getOpenId(fn) {
     return;
   }else{
     wx.login({
-      success: function (res) {
+      success: function (res) { 
         if (res.code) {
           wx.request({
             url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code, 

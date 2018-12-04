@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 21,
 			"list": [
 				{
 					"id": 0,
@@ -159,6 +159,11 @@
 					"name": "付款计划",
 					"pathName": "pages/planPayment/planPayment",
 					"query": "BranchID=6&EndDate=2018年09月28日&StartDate=2018年09月22日&days=5"
+				},
+				{
+					"id": -1,
+					"name": "感恩节",
+					"pathName": "pages/Thanksgiving/Thanksgiving"
 				}
 			]
 		}

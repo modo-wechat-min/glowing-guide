@@ -1,9 +1,9 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class="floor1">
   <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
-  <navigator url='../Thanksgiving/Thanksgiving'>
-    <image class='Thanksgiving01' src='../../image/Thanksgiving_01.png'></image>
-  </navigator> 
+  <!-- <navigator url='../Thanksgiving/Thanksgiving'> -->
+    <image class='Thanksgiving01' src="{{activityImg}}" wx:if="{{activityImg}}" bindtap='activityNextFn'></image>
+  <!-- </navigator>  -->
 </view>
 <view class="floor2">
   <view class='flextwo border'>

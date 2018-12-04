@@ -58,6 +58,18 @@ Page({
         _this.setData({
           time: 120,
         })
+        timer = setInterval(function () {
+          _this.setData({
+            "time": _this.data.time - 1,
+          })
+          if (_this.data.time <= 0) {
+            clearInterval(timer);
+            _this.setData({
+              time: 0,
+            })
+          }
+        }, 1000)
+        
         wx.request({
           url: ports.modoHttp + "api/WeChatMiniProgram/SendCode",
           method: 'post',
@@ -65,20 +77,7 @@ Page({
             Phone: _this.data.phone
           },
           success: function(res) {
-            if (res.data.Code == "SUCCESS") {
-              timer = setInterval(function() {
-                _this.setData({
-                  "time": _this.data.time - 1,
-                })
-                if (_this.data.time == 0) {
-                  clearInterval(timer)
-                }
-              }, 1000)
-              wx.showToast({
-                title: '发送成功',
-                icon: "none",
-              })
-            } else {
+            if (res.data.Code != "SUCCESS") {
               util.getOpenId();
               wx.showToast({
                 title: res.data.ErrorMessage,
@@ -87,7 +86,7 @@ Page({
               _this.setData({
                 time: 0,
               })
-            }
+            } 
           },
         })
       } else {
@@ -214,7 +213,7 @@ Page({
       util.throwMsg("请选择生日");
       return;
     }
-    let UserID = util.getStorage("userID");
+    let UserID = util.getStorage("userID"); 
     let OpenID = util.getStorage("openId");
     console.log(UserID, _this.data.sex, _this.data.nameInfo, _this.data.birth)
     wx.request({
