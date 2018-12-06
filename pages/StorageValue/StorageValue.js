@@ -5,9 +5,14 @@ Page({
     hidden: false,
     scoreObj:"",
   },
-  onShow: function (options) {
+
+  onShow() {
+    if (!util.checkIsLogin()) {
+      return;
+    }
     this.getStore();
   },
+  
 getStore(){
   let UserID = util.getStorage("userID");
   let openId = util.getStorage("openId");

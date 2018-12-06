@@ -12,16 +12,23 @@ view {
 
 .btn-buy {
   border-radius: 44rpx;
-  position: absolute;
-  left: 50%; 
-  margin-left: -143.5rpx;
+  /* position: absolute; */
+  /* left: 50%; 
+  margin-left: -143.5rpx; */
   width: 297rpx;
   height: 84rpx;
-  bottom: 50rpx;
+  /* bottom: 50rpx; */
   line-height: 74rpx;
   color: #fff; 
   background: transparent; 
   border: 2px solid #fff; 
   box-shadow: none;
   background: #ff6644;
+}
+.bottom-btn{
+  position: fixed;
+  bottom: 50rpx;
+  height: 84rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }

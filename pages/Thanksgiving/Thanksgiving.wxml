@@ -2,9 +2,14 @@
   <view>
     <image src="{{activityImg}}"></image>
   </view>
+  <view class="flextwo bottom-btn">
+    <navigator class='activity' url='../StorageValue/StorageValue'>
+      <button class='btn-buy'> 储值充值 ></button>
+    </navigator>
+    <navigator class='activity' url='../BuyVip/BuyVip'>
+      <button class='btn-buy'> 会员购买 ></button>
+    </navigator>
+  </view>
 
-  <navigator class='activity' url='../BuyVip/BuyVip'>
-    <button class='btn-buy'> 立即购买 ></button>
-  </navigator>
 
 </view>
