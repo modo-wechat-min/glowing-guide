@@ -29,6 +29,7 @@ Page({
       startTime: options.startTime,
       endTime: options.endTime,
       days: options.days,
+      PlanID: options.PlanID,
     });
     this.getOrder();
   },
@@ -86,7 +87,7 @@ Page({
     let UserID = util.getStorage("userID");
     let OpenID = util.getStorage("openId");
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID,
+      url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID + "&PlanID=" + _this.data.PlanID,
       method: 'get',
       success: function(res) {
         console.log(res)

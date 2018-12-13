@@ -63,6 +63,7 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/BranchDetail?BranchID=" + parseInt(_this.data.branchId) + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&UserID=" + _this.data.UserID,
       method: 'get',
       success: function(res) {
+        console.log(res);
         let resObj = res.data;
         let RoomTypes = resObj.RoomTypes;
         //重新排序房型
@@ -115,6 +116,7 @@ Page({
   toBook(e) {
     this.setData({
       RoomTypeID: e.currentTarget.dataset.type,
+      planid: e.currentTarget.dataset.planid,
     })
     util.setStorage('options', this.data.options);
     util.checkRight(this.bookFun);
@@ -125,7 +127,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + this.data.branchId + "&RoomTypeID=" + this.data.RoomTypeID,
+      url: '../OrderEdit/OrderEdit?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + '&days=' + this.data.days + "&BranchID=" + this.data.branchId + "&RoomTypeID=" + this.data.RoomTypeID + "&PlanID=" + this.data.planid,
     })
   },
   goTypePage(e){

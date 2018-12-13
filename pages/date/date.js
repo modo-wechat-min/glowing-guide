@@ -25,13 +25,13 @@ Page({
     isFresh:false,
   },
   //获取日历相关参数
-  dataTime: function (index,time) {
+  dataTime: function (index, time) {
     var date = time;
     //防止时间溢出
     var virtualYear = date.getFullYear();
     var virtualMonth = date.getMonth();
     var virtualTime = new Date(virtualYear, virtualMonth, 1);
-    virtualTime.setMonth(virtualTime.getMonth() + index);
+    virtualTime.setMonth(virtualTime.getMonth() + index );
     var year = virtualTime.getFullYear();
     var month = virtualTime.getMonth();
     var months = virtualTime.getMonth() + 1;
@@ -54,6 +54,16 @@ Page({
   onLoad: function (options) {
     var time = new Date();
     var dateTime = time.getDate();
+
+    // 判断是否在本日凌晨六点前,整体时间前移一天
+    (function(){
+      if (time.getTime() < new Date(time.getFullYear(), time.getMonth(), dateTime,6)){
+        time.setDate(time.getDate() - 1);
+        dateTime = time.getDate();
+      }
+    })(); 
+
+    
     for (var k = 0; k < 6; k++) {
       this.dataTime(k, time); 
     }

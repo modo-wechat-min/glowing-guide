@@ -211,8 +211,11 @@ page {
   /* background: #fff;
   border-radius: 6rpx; */
   height: 134rpx;
+  border-bottom: 1rpx solid #ddd;
 }
-
+.detail-box:last-of-type{
+border: none;
+}
 .detail-title {
   line-height: 45rpx;
   height: 45rpx;

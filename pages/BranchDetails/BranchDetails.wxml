@@ -55,7 +55,7 @@
       <view class='scale'>
         <icon class='icon icon-scale'></icon>
       </view>
-      <image class='room-img' src='{{item.Img?modoImgHttp+item.Img:defaultImg}}' binderror='imgErrorFun' bindtap='goTypePage' data-RoomTypeID='{{item.ID}}' data-booknumber='{{item.CanSoldNumber}}'></image>
+      <image class='room-img' src='{{item.Img?modoImgHttp+item.Img:defaultImg}}' binderror='imgErrorFun' bindtap='goTypePage' data-RoomTypeID='{{item.ID}}' data-booknumber='{{item.CanSoldNumber}}' ></image>
       <view class='flextwo right-info {{index==itemIndex?"active":""}}'>
         <view>
           <view class='room-type {{item.Type==1?"active":""}}'>{{item.Name}}</view>
@@ -69,7 +69,8 @@
       </view>
     </view>
     <view class='room-detail' wx:if="{{index==itemIndex}}">
-      <view class='detail-box border-b1'>
+      <!-- 微信专享价格模块 -->
+      <view class='detail-box '>
         <view class='flextwo paddingt26'>
           <view class='detail-box-left'>
             <view class='font30'>微信会员专享</view>
@@ -90,7 +91,7 @@
           </view>
         </view>
       </view>
-
+      <!-- 会员价格模块 -->
       <view class='detail-box ' wx:if="{{UserID&&UserID>0&&item.Type!=1}}">
         <view class='flextwo paddingt26'>
           <view class='detail-box-left'>
@@ -103,6 +104,28 @@
           <view class='detail-box-right flextwo'>
             <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.GoldVIPPrice}}</text>
             <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定
+              <view>在线付</view>
+            </view>
+            <view class='book-btn disable' wx:else bindtap='noteFun'>满房
+              <view>在线付</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+       <!-- 价格方案模块 -->
+      <view class='detail-box ' wx:for="{{item.PricePlan}}" wx:for-item="subitem" wx:if="{{item.PricePlan&&item.PricePlan.length>0&&subitem.IsParticipate>0}}">
+        <view class='flextwo paddingt26'>
+          <view class='detail-box-left'>
+            <view class='font30'>原价{{subitem.OldPrice}}元</view> 
+            <view class='detail-box-tips flexone'>
+              <view class='tip-item'>{{subitem.Remark}}</view>
+              <!-- <view class='tip-item' wx:if="branchObj.DisCount!=100">{{branchObj.DisCount}}折</view> -->
+            </view>
+          </view>
+          <view class='detail-box-right flextwo'>
+            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{subitem.NewPrice}}</text>
+            <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' data-planid='{{subitem.PlanID}}' wx:if="{{item.CanSoldNumber>0}}">预定
               <view>在线付</view>
             </view>
             <view class='book-btn disable' wx:else bindtap='noteFun'>满房

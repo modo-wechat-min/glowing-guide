@@ -24,7 +24,7 @@
       </view>
       <view class='vip-number' wx:if='{{resData.UserNumber}}'>NO：{{resData.UserNumber}}</view>
     </view>
-
+ 
     <!-- 铂金会员 -->
     <view wx:if="{{resData.Type==4}}">
       <image class='bgimg' src='{{ImageUrl[2]}}'></image>

@@ -4,7 +4,6 @@ App({
   globalData: {},
   onLaunch() {
     util.getOpenId(this.getUserInfoFn);
-
     // this.getUserInfoFn(this.getOpenId); //晨野使用
     this.checkUpdate();
   },
