@@ -10,6 +10,7 @@ App({
 
   //获取用户OpenId和uniqueId
   getOpenId(user) {
+    
     var openId = util.getStorage("openId");
     var uniqueId = util.getStorage("uniqueId");
     if (openId && uniqueId) {

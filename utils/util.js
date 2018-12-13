@@ -50,6 +50,7 @@ function getOpenId(fn) {
           wx.request({
             url: ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code, 
             success: function (res) {
+              console.log(res);
               let data = res.data;
               setStorage('openId', data.OpenID);
               setStorage('userID', data.UserID);
@@ -57,7 +58,7 @@ function getOpenId(fn) {
                 wx.showToast({
                   title: '发生错误！',
                   duration: 2000,
-                  icon: "none",
+                  icon: "none", 
                 });
                 return;
               }
