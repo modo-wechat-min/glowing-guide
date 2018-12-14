@@ -30,7 +30,7 @@ App({
                 util.setStorage('userID', data.UserID);
                 if (!data.OpenID) {
                   wx.showToast({
-                    title: '发生错误！',
+                    title: '发生错误',
                     duration: 2000, 
                     icon: "none",
                   });
@@ -62,7 +62,7 @@ App({
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo;
               console.log(res);
-              this.getOpenId(res);
+              // this.getOpenId(res);
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {

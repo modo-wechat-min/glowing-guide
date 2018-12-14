@@ -86,8 +86,10 @@ Page({
     let _this = this;
     let UserID = util.getStorage("userID");
     let OpenID = util.getStorage("openId");
+    var url = ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID + "&PlanID=" + _this.data.PlanID;
+    console.log(url);
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID + "&PlanID=" + _this.data.PlanID,
+      url: url,
       method: 'get',
       success: function(res) {
         console.log(res)

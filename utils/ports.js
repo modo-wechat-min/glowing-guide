@@ -1,7 +1,7 @@
 //测试站点
 // let imgUrl ="https://testapp.modo-life.com/Images/WeChatMiniStatic/"
-let modoHttp = "https://testapp.modo-life.com/"
-let modoHttp2 = "https://testapp.modo-life.com"
+// let modoHttp = "https://testapp.modo-life.com/"
+// let modoHttp2 = "https://testapp.modo-life.com"
 //晨野站点
 // let modoHttp ="http://192.168.1.180:8008/";
 // let modoHttp2 = "http://192.168.1.180:8008"; 
@@ -15,10 +15,10 @@ let imgUrl ="https://www.modo-life.com/Images/WeChatMiniStatic/"
 
 // 李淑华站点 
 // let modoHttp = "http://192.168.1.185:5067/"  
-// let modoHttp2 = "http://192.168.1.185.5067"  
+// let modoHttp2 = "http://192.168.1.185.5067"   
 
-// let modoHttp = "http://app.modo38.com/"
-// let modoHttp2 = "http://app.modo38.com"  
+let modoHttp = "http://app.modo38.com/"
+let modoHttp2 = "http://app.modo38.com"  
 
 
 // 张泽宇
