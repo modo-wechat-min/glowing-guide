@@ -114,10 +114,10 @@
       </view>
 
        <!-- 价格方案模块 -->
-      <view class='detail-box ' wx:for="{{item.PricePlan}}" wx:for-item="subitem" wx:if="{{item.PricePlan&&item.PricePlan.length>0&&subitem.IsParticipate>0}}">
+      <view class='detail-box ' wx:for="{{item.PricePlan}}"  wx:for-item="subitem" wx:key="subitem.PlanID" wx:if="{{item.PricePlan&&item.PricePlan.length>0&&subitem.IsParticipate>0}}">
         <view class='flextwo paddingt26'>
           <view class='detail-box-left'>
-            <view class='font30'>原价{{subitem.OldPrice}}元</view> 
+            <view class='font30'>{{subitem.PlanName}}</view> 
             <view class='detail-box-tips flexone'>
               <view class='tip-item'>{{subitem.Remark}}</view>
               <!-- <view class='tip-item' wx:if="branchObj.DisCount!=100">{{branchObj.DisCount}}折</view> -->
