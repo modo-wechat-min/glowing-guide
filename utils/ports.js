@@ -15,11 +15,13 @@ let modoHttp2 = "https://www.modo-life.com"
 
 // 李淑华站点 
 // let modoHttp = "http://192.168.1.185:5067/"  
+
 // let modoHttp2 = "http://192.168.1.185.5067"         
  
 // let modoHttp = "http://app.modo38.com/"  
 // let modoHttp2 = "http://app.modo38.com"      
  
+
 
 // 张泽宇
 // let modoHttp = "http://192.168.1.187:8082/"

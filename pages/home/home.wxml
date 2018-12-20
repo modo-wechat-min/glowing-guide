@@ -1,8 +1,16 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
 <view class="floor1">
-  <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image>
+  <swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1000}}" >
+    <block wx:for="{{imgArrayActivity}}" wx:for-index="index" wx:key="index" wx:for-item="item">
+      <swiper-item bindtap='activityNextFn' data-index='{{index}}'>
+        <image  src="{{item.ImageUrl[1]}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- <image class="homeImageUrl" src="{{homeImageUrl}}" mode="cover"></image> -->
   <!-- <navigator url='../Thanksgiving/Thanksgiving'> -->
-    <image class='Thanksgiving01' src="{{activityImg}}" wx:if="{{activityImg}}" bindtap='activityNextFn'></image>
+    <!-- <image class='Thanksgiving01' src="{{activityImg}}" wx:if="{{activityImg}}" bindtap='activityNextFn'></image> -->
   <!-- </navigator>  -->
 </view>
 <view class="floor2">

@@ -56,14 +56,12 @@ Page({
     var dateTime = time.getDate();
 
     // 判断是否在本日凌晨六点前,整体时间前移一天
-    (function(){
-      if (time.getTime() < new Date(time.getFullYear(), time.getMonth(), dateTime,6)){
+    (function () {
+      if (time.getTime() < new Date(time.getFullYear(), time.getMonth(), dateTime, 6)) {
         time.setDate(time.getDate() - 1);
         dateTime = time.getDate();
       }
     })(); 
-
-    
     for (var k = 0; k < 6; k++) {
       this.dataTime(k, time); 
     }

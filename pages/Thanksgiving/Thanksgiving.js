@@ -22,7 +22,7 @@ Page({
       method: 'get',
       success: function (res) {
         _this.setData({
-          activityImg: ports.imgUrl + res.data.ImageUrl[2], //首页背景图
+          activityImg: ports.imgUrl + res.data.ListActiveInfor[0].ImageUrl[2] , //首页背景图
         })
       },
     })

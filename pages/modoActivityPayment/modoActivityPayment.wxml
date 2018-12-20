@@ -1,0 +1,14 @@
+<view class='main-activity-box relative'>
+  <image src='{{imgSrc}}'></image>
+  <view class='absolute'>
+    <button class='buy-btn' wx:if="{{options.count>0}}" bindtap="buyLuckPackageFn" data-type='{{2}}'>立即购买</button>
+    <button class='buy-btn' wx:else>今日福袋售罄</button>
+    <view class='des'>
+      福袋说明：
+      <view>
+        内含价值200元代金券（20元*10张）,福袋每天仅限2个名额,12.28当日限6个名额。 代金券有效期随会员账户终身有效，但不可兑换现金，不设找零，不可退换，每笔订
+单限使用一张。
+      </view>
+    </view>
+  </view>
+</view>

@@ -17,6 +17,9 @@
 .border-b1{
   border-bottom: 1rpx solid #ddd;
 }
+.font18{
+  font-size: 18rpx;
+}
 .font22{
   font-size: 22rpx!important;
 }

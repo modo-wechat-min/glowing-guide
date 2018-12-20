@@ -56,7 +56,7 @@ function getOpenId(fn) {
               setStorage('userID', data.UserID);
               if (!data.OpenID){
                 wx.showToast({
-                  title: '发生错误！',
+                  title: '发生错误',
                   duration: 2000,
                   icon: "none", 
                 });

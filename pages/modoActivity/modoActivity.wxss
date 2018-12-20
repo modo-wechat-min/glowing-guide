@@ -1,0 +1,77 @@
+image {
+  width: 100%;
+  height: 101%;
+  margin-top:-1rpx;
+}
+.relative{
+  position: relative;
+}
+.main-activity-box {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  text-align: center; 
+}
+
+.btn-buy {
+  border-radius: 20rpx;
+  width: 300rpx;
+  height: 84rpx;
+  line-height: 79rpx;
+  color: #fff; 
+  background: transparent; 
+  box-shadow: none;
+  background: #482612;
+  margin:20rpx;
+
+}
+.bottom-btn{
+  position: absolute;
+  width: 100%;
+  bottom: 50rpx;
+  height: 84rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.rightbtn{
+  margin-right:100rpx;
+}
+.leftbtn{
+  margin-left: 100rpx;
+}
+.des-box{
+  position: absolute;
+  top: 600rpx;
+}
+.activity-des-btn{
+  background: #ffcba3;
+  display: inline-block;
+  line-height: 50rpx;
+  border: 2px solid #ffb67d;
+  overflow: hidden;
+ 
+  border-radius: 30rpx;
+  font-size: 34rpx;
+  color: #482612;
+}
+.activity-des-box{
+   width: 90%;
+   margin-left: 5%;
+   box-shadow: 0 0 4rpx rgba(0, 0, 0, 0.8); 
+   font-size: 22rpx;
+   color: #482612;
+   text-align: left;
+   line-height: 34rpx;
+   padding: 20rpx 10rpx ;
+   margin-top: 30rpx;
+}
+.activity-des-box view{
+  margin-bottom: 6rpx;
+}
+.activity-des-btn navigator{
+   padding: 0 20px;
+}
+.bottom-btn{
+  display: flex;
+  justify-content: center; 
+}
