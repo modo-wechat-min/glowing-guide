@@ -49,13 +49,14 @@
   <view class='room-title marginl30'>房型信息</view>
   <view wx:for="{{branchObj.RoomTypes}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap='getItemDetails' data-index='{{index}}' class='room-item flexone  marginl30 {{index!=itemIndex?"border-abs":""}} '>
     <view class='full-room' wx:if="{{item.CanSoldNumber<=3}}"></view>
-    <view class='full-room-font full-room-number' wx:if="{{0<item.CanSoldNumber&&item.CanSoldNumber<=3}}">剩<text class='colorff6644'>{{item.CanSoldNumber}}</text>间</view>
+    <view class='full-room-font full-room-number' wx:if="{{0<item.CanSoldNumber&&item.CanSoldNumber<=3}}">剩
+      <text class='colorff6644'>{{item.CanSoldNumber}}</text>间</view>
     <view class='full-room-font' wx:if="{{item.CanSoldNumber<=0}}">满房</view>
     <view class='room-head flextwo'>
       <view class='scale'>
         <icon class='icon icon-scale'></icon>
       </view>
-      <image class='room-img' src='{{item.Img?modoImgHttp+item.Img:defaultImg}}' binderror='imgErrorFun' bindtap='goTypePage' data-RoomTypeID='{{item.ID}}' data-booknumber='{{item.CanSoldNumber}}' ></image>
+      <image class='room-img' src='{{item.Img?modoImgHttp+item.Img:defaultImg}}' binderror='imgErrorFun' bindtap='goTypePage' data-RoomTypeID='{{item.ID}}' data-booknumber='{{item.CanSoldNumber}}'></image>
       <view class='flextwo right-info {{index==itemIndex?"active":""}}'>
         <view>
           <view class='room-type {{item.Type==1?"active":""}}'>{{item.Name}}</view>
@@ -64,7 +65,7 @@
         </view>
         <view class='right-price'>
           ¥
-          <text class='font40'>{{item.Type==1?item.VIPPrice:item.GoldVIPPrice}}</text>起
+          <text class='font40'>{{item.StartPrice}}</text>起
         </view>
       </view>
     </view>
@@ -81,7 +82,13 @@
           </view>
           <view class='detail-box-right flextwo'>
 
-            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.VIPPrice}}</text>
+            <view class='relative margint12'>
+              <view  class='font40 flextwo {{item.CanSoldNumber>0?"":"color999"}}'>
+                <text  class='font24 line-throw'>¥ {{item.MartketPrice}}</text> 
+                <text decode="{{true}}" class='font24'>&ensp;¥ </text>{{item.VIPPrice}}
+              </view>
+              <view class='reduction'>立减¥{{item.MartketPrice-item.VIPPrice}}</view>
+            </view>
             <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定
               <view>在线付</view>
             </view>
@@ -95,14 +102,20 @@
       <view class='detail-box ' wx:if="{{UserID&&UserID>0&&item.Type!=1}}">
         <view class='flextwo paddingt26'>
           <view class='detail-box-left'>
-            <view class='font30'>{{branchObj.VIPName}}专享</view> 
+            <view class='font30'>{{branchObj.VIPName}}专享</view>
             <view class='detail-box-tips flexone'>
               <view class='tip-item'>{{branchObj.LeaveTime}}:00退房</view>
               <view class='tip-item' wx:if="branchObj.DisCount!=100">{{branchObj.DisCount}}折</view>
             </view>
           </view>
           <view class='detail-box-right flextwo'>
-            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{item.GoldVIPPrice}}</text>
+            <view class='relative margint12'>
+              <view  class='font40  {{item.CanSoldNumber>0?"":"color999"}}'>
+              <text class='font24 line-throw' >¥ {{item.MartketPrice}}</text>
+              <text decode="{{true}}" class='font24'>&ensp;¥ </text>{{item.GoldVIPPrice}}
+              </view>
+              <view class='reduction'>立减¥{{item.MartketPrice-item.GoldVIPPrice}}</view>
+            </view>
             <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定
               <view>在线付</view>
             </view>
@@ -113,18 +126,23 @@
         </view>
       </view>
 
-       <!-- 价格方案模块 -->
-      <view class='detail-box ' wx:for="{{item.PricePlan}}"  wx:for-item="subitem" wx:key="subitem.PlanID" wx:if="{{item.PricePlan&&item.PricePlan.length>0&&subitem.IsParticipate>0}}">
+      <!-- 价格方案模块 -->
+      <view class='detail-box ' wx:for="{{item.PricePlan}}" wx:for-item="subitem" wx:key="subitem.PlanID" wx:if="{{subitem.PlanID>0&&item.PricePlan&&item.PricePlan.length>0&&subitem.IsParticipate>0}}">
         <view class='flextwo paddingt26'>
           <view class='detail-box-left'>
-            <view class='font30'>{{subitem.PlanName}}</view> 
+            <view class='font30'>{{subitem.PlanName}}</view>
             <view class='detail-box-tips flexone'>
-              <view class='tip-item'>{{subitem.Remark}}</view>
-              <!-- <view class='tip-item' wx:if="branchObj.DisCount!=100">{{branchObj.DisCount}}折</view> -->
+              <view class='tip-item' wx:for="{{subitem.pricePlanContents}}" wx:for-item="subsubitem" wx:for-index="subsubIndex" wx:key="subsubitem.ContentCode" wx:if="{{subsubIndex<subitem.pricePlanContents.length-1}}">{{subsubitem.ContentRemark}}</view>
             </view>
           </view>
-          <view class='detail-box-right flextwo'>
-            <text class='font40 {{item.CanSoldNumber>0?"":"color999"}}'><text class='font24'>¥ </text>{{subitem.NewPrice}}</text>
+          <view class='detail-box-right flextwo'> 
+             <view class='relative margint12'>
+              <view  class='font40  {{item.CanSoldNumber>0?"":"color999"}}'>
+              <text class='font24 line-throw' >¥ {{item.MartketPrice}}</text>
+              <text decode="{{true}}" class='font24'>&ensp;¥ </text>{{subitem.NewPrice}}
+              </view>
+              <view class='reduction'>立减¥{{subitem.OldPrice-subitem.NewPrice}}</view>
+            </view>
             <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' data-planid='{{subitem.PlanID}}' wx:if="{{item.CanSoldNumber>0}}">预定
               <view>在线付</view>
             </view>

@@ -11,7 +11,7 @@ Page({
     branchObj: {},
     typeObj: null, 
     RoomTypeID: "",
-    modoImgHttp: ports.modoImgHttp, 
+    modoImgHttp: ports.modoImgHttp,  
     modoHttp2: ports.modoHttp2,
     days: 1,
     itemIndex: 0,

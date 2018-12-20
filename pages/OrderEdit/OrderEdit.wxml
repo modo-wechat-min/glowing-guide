@@ -101,7 +101,7 @@
     <view class='mingxi-item' wx:if="{{useStorage>0}}">储值消费：
       <text>-¥{{useStorage}}</text>
     </view>
-    <view class='mingxi-item' wx:if="{{orderObj.PayMoney!=orderObj.TotalMoney}}">会员优惠：
+    <view class='mingxi-item' wx:if="{{orderObj.PayMoney!=orderObj.TotalMoney}}">{{(orderObj.PricePlan&&orderObj.PricePlan.PlanName)?orderObj.PricePlan.PlanName:"会员"}}优惠：
       <text>-¥{{(orderObj.TotalMoney-orderObj.PayMoney)*number}}</text>
     </view>
   </view>

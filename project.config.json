@@ -32,13 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "分店详情页",
 					"pathName": "pages/BranchDetails/BranchDetails",
-					"query": "BranchID=3&EndDate=2018年11月28日&StartDate=2018年11月29日&days=1"
+					"query": "BranchID=3&EndDate=2018年12月22日&StartDate=2018年12月23日&days=1"
 				},
 				{
 					"id": 1,
@@ -163,7 +163,8 @@
 				{
 					"id": -1,
 					"name": "感恩节",
-					"pathName": "pages/Thanksgiving/Thanksgiving"
+					"pathName": "pages/Thanksgiving/Thanksgiving",
+					"query": ""
 				}
 			]
 		}

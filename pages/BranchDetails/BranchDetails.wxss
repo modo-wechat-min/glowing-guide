@@ -729,3 +729,31 @@ cover-image {
 top:8rpx;
 
 }
+.line-throw{
+  color: #444;
+  text-decoration: line-through;
+}
+.margint12{
+  margin-top: -12rpx;
+}
+.reduction{
+display:inline-block;
+position:absolute;
+bottom:-10rpx;
+right:0rpx;
+background:#ff6644;
+padding:0rpx 10rpx;
+border-radius:25rpx;
+color:#fff;
+font-size:20rpx;
+height:30rpx;
+line-height:30rpx;
+max-width: 200rpx;
+}
+.detail-box-right .margint12{
+  min-width: 150rpx;
+}
+.detail-box-right>view>text{
+  display: inline-block;
+  width: 100%;
+}

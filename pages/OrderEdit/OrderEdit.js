@@ -20,7 +20,7 @@ Page({
     CanSoldNumber: 0, //可预订数量
     index: 0, //时间索引
     isChecked: false,
-    defaultImg: ports.imgUrl + "default.jpg",
+    defaultImg: ports.imgUrl + "default.jpg", 
   },
   onLoad: function(options) {
     this.setData({
@@ -31,6 +31,7 @@ Page({
       days: options.days,
       PlanID: options.PlanID,
     });
+    console.log(options)
     this.getOrder();
   },
   changeSwitch() {
@@ -185,7 +186,7 @@ Page({
   },
   toDailyPrice(e) {
     wx.navigateTo({
-      url: '../EveryDayPrice/EveryDayPrice?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&RoomTypeID=" + this.data.typeId,
+      url: '../EveryDayPrice/EveryDayPrice?startTime=' + this.data.startTime + '&endTime=' + this.data.endTime + "&RoomTypeID=" + this.data.typeId + "&planId=" + _this.data.PlanID,
     })
   },
   onShow() {
@@ -226,6 +227,7 @@ Page({
       data: {
         UserID: UserID,
         OpenID: OpenID,
+        PricePlan: _this.data.PlanID,
         BranchID: _this.data.branchId,
         RoomTypeID: _this.data.typeId,
         RoomCount: _this.data.number,
