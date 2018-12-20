@@ -1,0 +1,28 @@
+<view class='main-activity-box'>
+  <view class='relative main-activity-box'>
+    <image src="{{activityImg}}"></image>
+    <view class='des-box'>
+      <view class='activity-des-btn'>
+         <navigator  url='../modoActivityPayment/modoActivityPayment?count={{countObj.BagCount}}'>活动详情</navigator>
+      </view>
+      <view class='activity-des-box'>
+        <view>
+          1、周年庆充值送会员：充值1228元送黄金会员。 
+          <view>（获赠会员时可得相应代金券50元*1张+20元*3张，每天仅限一个名额）</view>
+        </view>
+        <view>
+          2、10元购200元福袋：10元购买新年福袋一个,内含价值200元代金券（20元*10张）,福袋每天仅限2个名额,12.28当日限6个名额。
+        </view>
+        <view class='font18'>
+          注：代金券有效期随会员账户终身有效，但不可兑换现金，不设找零，不可退换，每笔订单限使用一张。
+        </view>
+      </view>
+    </view>
+    <view class=" bottom-btn">
+        <button class='btn-buy ' wx:if="{{countObj.BagCount>0}}"  bindtap="buyLuckPackageFn" data-type='{{2}}'> 购买福袋 </button>
+        <button class='btn-buy ' wx:else> 今日福袋售罄 </button>
+        <button class='btn-buy ' wx:if="{{countObj.CardCount>0}}" bindtap="buyLuckPackageFn" data-type='{{1}}'> 立即充值 </button>
+        <button class='btn-buy ' wx:else> 周年庆卡售罄 </button>
+    </view>
+  </view>
+</view>

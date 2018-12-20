@@ -11,11 +11,10 @@
 }
 .Thanksgiving01{
   position: absolute;
-  width: 476rpx;
-  height: 240rpx;
-  left: 50%;
-  top: 60rpx;
-  margin-left: -238rpx;
+  width: 100%;
+  height: 100%;
+  left:0%;
+  top: -1rpx;
   z-index: 999;
 }
 .floor2{
@@ -109,4 +108,9 @@
 .font22{
   text-align: center;
   margin-top: 20rpx;
+}
+swiper ,.slide-image{
+  height: 100%;
+  width: 100%;
+  margin-top: -1px;
 }

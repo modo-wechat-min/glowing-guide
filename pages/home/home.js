@@ -2,19 +2,15 @@ let ports = require('../../utils/ports.js');
 let util = require('../../utils/util.js');
 Page({
   data: {
-    homeImageUrl: "",
     homeImageUrl2: ports.imgUrl + 'home_2.jpg',
-    activityImg: "",
     startTime: util.initTime(0),
     endTime: util.initTime(1),
     days: 1,
     index: 0,
     array: ['不限', '北京', '南京'],
     currentCity: "",
-    // IsActiveMember:"",//活动
-    // IsActiveMemberUrl: ports.imgUrl + 'activity.jpg',
     buyMemberUrl: ports.imgUrl + 'activity_member.jpg',
-    // bannerShow: false,
+    imgArrayActivity:[],
   },
   onLoad: function() {
     this.getMapRight();
@@ -100,18 +96,31 @@ Page({
       url: ports.modoHttp + "API/WeChatMiniProgram/HomeActiveInfo",
       method: 'get',
       success: function(res) {
+        console.log(res);
+        console.log(res.data.ListActiveInfor);
+        var imgArray = res.data.ListActiveInfor.map(function(item){
+          var subImg=[]
+          subImg=item.ImageUrl.map(function(subItem){
+             return ports.imgUrl+subItem;
+          })
+          item.ImageUrl = subImg;
+          return item;
+        })
         _this.setData({
-          homeImageUrl: ports.imgUrl + res.data.ImageUrl[0], //首页背景图
-          activityImg: ports.imgUrl + res.data.ImageUrl[1],
+          imgArrayActivity:imgArray,
         })
         _this.isHaveActivity = res.data.IsActive;
       },
     })
   },
-  activityNextFn: function() {
+  activityNextFn: function(e) {
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
     var url;
-    if (this.isHaveActivity) {
+    if (this.isHaveActivity && index==0) {
       url = "../Thanksgiving/Thanksgiving";
+    } else if (this.isHaveActivity && index == 1){
+      url = "../modoActivity/modoActivity";
     } else {
       url = '../BranchLists/BranchLists?CityIndex=' + this.data.index + '&StartDate=' + this.data.startTime + '&EndDate=' + this.data.endTime + '&days=' + this.data.days;
     }

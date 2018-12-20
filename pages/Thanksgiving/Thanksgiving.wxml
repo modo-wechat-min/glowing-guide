@@ -1,15 +1,14 @@
 <view class=''>
-  <view>
+  <view class='relative'>
     <image src="{{activityImg}}"></image>
+    <view class="flextwo bottom-btn">
+      <navigator class='activity' url='../StorageValue/StorageValue'>
+        <button class='btn-buy leftbtn'> 去充值 </button>
+      </navigator>
+      <navigator class='activity' url='../BuyVip/BuyVip'>
+        <button class='btn-buy rightbtn'> 去购卡 </button>
+      </navigator>
+    </view>
   </view>
-  <view class="flextwo bottom-btn">
-    <navigator class='activity' url='../StorageValue/StorageValue'>
-      <button class='btn-buy'> 储值充值 ></button>
-    </navigator>
-    <navigator class='activity' url='../BuyVip/BuyVip'>
-      <button class='btn-buy'> 会员购买 ></button>
-    </navigator>
-  </view>
-
 
 </view>
