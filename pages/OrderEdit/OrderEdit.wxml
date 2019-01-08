@@ -115,5 +115,7 @@
     <text class='font44' wx:if="{{number>0}}">{{(couponObj.InitValue?(orderObj.PayMoney*number-useStorage-couponObj.InitValue):(orderObj.PayMoney*number-useStorage))>=0?(couponObj.InitValue?(orderObj.PayMoney*number-useStorage-couponObj.InitValue):(orderObj.PayMoney*number-useStorage)):0}}</text>
     <text wx:else>0</text>
   </view>
-  <button bindtap='bookFun' class=' {{CanSoldNumber<=0?"disable-class":""}}'>立即预定</button>
+  <form bindsubmit="submit" report-submit='true'>
+    <button form-type="submit" type="default" class=' {{CanSoldNumber<=0?"disable-class":""}}'>立即预定</button>
+  </form>
 </view>

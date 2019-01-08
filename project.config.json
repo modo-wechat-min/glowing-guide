@@ -38,7 +38,7 @@
 					"id": 0,
 					"name": "分店详情页",
 					"pathName": "pages/BranchDetails/BranchDetails",
-					"query": "BranchID=3&EndDate=2018年12月22日&StartDate=2018年12月23日&days=1"
+					"query": "BranchID=3&EndDate=2019年1月8日&StartDate=2019年1月9日&days=1"
 				},
 				{
 					"id": 1,
