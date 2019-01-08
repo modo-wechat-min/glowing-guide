@@ -9,7 +9,7 @@ Page({
     index: 0,
     array: ['不限', '北京', '南京'],
     currentCity: "",
-    buyMemberUrl: ports.imgUrl + 'activity_member.jpg',
+    buyMemberUrl: ports.imgUrl + 'activity_member.jpg', 
     imgArrayActivity:[],
   },
   onLoad: function() {

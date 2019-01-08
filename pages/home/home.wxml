@@ -2,8 +2,8 @@
 <view class="floor1">
   <swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1000}}" >
     <block wx:for="{{imgArrayActivity}}" wx:for-index="index" wx:key="index" wx:for-item="item">
-      <swiper-item bindtap='activityNextFn' data-index='{{index}}'>
-        <image  src="{{item.ImageUrl[1]}}" class="slide-image" />
+      <swiper-item bindtap='activityNextFn' data-index='{{index}}'> 
+        <image  src="{{item.ImageUrl[1]}}" class="slide-image" /> 
       </swiper-item>
     </block>
   </swiper>
