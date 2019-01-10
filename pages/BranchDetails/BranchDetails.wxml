@@ -83,11 +83,12 @@
           <view class='detail-box-right flextwo'>
 
             <view class='relative margint12'>
-              <view  class='font40 flextwo {{item.CanSoldNumber>0?"":"color999"}}'>
-                <text  class='font24 line-throw'>¥ {{item.MartketPrice}}</text> 
-                <text decode="{{true}}" class='font24'>&ensp;¥ </text>{{item.VIPPrice}}
+              <view  class='font40 text-align-right {{item.CanSoldNumber>0?"":"color999"}}'>
+                <!-- <text  class='font24 line-throw'>¥ {{item.MartketPrice}}</text>  -->
+                <!-- <text decode="{{true}}" class='font24'>&ensp;</text> -->
+                <text class='font24'>¥ </text>{{item.VIPPrice}}
               </view>
-              <view class='reduction'>立减¥{{item.MartketPrice-item.VIPPrice}}</view>
+              <!-- <view class='reduction'>立减¥{{item.MartketPrice-item.VIPPrice}}</view> -->
             </view>
             <view class='book-btn' bindtap='toBook' data-branchId='{{item.BranchID}}' data-type='{{item.ID}}' wx:if="{{item.CanSoldNumber>0}}">预定
               <view>在线付</view>

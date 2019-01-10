@@ -78,6 +78,9 @@
 .icon-close{
   color:#047fff;
 }
+.text-align-right{
+  text-align: right;
+}
 /*警示状态栏*/
 .status-bar{
     position: fixed;
@@ -149,9 +152,7 @@
 background: #bd362f!important;
 color: #fff!important;
 }
-.btn-type0{
 
-}
 #nodata{
   text-align: center;
   font-size: 26rpx;
