@@ -78,6 +78,98 @@ function getOpenId(fn) {
   }
 }
 
+
+
+
+
+
+
+function _getUserInfoFn(callBack, cBack) { 
+  // 获取用户信息
+  wx.getSetting({
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+        wx.getUserInfo({
+          success: res => {
+            // 可以将 res 发送给后台解码出 unionId
+            // this.globalData.userInfo = res.userInfo;   
+            // console.log(res);
+            callBack(res, cBack);
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            // if (this.userInfoReadyCallback) {
+            //   this.userInfoReadyCallback(res) 
+            // }
+          }
+        })
+      }
+    }
+  })
+}
+
+function _getOpenId(user, cBack){
+  var openId = getStorage("openId");
+  var uniqueId = getStorage("uniqueId");    
+  if (openId && uniqueId) {
+    return;
+  } else {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          var url = ports.modoHttp + "API/WeChatMiniProgram/GetOpenID?code=" + res.code + "&encryptedData=" + user.encryptedData + "&iv=" + user.iv;
+          console.log(url) 
+          wx.request({
+            url: url,
+            success: function (res) {
+              console.log(url)
+              let data = res.data;
+              console.log(data);
+              setStorage('openId', data.OpenID);
+              setStorage('uniqueId', data.UnionID);
+              setStorage('userID', data.UserID);
+              if (!data.OpenID) {
+                wx.showToast({
+                  title: '发生错误',
+                  duration: 2000,
+                  icon: "none",
+                });
+                return;
+              }
+              if (cBack){
+                cBack();
+              }
+            }
+          });
+        } else {
+          wx.showToast({
+            title: '获取用户登录态失败！' + res.errMsg,
+            duration: 2000
+          });
+        }
+      }
+    });
+  }
+}
+
+
+function getUniqueIdAndOpenId(cBack){
+  _getUserInfoFn(_getOpenId,cBack);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* store封装 */
 function setStorage(key, value, isSync = true) {
   if (isSync) {
@@ -293,6 +385,7 @@ module.exports = {
   getStorage: getStorage,
   removeStorage: removeStorage,
   getOpenId: getOpenId,
+  getUniqueIdAndOpenId: getUniqueIdAndOpenId,
   throwMsg: throwMsg,
   deleteOrder: deleteOrder,
   getContractsLists: getContractsLists,

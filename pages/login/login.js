@@ -78,7 +78,7 @@ Page({
           },
           success: function(res) {
             if (res.data.Code != "SUCCESS") {
-              util.getOpenId();
+              // util.getUniqueIdAndOpenId();
               wx.showToast({
                 title: res.data.ErrorMessage,
                 icon: "none",
@@ -97,10 +97,11 @@ Page({
   //登录
   loginFun() {
     let openId = util.getStorage("openId");
-    if (openId) {
+    let uniqueId = util.getStorage("uniqueId");
+    if (openId && uniqueId) {
       this.login();
     } else {
-      util.getOpenId(this.login);
+      util.getUniqueIdAndOpenId(this.login);
     }
   },
   testAccount(phone) {
@@ -114,6 +115,7 @@ Page({
   },
   login() {
     let _this = this;
+    let uniqueId = util.getStorage("uniqueId");
     let openId = util.getStorage("openId");
     if (!this.testAccount(this.data.phone)) {
       return false;
@@ -129,6 +131,7 @@ Page({
         Phone: _this.data.phone,
         Code: _this.data.code,
         OpenID: openId,
+        UnionID:uniqueId,
       },
       success: function(res) {
         console.log(res);
@@ -140,7 +143,7 @@ Page({
           })
         } else if (res.data.Code == "SUCCESS"){
           util.setStorage("userID", res.data.TypeValueID);
-          _this.redirectFun(res);
+          _this.redirectFun(res); 
         } else {
           util.throwMsg(res.data.ErrorMessage);
         }
