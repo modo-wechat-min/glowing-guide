@@ -78,12 +78,6 @@ function getOpenId(fn) {
   }
 }
 
-
-
-
-
-
-
 function _getUserInfoFn(callBack, cBack) { 
   // 获取用户信息
   wx.getSetting({
