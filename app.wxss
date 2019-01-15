@@ -59,6 +59,9 @@
 .color999{
   color: #999;
 }
+.text-align-right{
+  text-align: right;
+}
  /* 0等待确认，1预定未付，2预定已付，3消费中，4已结帐，5订单关闭，6客户取消  */
  .icon-cancel{
    color: #333;
@@ -77,9 +80,6 @@
 }
 .icon-close{
   color:#047fff;
-}
-.text-align-right{
-  text-align: right;
 }
 /*警示状态栏*/
 .status-bar{
@@ -152,7 +152,9 @@
 background: #bd362f!important;
 color: #fff!important;
 }
+.btn-type0{
 
+}
 #nodata{
   text-align: center;
   font-size: 26rpx;

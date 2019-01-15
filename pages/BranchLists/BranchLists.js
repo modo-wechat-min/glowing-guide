@@ -10,7 +10,7 @@ Page({
     hidden: false,
     imgurl: ports.imgUrl + 'img_1.png',
     index: 0,
-    array: ['不限', '北京', '南京'],
+    array: ['不限', '北京', '南京','杭州'],
     startTime: "",
     endTime: "",
     minPrice: 0,
@@ -83,9 +83,11 @@ Page({
     array = array.map(function(item, key) { 
       return item.ID
     })
-    console.log(ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString() + "&UserID=" + UserID)
+    let cityId = this.data.index == 3 ? 4 : this.data.index;
+    let url = ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + cityId + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString() + "&UserID=" + UserID; 
+    console.log(url);
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchList?StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&CityID=" + this.data.index + "&KeyWord=" + this.data.KeyWord + "&MinPrice=" + this.data.minPrice + "&MaxPrice=" + this.data.maxPrice + "&Trading=" + array.toString() + "&UserID="+UserID,
+      url:url,
       method: 'get',
       success: function(res) {
         console.log(res)

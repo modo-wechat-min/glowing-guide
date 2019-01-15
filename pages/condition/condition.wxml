@@ -9,7 +9,7 @@
     <view class='time'>{{endTime?filters.deleteYearTime(endTime):"退房时间"}}</view>
     <view wx:if="{{days>0}}" class="total-day">共{{days}}晚</view>
   </view>
-  <view class='tilte trading-area font34'>
+  <view class='tilte trading-area font34' >
     {{array[index]}}商圈
   </view>
   <view class='flexone lists'>

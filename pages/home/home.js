@@ -7,7 +7,7 @@ Page({
     endTime: util.initTime(1),
     days: 1,
     index: 0,
-    array: ['不限', '北京', '南京'],
+    array: ['不限', '北京', '南京','杭州'],
     currentCity: "",
     buyMemberUrl: ports.imgUrl + 'activity_member.jpg', 
     imgArrayActivity:[],
@@ -67,6 +67,8 @@ Page({
           index = 1;
         } else if (city.indexOf("南京") > -1) {
           index = 2;
+        } else if (city.indexOf("杭州") > -1){
+          index = 3;
         }
         _this.setData({
           index: index

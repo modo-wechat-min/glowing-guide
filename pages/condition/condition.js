@@ -12,7 +12,7 @@ Page({
     options: "",
     hidden: false,
     index: 0,//城市默认
-    array: ['不限', '北京', '南京'],
+    array: ['不限', '北京', '南京','杭州'],
   },
   onLoad: function(options) {
     this.setData({
@@ -94,8 +94,9 @@ Page({
   },
   getTradings() {
     let _this = this;
+    let cityId = this.data.index == 3 ? 4 : this.data.index;
     wx.request({
-      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchTrad?CityID=" + _this.data.index,
+      url: ports.modoHttp + "API/WeChatMiniProgram/GetBranchTrad?CityID=" + cityId,
       method: 'get',
       success: function(res) {
         console.log(res);
