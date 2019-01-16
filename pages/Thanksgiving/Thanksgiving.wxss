@@ -12,22 +12,22 @@ view {
   width: 100%;
   text-align: center; 
 }
-
+.activity{
+   margin-top: 20rpx;
+}
 .btn-buy {
   border-radius: 44rpx;
-  /* position: absolute; */
-  /* left: 50%; 
-  margin-left: -143.5rpx; */
-  width: 200rpx;
+
+  width: 226rpx;
   height: 84rpx;
   /* bottom: 50rpx; */
   line-height: 79rpx;
   color: #fff; 
   background: transparent; 
   box-shadow: none;
-  background: #8d0000;
-  margin-top:20rpx;
-
+  background: transparent;
+padding: 0 ;
+border: 1px solid #fff;
 }
 .bottom-btn{
   position: absolute;

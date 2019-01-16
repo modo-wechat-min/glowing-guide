@@ -111,7 +111,7 @@ Page({
         _this.setData({
           imgArrayActivity:imgArray,
         })
-        _this.isHaveActivity = res.data.IsActive;
+        _this.isHaveActivity = res.data.IsActive; 
       },
     })
   },

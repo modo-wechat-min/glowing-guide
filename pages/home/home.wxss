@@ -114,3 +114,11 @@ swiper ,.slide-image{
   width: 100%;
   margin-top: -1px;
 }
+.sub-img{
+ z-index: 9999;
+ position: absolute;
+ width: 471rpx;
+ height: 239rpx;
+ left: 139rpx;
+ top: 32px;
+}
