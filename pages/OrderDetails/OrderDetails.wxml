@@ -4,8 +4,9 @@
 </loading>
 <view class="main-box" wx:if="{{orderObj}}">
   <!-- 0等待确认，1预定未付，2预定已付，3消费中，4已结转，5订单关闭，6客户取消 -->
-  <view class='status border-b1 flextwo'><view>{{orderObj.StatusToString}}</view>
-  <view>{{timerTime}}</view>
+  <view class='status border-b1 flextwo'>
+    <view>{{orderObj.StatusToString}}</view>
+    <view>{{timerTime}}</view>
   </view>
   <view class='order-header '>
     <view class='font24'>订单号：{{orderObj.BillNumber}}</view>
@@ -14,7 +15,7 @@
   <view class='img-box border-b1'>
     <image class='order-img' src='{{orderObj.RoomTypeImg?modoImgHttp+orderObj.RoomTypeImg:defaultImg}}'></image>
     <view class='branch'>{{orderObj.BranchName}}</view>
-    <view class='font24'>{{orderObj.RoomTypeName}}</view> 
+    <view class='font24'>{{orderObj.RoomTypeName}}</view>
   </view>
   <view class='box-container border-b1'>
     <view class='box-title'>入住信息</view>
@@ -23,9 +24,10 @@
       <view class='box-item'>租客姓名：{{item.Name}}</view>
       <view class='box-item'>身份证号：{{item.CardNumber}}</view>
     </view>
-     <view class='down-box' bindtap='personsFun' wx:if="{{orderObj.MyContact.length>1}}">
-        {{iconActive?"查看更多入住人":"收起入住人信息"}} <icon class='icon-down {{iconActive?"icon-up":""}}'></icon>
-      </view>
+    <view class='down-box' bindtap='personsFun' wx:if="{{orderObj.MyContact.length>1}}">
+      {{iconActive?"查看更多入住人":"收起入住人信息"}}
+      <icon class='icon-down {{iconActive?"icon-up":""}}'></icon>
+    </view>
   </view>
   <view class='box-container border-b1'>
     <view class='box-title'>交易信息</view>
@@ -36,7 +38,7 @@
       <view class='float_r'>-¥{{orderObj.detailMoney.VoucherMoney}}</view>
     </view>
     <view class='box-item' wx:if="{{orderObj.detailMoney.BalanceMoney>0}}">储值消费：
-      <view class='float_r'>-¥{{orderObj.detailMoney.BalanceMoney}}</view> 
+      <view class='float_r'>-¥{{orderObj.detailMoney.BalanceMoney}}</view>
     </view>
   </view>
   <view class='box-container border-b1'>
@@ -45,7 +47,7 @@
     </view>
   </view>
 
-<!-- <view class='unsubscribe-box border-b1'>
+  <!-- <view class='unsubscribe-box border-b1'>
   <view class='box-title'>
     退订规则：
   </view>
@@ -70,9 +72,15 @@
   <view class='box-container  quick-box'>
     <view class='inbock' bindtap='phone'>
       <icon class='icon phone'></icon> 联系客服</view>
-    <view class='inbock' bindtap='orderCancel' wx:if="{{orderObj.IsCancel==1}}">
-      <icon class='icon delete'></icon> 取消订单</view>
+    <form bindsubmit="submit" report-submit='true'>
+      <button form-type="submit" type="default" class='order-cancle'  wx:if="{{orderObj.IsCancel==1}}">
+        <icon class='icon delete'></icon>
+        <text class='color666'> 取消订单</text></button>
+    </form>
+
   </view>
   <button class='btn {{timerTime?"":"disable-class"}}' wx:if="{{orderObj.Status==1}}" bindtap='payment'>去支付</button>
-  <navigator url='../BranchLists/BranchLists?CityIndex={{0}}'><button class='btn' wx:if="{{orderObj.Status!=1}}">再次预定</button></navigator>
+  <navigator url='../BranchLists/BranchLists?CityIndex={{0}}'>
+    <button class='btn' wx:if="{{orderObj.Status!=1}}">再次预定</button>
+  </navigator>
 </view>

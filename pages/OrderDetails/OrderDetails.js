@@ -59,7 +59,10 @@ Page({
       })
     }
   },
-  orderCancel() {
+  submit: function (e) {
+    this.orderCancel(e.detail.formId);
+  },
+  orderCancel(formId) {
     let _this = this;
     wx.showModal({
       title: '提示',
@@ -67,7 +70,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: ports.modoHttp + "API/WeChatMiniProgram/CloseBill?billId=" + _this.data.orderObj.BillID,
+            url: ports.modoHttp + "API/WeChatMiniProgram/CloseBill?billId=" + _this.data.orderObj.BillID + "&FormID=" + formId,
             method: 'get',
             success: function (res) {
               if (res.data.state == 1) {
@@ -82,7 +85,7 @@ Page({
                   })
                 },2000)
               } else {
-                util.throwMsg(res.data.ErrorMessage);
+                util.throwMsg("发生错误");
               }
             },
           })

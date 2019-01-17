@@ -31,8 +31,15 @@ Page({
       days: options.days,
       PlanID: options.PlanID,
     });
-    console.log(options)
+    // console.log(options)
     this.getOrder();
+  },
+
+  submit: function (e) {
+    this.formId = e.detail.formId;
+    console.log(e.detail.formId);
+
+    this.bookFun();
   },
   changeSwitch() {
     let isChecked=this.data.isChecked;
@@ -88,12 +95,12 @@ Page({
     let UserID = util.getStorage("userID");
     let OpenID = util.getStorage("openId");
     var url = ports.modoHttp + "API/WeChatMiniProgram/Booking?BranchID=" + _this.data.branchId + "&StartDate=" + _this.data.startTime + "&EndDate=" + _this.data.endTime + "&RoomTypeID=" + _this.data.typeId + "&UserID=" + UserID + "&OpenID=" + OpenID + "&PlanID=" + _this.data.PlanID;
-    console.log(url);
+    // console.log(url);
     wx.request({
       url: url,
       method: 'get',
       success: function(res) {
-        console.log(res)
+        // console.log(res) 
         let couponObj={};
         couponObj.ID = res.data.VoucherID;
         couponObj.InitValue = res.data.VoucherMoney;
@@ -245,9 +252,8 @@ Page({
         _this.setData({
           hidden: true,
         });
+        
         if (res.data.PayMoney>0){
-
-
           if (res.data.Code == "SUCCESS") {
             wx.requestPayment({
               timeStamp: PayMessage.timeStamp,
@@ -259,6 +265,7 @@ Page({
                 wx.navigateTo({
                   url: '../OrderDetails/OrderDetails?TypeValueID=' + BillID,
                 })
+                _this.sendMessage(BillID);
               },
               fail: function (res) {
                 wx.navigateTo({
@@ -284,4 +291,25 @@ Page({
       isUseStorage: !this.data.isUseStorage,
     })
   },
+  sendMessage(BillID){
+    let _this = this;
+    let OpenID = util.getStorage("openId");
+    var url = ports.modoHttp+"api/WeChatMiniProgram/SendMessage";
+    wx.request({
+      url: url,
+      method: 'post',
+      header: {
+        "Authorization": OpenID,
+      },
+      data:{
+        OpenID: OpenID,
+        BillID: BillID,
+        TypeID:1,
+        FormID: _this.formId,
+      },
+      success: function (res) {
+        console.log(res);
+      },
+    })
+  }
 })

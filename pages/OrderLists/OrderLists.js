@@ -32,45 +32,20 @@ Page({
     });
     this.getLists();
   },
-  deleteOrder(e) {
-    let _this = this;
-    wx.showModal({
-      title: '提示',
-      content: '确定删除订单吗',
-      success: function(res) {
-        if (res.confirm) {
-          wx.request({
-            url: ports.modoHttp + "API/WeChatMiniProgram/DeleteBill?billId=" + e.currentTarget.dataset.id,
-            method: 'get',
-            success: function(res) {
-              if (res.data.state == 1) {
-                wx.showToast({
-                  title: '操作成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-                _this.getLists();
-              } else {
-                util.throwMsg(res.data.ErrorMessage);
-              }
-            },
-          })
-        } else {
-          return;
-        }
-      }
-    })
+  submit: function (e) {
+    console.log(e);
+    this.closeOrderFun(e.currentTarget.dataset.id,e.detail.formId);
   },
-  closeOrderFun(e) {
+  
+  closeOrderFun(billId, formId) {
     let _this = this;
     wx.showModal({
       title: '提示',
       content: '确定取消订单吗',
       success: function (res) {
-        if (res.confirm) {
-            
+        if (res.confirm) { 
           wx.request({
-            url: ports.modoHttp + "API/WeChatMiniProgram/CloseBill?billId=" + e.currentTarget.dataset.id,
+            url: ports.modoHttp + "API/WeChatMiniProgram/CloseBill??billId=" + billId + "&FormID=" + formId,
             method: 'get',
             success: function (res) {
               if (res.data.state == 1) {

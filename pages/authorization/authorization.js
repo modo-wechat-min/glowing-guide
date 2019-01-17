@@ -15,7 +15,7 @@ Page({
       //在非异步的情况下 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo;
+          app.globalData.userInfo = res.userInfo; 
         }
       })
     }
@@ -33,7 +33,7 @@ Page({
     //成功返回上个页面
     
     if (e.detail.errMsg == "getUserInfo:ok") {
-      util.getOpenId();
+      util.getUniqueIdAndOpenId();
       if (_this.data.url.indexOf("/home/home") > -1 || _this.data.url.indexOf("/OrderLists/OrderLists") > -1 || _this.data.url.indexOf("/personal/personal") > -1) {
         wx.switchTab({
           url: url,

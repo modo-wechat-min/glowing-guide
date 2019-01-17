@@ -169,3 +169,15 @@ color: #333;
 .unsubscribe-box{
   padding: 36rpx 0;
 }
+.order-cancle{
+  display:inline-block;
+background:transparent!important;
+font-size:24rpx;
+color:#999;
+height:26rpx;
+line-height:24rpx;
+margin-bottom: -1rpx;
+}
+.order-cancle::after { 
+  border: 0;
+} 

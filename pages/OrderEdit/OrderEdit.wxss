@@ -155,7 +155,7 @@ button {
   background: linear-gradient(to right, #ff4d4d, #f64);
   line-height: 90rpx;
   margin: 13rpx 0;
-  color: #fff;
+  color: #fff!important;
   font-size: 36rpx;
 }
 

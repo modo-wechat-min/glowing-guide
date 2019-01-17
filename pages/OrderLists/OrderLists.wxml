@@ -33,8 +33,11 @@
         月租金：¥{{item.Orders[0].MonthRent}}
       </view>
       <view class='btn-box'>
-        <!-- <navigator hover-class='navigator-active' bindtap='deleteOrder' data-id='{{item.BillID}}' wx:if="{{RentType==0}}">删除订单</navigator> -->
-        <navigator hover-class='navigator-active' bindtap='closeOrderFun' data-id='{{item.BillID}}' url='' wx:if="{{item.IsCancel==1}}">订单取消</navigator>
+        <form bindsubmit="submit" report-submit='true ' data-id='{{item.BillID}}' wx:if="{{item.IsCancel==1}}">
+          <button form-type="submit" type="default" class='order-cancle' hover-class='navigator-active'>
+              订单取消
+          </button>
+        </form>
         <navigator hover-class='navigator-active' url='../OrderDetails/OrderDetails?TypeValueID={{item.BillID}}' wx:if="{{RentType==0}}">订单详情</navigator>
         <navigator hover-class='navigator-active' wx:if="{{item.Status==4&&RentType==0&&item.IsReview===0}}" url='../evaluate/evaluate?TypeValueID={{item.BillID}}'>订单评价</navigator>
         <navigator hover-class='navigator-active' bindtap='openContract' data-url='{{item.LoadUrl}}' wx:if="{{RentType==1&&item.LoadUrl}}">查看合同</navigator>

@@ -154,3 +154,20 @@ line-height: 46rpx;
 scroll-view{
 overflow-x: visible;
 }
+.order-cancle{
+  background: transparent!important;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin: 16rpx 0 0 22rpx;
+  font-size: 24rpx;
+  width: 124rpx;
+  padding: 0;
+  
+border:1rpx solid #ff6644;
+color: #ff6644!important;
+box-shadow: none;
+}
+.order-cancle::before{
+  border: 0;
+  box-shadow: none;
+}
