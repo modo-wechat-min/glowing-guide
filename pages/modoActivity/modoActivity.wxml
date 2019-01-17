@@ -1,5 +1,6 @@
-<view class='main-activity-box'>
-  <view class='relative main-activity-box'>
+<view class='main-activity-box' bindtap="getPosition">
+<image src="{{activityImg}}"></image> 
+  <!-- <view class='relative main-activity-box'> 
     <image src="{{activityImg}}"></image>
     <view class='des-box'>
       <view class='activity-des-btn'>
@@ -24,5 +25,5 @@
         <button class='btn-buy ' wx:if="{{countObj.CardCount>0}}" bindtap="buyLuckPackageFn" data-type='{{1}}'> 立即充值 </button>
         <button class='btn-buy ' wx:else> 周年庆卡售罄 </button>
     </view>
-  </view>
+  </view> -->
 </view>

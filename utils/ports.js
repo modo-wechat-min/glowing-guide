@@ -1,7 +1,7 @@
 //测试站点
 // let imgUrl ="https://testapp.modo-life.com/Images/WeChatMiniStatic/"
 // let modoHttp = "https://testapp.modo-life.com/"
-// let modoHttp2 = "https://testapp.modo-life.com"
+// let modoHttp2 = "https://testapp.modo-life.com"     
 //晨野站点 
 // let modoHttp ="http://192.168.1.180:8008/";
 // let modoHttp2 = "http://192.168.1.180:8008"; 

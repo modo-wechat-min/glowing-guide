@@ -23,10 +23,30 @@ Page({
       method: 'get',
       success: function (res) {
         _this.setData({
-          activityImg: ports.imgUrl + res.data.ListActiveInfor[1].ImageUrl[2], //首页背景图
+          activityImg: ports.imgUrl + res.data.ListActiveInfor[1].ImageUrl[2], //首页背景图 
         })
       },
     })
+  },
+  getPosition:function(e){
+console.log(e)
+    let obj = wx.createSelectorQuery();
+    let page = obj.selectAll(".main-activity-box");
+    let eventX = e.detail.x;
+    let eventY = e.detail.y;
+    page.boundingClientRect(function (rect) {
+        // console.log(rect[0].height)
+      let minHeight = rect[0].height*0.3587;
+      let maxHeight = rect[0].height * 0.4039;
+      let minWidth = rect[0].width * 0.3;
+      let maxWidth = rect[0].width * 0.7;
+      if ((minHeight < eventY && eventY < maxHeight) && (minWidth < eventX && eventX < maxWidth)){
+        wx.navigateTo({
+          url: '../BranchLists/BranchLists?CityIndex=' + 0,
+        })
+      }
+      }).exec()  
+    let pageImgHeight
   },
   getCountFn:function(){
     let _this = this;

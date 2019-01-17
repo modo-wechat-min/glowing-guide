@@ -73,5 +73,10 @@
     "request": 10000,
     "downloadFile": 10000
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "摩兜公寓将用于给您匹配合适房源"
+    }
+  },
   "debug": true
 }
