@@ -7,8 +7,8 @@
 // let modoHttp2 = "http://192.168.1.180:8008"; 
 //线上站点
 let imgUrl ="https://www.modo-life.com/Images/WeChatMiniStatic/"   
-// let modoHttp = "https://www.modo-life.com/"
-// let modoHttp2 = "https://www.modo-life.com"     
+let modoHttp = "https://www.modo-life.com/"
+let modoHttp2 = "https://www.modo-life.com"         
 
 // let modoHttp = "https://www.modo-apt.cn/"
 // let modoHttp2 = "https://www.modo-apt.cn" 
