@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/home",
     "pages/modoActivity/modoActivity",
+    "pages/modoThirdActivity/modoThirdActivity",
     "pages/modoActivityPayment/modoActivityPayment",
     
     

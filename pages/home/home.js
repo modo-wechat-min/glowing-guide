@@ -123,7 +123,9 @@ Page({
       url = "../Thanksgiving/Thanksgiving";
     } else if (this.isHaveActivity && index == 1){
       url = "../modoActivity/modoActivity";
-    } else {
+    } else if (this.isHaveActivity && index == 2) {
+      url = "../modoThirdActivity/modoThirdActivity";
+    }else {
       url = '../BranchLists/BranchLists?CityIndex=' + this.data.index + '&StartDate=' + this.data.startTime + '&EndDate=' + this.data.endTime + '&days=' + this.data.days;
     }
     wx.navigateTo({
